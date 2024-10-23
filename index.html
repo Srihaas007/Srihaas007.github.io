@@ -3,33 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Srihaas Gorantla's Portfolio - Software Developer">
-    <title>Srihaas Gorantla | Portfolio</title>
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/Srihaas007/Srihaas007.github.io/main/style.css">
-</head>
-<body>
-    <header>
-        <h1>Srihaas Gorantla</h1>
-        <p>Ambitious software developer with expertise in full-stack development, mobile app creation, and machine learning.</p>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Srihaas Gorantla's Portfolio">
     <title>Srihaas Gorantla | Portfolio</title>
+    
+    <!-- CSS and Fonts -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 <body>
+    <!-- Navbar -->
     <header>
         <div class="navbar">
             <h1>Srihaas Gorantla</h1>
@@ -45,128 +28,73 @@
         </nav>
     </header>
 
-    <main>
-        <section id="about" data-aos="fade-up">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <img src="assets/profile.jpg" alt="Srihaas Gorantla" width="150" height="150" loading="lazy">
-                <p>Ambitious software developer skilled in full-stack development, mobile app creation, and machine learning.</p>
-            </div>
-        </section>
-
-        <section id="skills" data-aos="fade-up">
-            <h2>Skills</h2>
-            <ul class="skills-list">
-                <li>Python, JavaScript, Java, C#, C++, PHP, SQL</li>
-                <li>React Native, Laravel, Flask, Firebase, REST APIs</li>
-                <li>Machine Learning (TensorFlow, Transfer Learning)</li>
-                <li>Git, VS Code, Android Studio, Expo</li>
-            </ul>
-        </section>
-
-        <section id="projects" data-aos="fade-up">
-            <h2>My Projects</h2>
-            <div id="github-repos">
-                <!-- Repos will be dynamically loaded here -->
-            </div>
-            <div class="project-highlight">
-                <h3>Real-Time Sign Language Translation</h3>
-                <p>Developed a real-time sign language translation system using TensorFlow and Transfer Learning, achieving 90% accuracy.</p>
-            </div>
-            <div class="project-highlight">
-                <h3>Task Management App</h3>
-                <p>Cross-platform task management app using .NET MAUI with geolocation-based notifications.</p>
-            </div>
-        </section>
-
-        <section id="gallery" data-aos="fade-up">
-            <h2>Project Gallery</h2>
-            <div class="gallery">
-                <img src="assets/project1.jpg" alt="Sign Language Translation Project" loading="lazy">
-                <img src="assets/project2.jpg" alt="Task Management App" loading="lazy">
-            </div>
-        </section>
-
-        <section id="contact" data-aos="fade-up">
-            <h2>Contact Me</h2>
-            <p>Feel free to reach out:</p>
-            <ul>
-                <li><a href="mailto:srihaas@example.com"><i class="fas fa-envelope"></i> Email</a></li>
-                <li><a href="https://linkedin.com/in/srihaas"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-                <li><a href="https://github.com/Srihaas007"><i class="fab fa-github"></i> GitHub</a></li>
-            </ul>
-        </section>
-    </main>
-
-    <footer>
-        <p>© 2024 Srihaas Gorantla. All Rights Reserved.</p>
-    </footer>
-
-    <script src="js/script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init(); // Initialize animations
-    </script>
-</body>
-</html>
-
-    </header>
-
-    <section id="about">
+    <!-- About Section -->
+    <section id="about" data-aos="fade-up">
         <h2>About Me</h2>
-        <p>I am an ambitious software developer with a strong academic background in computer science, skilled in full-stack development, mobile app creation, and machine learning. I'm eager to leverage my technical expertise and problem-solving abilities to deliver high-quality, scalable solutions as a junior developer.</p>
-        <p>Currently based in Birmingham, UK, I hold a Bachelor of Science in Computer Science from Coventry University.</p>
+        <div class="about-content">
+            <img src="assets/profile.jpg" alt="Srihaas Gorantla" width="150" height="150" loading="lazy">
+            <p>Ambitious software developer skilled in full-stack development, mobile app creation, and machine learning.</p>
+        </div>
     </section>
 
-    <section id="skills">
-        <h2>Technical and Professional Skills</h2>
-        <ul>
-            <li><strong>Programming Languages:</strong> Python, JavaScript, Java, C#, C++, PHP, SQL</li>
-            <li><strong>Web & Mobile Development:</strong> HTML, CSS, React Native, REST APIs, Firebase, Flask, Laravel, Android Studio</li>
-            <li><strong>Frameworks & Tools:</strong> Git, VS Code, NoSQL, MySQL</li>
-            <li><strong>Machine Learning:</strong> Transfer Learning, Neural Networks, Data Preprocessing, Model Evaluation</li>
-            <li><strong>Other Tools:</strong> MATLAB, Figma, Adobe XD</li>
-            <li><strong>Operating Systems:</strong> Windows, macOS, Linux</li>
-            <li><strong>Languages:</strong> Fluent in English, Hindi, Telugu</li>
+    <!-- Skills Section -->
+    <section id="skills" data-aos="fade-up">
+        <h2>Skills</h2>
+        <ul class="skills-list">
+            <li>Python, JavaScript, Java, C#, C++, PHP, SQL</li>
+            <li>React Native, Laravel, Flask, Firebase, REST APIs</li>
+            <li>Machine Learning (TensorFlow, Transfer Learning)</li>
+            <li>Git, VS Code, Android Studio, Expo</li>
         </ul>
     </section>
 
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project">
+    <!-- Projects Section -->
+    <section id="projects" data-aos="fade-up">
+        <h2>My Projects</h2>
+        <div id="github-repos">
+            <!-- GitHub repositories dynamically fetched here -->
+        </div>
+        <div class="project-highlight">
             <h3>Real-Time Sign Language Translation</h3>
-            <p><strong>Tools:</strong> Python, TensorFlow, Transfer Learning</p>
-            <p>Developed a real-time sign language translation system utilizing transfer learning techniques. Achieved 90% accuracy, with potential applications in wearable technology for accessibility.</p>
+            <p>Developed a real-time sign language translation system using TensorFlow and Transfer Learning, achieving 90% accuracy.</p>
         </div>
-        <div class="project">
-            <h3>MAUI Task Management App</h3>
-            <p><strong>Tools:</strong> .NET MAUI, C#</p>
-            <p>Created a task management app with geolocation-based notifications, improving productivity by 25%. It supports cross-platform functionality, ensuring a seamless user experience on both iOS and Android.</p>
-        </div>
-        <div class="project">
-            <h3>Bill-Splitting Android Application</h3>
-            <p><strong>Tools:</strong> Android Studio, Java, Firebase</p>
-            <p>Built an Android app that helps users split bills and track expenses, used by over 500 users. Improved transaction accuracy by 15% through real-time data synchronization with Firebase.</p>
-        </div>
-        <div class="project">
-            <h3>E-commerce Platform</h3>
-            <p><strong>Tools:</strong> Laravel, PHP, MySQL, HTML, CSS, Bootstrap</p>
-            <p>Developed a scalable e-commerce platform supporting secure transactions, user authentication, and product management. Backend optimization resulted in 20% faster load times compared to similar platforms.</p>
+        <div class="project-highlight">
+            <h3>Task Management App</h3>
+            <p>Cross-platform task management app using .NET MAUI with geolocation-based notifications to boost productivity by 25%.</p>
         </div>
     </section>
 
-    <section id="contact">
+    <!-- Gallery Section -->
+    <section id="gallery" data-aos="fade-up">
+        <h2>Project Gallery</h2>
+        <div class="gallery">
+            <img src="assets/project1.jpg" alt="Sign Language Translation Project" loading="lazy">
+            <img src="assets/project2.jpg" alt="Task Management App" loading="lazy">
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" data-aos="fade-up">
         <h2>Contact Me</h2>
-        <p>Feel free to reach out for any opportunities or collaborations:</p>
+        <p>Feel free to reach out:</p>
         <ul>
-            <li>Email: <a href="mailto:srihaas@example.com">srihaas@example.com</a></li>
-            <li>LinkedIn: <a href="https://linkedin.com/in/srihaas">linkedin.com/in/srihaas</a></li>
-            <li>GitHub: <a href="https://github.com/Srihaas007">github.com/Srihaas007</a></li>
+            <li><a href="mailto:srihaas@example.com"><i class="fas fa-envelope"></i> Email</a></li>
+            <li><a href="https://linkedin.com/in/srihaas"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+            <li><a href="https://github.com/Srihaas007"><i class="fab fa-github"></i> GitHub</a></li>
         </ul>
     </section>
 
+    <!-- Footer -->
     <footer>
         <p>© 2024 Srihaas Gorantla. All Rights Reserved.</p>
     </footer>
+
+    <!-- JS and Animation Initialization -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="js/githubApi.js" type="module"></script>
+    <script src="js/script.js" type="module"></script>
+    <script>
+        AOS.init(); // Initialize AOS
+    </script>
 </body>
 </html>
