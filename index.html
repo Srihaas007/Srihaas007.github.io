@@ -1,154 +1,246 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Srihaas Gorantla | Full-Stack Developer Portfolio">
     <title>Srihaas Gorantla | Portfolio</title>
 
     <!-- CSS Stylesheets Embedded -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHq6ARgx5MZbHg4j0EfHMbVKWp4fxSV6YJ+9S+xvMeUKyFdxi0eGvZQjNV0yrNw1Y4M+wS0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Open Props for Smooth Animations -->
     <link rel="stylesheet" href="https://unpkg.com/open-props/easings.min.css">
 
     <style>
         /* Global Styles */
         :root {
-            --primary-color: #6c63ff; /* Soft purple */
-            --secondary-color: #2d2e32; /* Dark charcoal */
-            --light-color: #f0f0f0; /* Light grey */
-            --dark-color: #1e1f26; /* Deep dark grey */
-            --accent-color: #ff6584; /* Pinkish red */
+            --bg-color: #f0f4f8;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --primary-color: #6200ea; /* Purple */
+            --secondary-color: #03dac6; /* Teal */
+            --accent-color: #ff4081; /* Pink */
+            --transition-speed: 0.3s;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --shadow: rgba(255, 255, 255, 0.1);
+            --primary-color: #bb86fc;
+            --secondary-color: #03dac6;
+            --accent-color: #ff4081;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--light-color);
-            color: var(--secondary-color);
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background-color var(--transition-speed) ease-in-out, color var(--transition-speed) ease-in-out;
         }
 
-        /* Smooth Scroll Effect */
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 80px;
-        }
-
-        /* Dark Theme */
-        body.dark-mode {
-            background-color: var(--dark-color);
-            color: var(--light-color);
-        }
-
-        /* Header and Hero Section */
+        /* Header and Navbar */
         header {
             position: sticky;
             width: 100%;
             top: 0;
-            background: rgba(108, 99, 255, 0.9); /* Semi-transparent primary color */
-            color: white;
+            background: var(--card-bg);
             padding: 10px 0;
-            text-align: center;
             z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px var(--shadow);
+            transition: all var(--transition-speed) ease;
         }
 
         .navbar {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+            justify-content: center;
+            position: relative;
+        }
+
+        .navbar h1 {
+            font-size: 2em;
+            margin: 0;
+            color: var(--primary-color);
+            flex: 1;
+            text-align: center;
+        }
+
+        nav {
+            flex: 1;
         }
 
         nav ul {
             list-style: none;
             display: flex;
             gap: 20px;
-        }
-
-        nav ul li {
-            display: inline;
+            padding: 0;
+            justify-content: center;
+            margin: 0;
         }
 
         nav ul li a {
-            color: white;
+            color: var(--text-color);
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s;
+            font-size: 1.1em;
+            transition: color var(--transition-speed);
         }
 
         nav ul li a:hover {
             color: var(--accent-color);
         }
 
-        .hero-content {
-            margin-top: 100px;
-            text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(to bottom, rgba(108, 99, 255, 0.8), rgba(255, 101, 132, 0.8));
-            color: white;
-            clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
-            transition: all 0.3s ease;
+        .theme-switch-wrapper {
+            position: absolute;
+            left: 20px;
+            display: flex;
+            align-items: center;
         }
 
-        .hero-content.shrink {
-            padding: 20px;
-            clip-path: none;
-            background: var(--primary-color);
+        .theme-switch {
+            display: inline-block;
+            height: 24px;
+            position: relative;
+            width: 50px;
+        }
+
+        .theme-switch input {
+            display: none;
+        }
+
+        .slider {
+            background-color: var(--secondary-color);
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: background-color 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider::before {
+            position: absolute;
+            content: '';
+            height: 20px;
+            width: 20px;
+            left: 2px;
+            bottom: 2px;
+            background-color: var(--card-bg);
+            transition: transform 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider::before {
+            transform: translateX(26px);
+        }
+
+        /* Sun and Moon Icons */
+        .slider::after {
+            content: '\f185'; /* FontAwesome sun icon */
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 3px;
+            left: 5px;
+            font-size: 16px;
+            color: var(--card-bg);
+            transition: transform 0.4s;
+        }
+
+        input:checked + .slider::after {
+            content: '\f186'; /* FontAwesome moon icon */
+            transform: translateX(26px);
+        }
+
+        /* Hero Section */
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            transition: all var(--transition-speed) ease, opacity var(--transition-speed) ease;
         }
 
         .hero-content h2 {
-            font-size: 3em;
-            transition: all 0.3s ease;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            background-color: #f0f4f8;
         }
 
-        .hero-content.shrink h2 {
-            font-size: 1.5em;
+        .hero-content p {
+            font-size: 1.2em;
+            max-width: 600px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
         }
 
         .btn {
             display: inline-block;
-            margin-top: 20px;
-            padding: 12px 25px;
+            padding: 12px 35px;
             background-color: var(--accent-color);
             color: #fff;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 600;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s, transform 0.3s;
+            transition: background-color var(--transition-speed), transform var(--transition-speed);
         }
 
         .btn:hover {
-            background-color: #e14870;
+            background-color: #c51162;
             transform: translateY(-3px);
         }
 
         /* Sections */
         section {
-            padding: 70px 20px;
+            padding: 80px 20px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: background-color var(--transition-speed);
+            overflow: hidden;
         }
 
         h2 {
             text-align: center;
             margin-bottom: 40px;
-            font-size: 2.8em;
+            font-size: 2.5em;
+            color: var(--primary-color);
         }
 
+        /* About Section */
         .about-content {
             display: flex;
             gap: 40px;
@@ -159,45 +251,159 @@
 
         .about-content img {
             border-radius: 50%;
-            width: 200px;
-            height: 200px;
+            width: 220px;
+            height: 220px;
             object-fit: cover;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .about-content p {
             max-width: 600px;
-            font-size: 1.3em;
+            font-size: 1.2em;
             line-height: 1.8;
+            color: var(--text-color);
         }
 
-        /* Timeline for Experience */
+        /* Skills Section */
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .skills-list div {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: background-color var(--transition-speed);
+        }
+
+        /* Experience Section */
         .timeline {
-            border-left: 4px solid var(--primary-color);
-            padding-left: 30px;
             position: relative;
+            padding: 20px 0;
+            overflow: hidden;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--primary-color);
+            transform: translateX(-50%);
         }
 
         .timeline-item {
-            margin-bottom: 40px;
+            width: 45%;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow);
             position: relative;
+            margin-bottom: 40px;
+            transition: background-color var(--transition-speed);
+        }
+
+        .timeline-item:nth-child(odd) {
+            float: left;
+            clear: both;
+            transform: translateX(-12%);
+        }
+
+        .timeline-item:nth-child(even) {
+            float: right;
+            clear: both;
+            transform: translateX(12%);
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -18px;
-            top: 5px;
+            top: 20px;
             width: 20px;
             height: 20px;
             background: var(--primary-color);
             border-radius: 50%;
-            border: 4px solid var(--light-color);
+            border: 4px solid var(--card-bg);
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -10px;
         }
 
         .timeline-item h3 {
             font-size: 1.8em;
             margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .timeline-item ul {
+            padding-left: 20px;
+            list-style-type: disc;
+            color: var(--text-color);
+        }
+
+        .timeline-item p, .timeline-item ul {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        /* Education Section */
+        .education {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .education-item {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: background-color var(--transition-speed);
+        }
+
+        .education-item h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .education-item p {
+            font-size: 1em;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        /* Certifications Section */
+        .certifications {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .certification-item {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: background-color var(--transition-speed);
+        }
+
+        .certification-item h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: var(--primary-color);
         }
 
         /* Projects Section */
@@ -208,28 +414,61 @@
         }
 
         .project-card {
-            background: white;
-            padding: 30px;
+            background: var(--card-bg);
+            padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 15px var(--shadow);
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed), background-color var(--transition-speed);
         }
 
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 20px var(--shadow);
         }
 
         .project-card img {
-            max-width: 80px;
-            margin-bottom: 20px;
+            max-width: 60px;
+            margin-bottom: 15px;
+        }
+
+        /* Extracurricular Activities */
+        .activities-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .activities-list li {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            color: var(--text-color);
+        }
+
+        /* Photography Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
         }
 
         /* Contact Section */
         .contact-list {
             list-style: none;
             display: flex;
+            flex-wrap: wrap;
             gap: 30px;
             justify-content: center;
             margin-top: 40px;
@@ -237,106 +476,148 @@
 
         .contact-list li a {
             text-decoration: none;
-            color: var(--primary-color);
-            font-size: 1.7em;
-            transition: color 0.3s;
+            color: var(--accent-color);
+            font-size: 1.5em;
+            transition: color var(--transition-speed);
         }
 
         .contact-list li a:hover {
-            color: var(--accent-color);
+            color: #c51162;
         }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 30px 0;
-            background-color: var(--primary-color);
-            color: white;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
         }
 
-        .theme-toggle {
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            font-size: 1.2em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 0 15px;
+            }
+
+            .theme-switch-wrapper {
+                position: relative;
+                margin-top: 10px;
+                right: auto;
+            }
+
+            .timeline::before {
+                left: 4px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                float: none;
+                clear: both;
+                transform: translateX(0);
+                margin-left: 30px;
+            }
+
+            .timeline-item:nth-child(odd)::before,
+            .timeline-item:nth-child(even)::before {
+                left: -34px;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+            }
+
+            .timeline {
+                padding-left: 20px;
+            }
         }
 
-        .sun-and-moon {
-            width: 36px;
-            height: 36px;
-        }
+        @media (max-width: 480px) {
+            .hero-content h2 {
+                font-size: 1.8em;
+            }
 
-        .mode-text {
-            font-size: 1em;
+            .hero-content p {
+                font-size: 1em;
+            }
+
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-content img {
+                margin-bottom: 20px;
+            }
+
+            .contact-list li a {
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
-
 <body>
     <!-- Header Section -->
     <header id="hero">
         <div class="navbar">
             <h1>Srihaas Gorantla</h1>
-            <button class="theme-toggle" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">
-                <svg class="sun-and-moon" aria-hidden="true" width="36" height="36" viewBox="0 0 24 24">
-                    <mask class="moon" id="moon-mask">
-                        <rect x="0" y="0" width="100%" height="100%" fill="white" />
-                        <circle cx="24" cy="10" r="6" fill="black" />
-                    </mask>
-                    <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
-                    <g class="sun-beams" stroke="currentColor">
-                        <line x1="12" y1="1" x2="12" y2="3" />
-                        <line x1="12" y1="21" x2="12" y2="23" />
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                        <line x1="1" y1="12" x2="3" y2="12" />
-                        <line x1="21" y1="12" x2="23" y2="12" />
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                    </g>
-                </svg>
-                <span class="mode-text">Light Mode / Dark Mode</span>
-            </button>
-        </div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="hero-content" data-aos="zoom-in" id="hero-content">
-            <h2>Hi, I'm Srihaas</h2>
-            <p>Full-Stack Developer | Mobile App Developer | Machine Learning Enthusiast</p>
-            <a href="#contact" class="btn">Contact Me</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#activities">Activities</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
         </div>
     </header>
+
+    <!-- Hero Section -->
+    <section class="hero-content" data-aos="zoom-in" id="hero-content">
+        <h2>Hi, I'm Srihaas</h2>
+        <p>Full-Stack Developer | Mobile App Developer | Machine Learning Enthusiast</p>
+        <div class="btn-group">
+            <a href="#contact" class="btn">Contact Me</a>
+            <a href="Srihaas Gorantla.pdf" class="btn" download>Download CV</a>
+        </div>
+    </section>
 
     <!-- About Section -->
     <section id="about" data-aos="fade-up">
         <div class="container">
             <h2>About Me</h2>
             <div class="about-content">
-                <img src="assets/profile.jpg" alt="Srihaas Gorantla" loading="lazy">
-                <p>Experienced Full Stack Developer with over 2 years of experience in web and mobile app development. Proficient in PHP, Laravel, and React, with a strong background in machine learning and cybersecurity. Passionate about building scalable web solutions and creating impactful projects.</p>
+                <img src="srihaas.JPG" alt="Srihaas Gorantla" loading="lazy">
+                <p>Ambitious software developer with a strong academic background in computer science, skilled in full-stack development, mobile app creation, and machine learning. Eager to leverage technical expertise and problem-solving abilities to deliver high-quality, scalable solutions as a junior developer.</p>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section with Iconography -->
+    <!-- Skills Section -->
     <section id="skills" data-aos="fade-up">
         <div class="container">
             <h2>Technical Skills</h2>
             <div class="skills-list">
-                <div data-aos="fade-right"><strong>Languages:</strong> Python, JavaScript, Java, C#, PHP, SQL</div>
-                <div data-aos="fade-left"><strong>Frameworks:</strong> Laravel, Flask, .NET, React</div>
-                <div data-aos="fade-right"><strong>Tools:</strong> Firebase, Azure DevOps, Adobe XD, MATLAB</div>
-                <div data-aos="fade-left"><strong>Operating Systems:</strong> Windows, macOS, Linux</div>
+                <div data-aos="fade-right"><strong>Programming Languages:</strong> Python, JavaScript, Java, C#, C++, PHP, SQL</div>
+                <div data-aos="fade-left"><strong>Web & Mobile Development:</strong> HTML, CSS, React Native, REST APIs, Firebase, Flask, Laravel, Android Studio, Expo</div>
+                <div data-aos="fade-right"><strong>Frameworks & Tools:</strong> Git, GitHub, VS Code, Visual Studio, MAUI, NoSQL Databases, MySQL</div>
+                <div data-aos="fade-left"><strong>Methodologies & Patterns:</strong> Agile, SDLC, Waterfall, MVVM, MVC</div>
+                <div data-aos="fade-right"><strong>Machine Learning:</strong> Transfer Learning, Neural Networks, Jupyter Notebooks, Data Preprocessing, Visualization</div>
+                <div data-aos="fade-left"><strong>Other Tools & Software:</strong> MATLAB, Figma, Adobe XD, MS Office Suite</div>
+                <div data-aos="fade-right"><strong>Operating Systems:</strong> Windows, macOS, Linux</div>
+                <div data-aos="fade-left"><strong>Languages:</strong> English, Hindi, Telugu (Fluent)</div>
             </div>
         </div>
     </section>
@@ -347,22 +628,74 @@
             <h2>Professional Experience</h2>
             <div class="timeline">
                 <div class="timeline-item" data-aos="fade-right">
-                    <h3>Full Stack Developer</h3>
-                    <p>Absolute-Interpreting and Translating Ltd. (June 2024 - Present)</p>
+                    <h3>Full Stack Developer (Contract)</h3>
+                    <p><em>Absolute-Interpreting and Translating Ltd., Birmingham, UK</em></p>
+                    <p><strong>June 2024 - August 2024</strong></p>
                     <ul>
-                        <li>Engaged in full-stack development using PHP and Laravel.</li>
-                        <li>Developed REST APIs to facilitate data exchange and integration.</li>
-                        <li>Enhanced the functionality and reliability of web applications.</li>
+                        <li>Led full-stack development for NHS and other clients, creating scalable APIs using PHP and Laravel.</li>
+                        <li>Developed REST APIs that improved booking efficiency by 25%, facilitating fast and reliable data exchange.</li>
+                        <li>Implemented cybersecurity protocols for API endpoints, ensuring compliance with NHS data protection standards.</li>
+                        <li>Optimized APIs, resulting in a 30% increase in system performance and a 40% boost in client satisfaction.</li>
                     </ul>
                 </div>
                 <div class="timeline-item" data-aos="fade-left">
-                    <h3>Full Stack Developer Intern</h3>
-                    <p>Progressive Technologies (PRO TECH) (Dec 2022 – Sep 2023)</p>
+                    <h3>Software Development Intern</h3>
+                    <p><em>Progressive Technologies (PRO TECH), Hyderabad, India</em></p>
+                    <p><strong>December 2022 - September 2023</strong></p>
                     <ul>
-                        <li>Developed a Python-based Android app for real-time data monitoring.</li>
-                        <li>Led UI/UX design, improving efficiency by 30%.</li>
-                        <li>Reduced bugs by 40% through code reviews and testing.</li>
+                        <li>Developed Python-based IoT solutions for real-time data monitoring, supporting over 1,000 users and reducing data retrieval time by 25%.</li>
+                        <li>Led a team of 5 in requirement analysis and UI/UX design, increasing team productivity by 30%.</li>
+                        <li>Implemented real-time communication using MQTT protocols, enhancing data processing speed by 20%.</li>
+                        <li>Conducted code reviews and established testing procedures, reducing reported bugs by 40%.</li>
                     </ul>
+                    <p><strong>Achievement:</strong> Received Turing Funding for international placement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" data-aos="fade-up">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="education">
+                <div class="education-item" data-aos="fade-right">
+                    <h3>Bachelor of Science (Hons) in Computer Science</h3>
+                    <p><em>Coventry University, Coventry, United Kingdom</em></p>
+                    <p><strong>Graduation:</strong> July 2024 | <strong>Grade:</strong> 2:1 (UK Grading System)</p>
+                    <p><strong>Relevant Coursework:</strong> Data Structures and Algorithms, Software Engineering, Web and Mobile App Development, Object-Oriented Programming, Machine Learning, Big Data Programming, Artificial Intelligence.</p>
+                    <p><strong>Graduation Certificate:</strong></p>
+                    <div style="overflow: auto;">
+                        <iframe src="Coventry University Certificate.pdf" width="100%" height="500px"></iframe>
+                    </div>
+                    <!-- Replace 'certificate.pdf' with the actual path to your PDF file -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" data-aos="fade-up">
+        <div class="container">
+            <h2>Certifications</h2>
+            <div class="certifications">
+                <div class="certification-item" data-aos="fade-right">
+                    <h3>Certification Name 1</h3>
+                    <p>Issuing Organization</p>
+                    <p><strong>Date:</strong> Month Year</p>
+                    <p>Brief description or details about the certification.</p>
+                </div>
+                <div class="certification-item" data-aos="fade-left">
+                    <h3>Certification Name 2</h3>
+                    <p>Issuing Organization</p>
+                    <p><strong>Date:</strong> Month Year</p>
+                    <p>Brief description or details about the certification.</p>
+                </div>
+                <div class="certification-item" data-aos="fade-right">
+                    <h3>Certification Name 3</h3>
+                    <p>Issuing Organization</p>
+                    <p><strong>Date:</strong> Month Year</p>
+                    <p>Brief description or details about the certification.</p>
                 </div>
             </div>
         </div>
@@ -374,21 +707,61 @@
             <h2>Projects</h2>
             <div class="projects-grid">
                 <div class="project-card" data-aos="flip-left">
-                    <h3>Sign Language Translation</h3>
+                    <h3>Real-Time Sign Language Translation</h3>
                     <a href="https://github.com/Srihaas007/BSL-ISL-Transfer-learning">
-                        <img src="https://img.icons8.com/?size=100&id=EYPGefvaMGEC&format=png&color=000000" alt="Sign Language Icon">
+                        <img src="https://img.icons8.com/external-outline-juicy-fish/60/000000/external-sign-language-disability-outline-outline-juicy-fish.png" alt="Sign Language Icon">
                     </a>
-                    <p>Real-time ISL translation project aimed at enhancing accessibility.</p>
+                    <p>Developed a real-time sign language translation system utilizing transfer learning techniques. Achieved 90% accuracy, with potential applications in wearable technology for accessibility.</p>
                 </div>
 
                 <div class="project-card" data-aos="flip-right">
-                    <h3>Voice-Over Chatbot</h3>
-                    <a href="https://github.com/Srihaas007/ChatBot">
-                        <img src="https://img.icons8.com/color/48/000000/bot.png" alt="Chatbot Icon">
+                    <h3>MAUI Task Management App</h3>
+                    <a href="https://github.com/Srihaas007/TaskManagementApp">
+                        <img src="https://img.icons8.com/color/60/000000/task.png" alt="Task Management Icon">
                     </a>
-                    <p>Created a chatbot with voice-over capability.</p>
+                    <p>Created a task management app with geolocation-based notifications, improving productivity by 25%. Leveraged .NET MAUI for cross-platform functionality.</p>
+                </div>
+
+                <div class="project-card" data-aos="flip-left">
+                    <h3>Bill-Splitting Android Application</h3>
+                    <a href="https://github.com/Srihaas007/BillSplitApp">
+                        <img src="https://img.icons8.com/color/60/000000/bill.png" alt="Bill Splitting Icon">
+                    </a>
+                    <p>Built an Android app that helps users split bills and track expenses, used by over 500 users. Improved transaction accuracy by 15% through real-time data synchronization with Firebase.</p>
+                </div>
+
+                <div class="project-card" data-aos="flip-right">
+                    <h3>E-commerce Platform with Laravel</h3>
+                    <a href="#">
+                        <img src="https://img.icons8.com/color/60/000000/shopping-cart.png" alt="E-commerce Icon">
+                    </a>
+                    <p>Developed a scalable e-commerce platform supporting secure transactions, user authentication, and product management. Backend optimization resulted in 20% faster load times.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Extracurricular Activities Section -->
+    <section id="activities" data-aos="fade-up">
+        <div class="container">
+            <h2>Extracurricular Activities</h2>
+            <ul class="activities-list">
+                <li><strong>Photography:</strong> Passionate about capturing moments. Below is a gallery of my favorite shots.</li>
+            </ul>
+            <div class="gallery" data-aos="fade-up">
+                <!-- Replace the image sources with your own photos -->
+                <img src="photo1.jpg" alt="Photography 1">
+                <img src="photo2.jpg" alt="Photography 2">
+                <img src="photo3.jpg" alt="Photography 3">
+                <img src="photo4.jpg" alt="Photography 4">
+            </div>
+            <ul class="activities-list">
+                <li><strong>Students' Union Project Placement:</strong> Conducted research on student satisfaction with both on-campus and off-campus classes. Gathered data through surveys, presented findings to faculty, and proposed actionable changes to enhance curriculum and teaching methods.</li>
+                <li><strong>Royal Australian Chemistry Quiz:</strong> Achieved distinction, ranking in the top 10%.</li>
+                <li><strong>Electronic Music Creation:</strong> Produced original music, achieving over 1,000 plays online.</li>
+                <li><strong>Puzzle Solving:</strong> Mastered Rubik's cubes, consistently solving in under 1 minute.</li>
+                <li><strong>Culinary Enthusiast:</strong> Experimented with over 100 recipes from various global cuisines.</li>
+            </ul>
         </div>
     </section>
 
@@ -400,6 +773,7 @@
                 <li><a href="mailto:srihaasgorantla@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
                 <li><a href="https://linkedin.com/in/srihaas"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
                 <li><a href="https://github.com/Srihaas007"><i class="fab fa-github"></i> GitHub</a></li>
+                <li><a href="tel:+447788760133"><i class="fas fa-phone"></i> +44 7788760133</a></li>
             </ul>
         </div>
     </section>
@@ -414,61 +788,39 @@
     <script>
         AOS.init(); // Initialize AOS animations
 
-        // Theme switcher logic
-        const storageKey = 'theme-preference';
+        // Theme Switcher Logic
+        const themeToggle = document.getElementById('theme-toggle');
 
-        const onClick = () => {
-            // flip current value
-            theme.value = theme.value === 'light' ? 'dark' : 'light';
-            setPreference();
-        }
-
-        const getColorPreference = () => {
-            if (localStorage.getItem(storageKey)) return localStorage.getItem(storageKey);
-            else return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
-
-        const setPreference = () => {
-            localStorage.setItem(storageKey, theme.value);
-            reflectPreference();
-        }
-
-        const reflectPreference = () => {
-            document.firstElementChild.setAttribute('data-theme', theme.value);
-            document.querySelector('#theme-toggle')?.setAttribute('aria-label', theme.value);
-        }
-
-        const theme = {
-            value: getColorPreference(),
-        }
-
-        // set early so no page flashes / CSS is made aware
-        reflectPreference();
-
-        window.onload = () => {
-            // set on load so screen readers can see latest value on the button
-            reflectPreference();
-
-            // now this script can find and listen for clicks on the control
-            document.querySelector('#theme-toggle').addEventListener('click', onClick);
-        }
-
-        // sync with system changes
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches: isDark }) => {
-            theme.value = isDark ? 'dark' : 'light';
-            setPreference();
-        });
-
-        // Shrink header on scroll
-        window.addEventListener('scroll', () => {
-            const heroContent = document.getElementById('hero-content');
-            if (window.scrollY > 50) {
-                heroContent.classList.add('shrink');
-            } else {
-                heroContent.classList.remove('shrink');
+        // Function to get the current theme
+        function getCurrentTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                return savedTheme;
             }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        // Function to update theme
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            // Update the checkbox state
+            if (theme === 'dark') {
+                themeToggle.checked = true;
+            } else {
+                themeToggle.checked = false;
+            }
+        }
+
+        // Initialize theme
+        setTheme(getCurrentTheme());
+
+        // Theme toggle click handler
+        themeToggle.addEventListener('change', () => {
+            const currentTheme = getCurrentTheme();
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
         });
     </script>
 </body>
-
 </html>
