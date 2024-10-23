@@ -5,21 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Srihaas Gorantla | Full-Stack Developer Portfolio">
     <title>Srihaas Gorantla | Portfolio</title>
-
-    <!-- External Stylesheets and Fonts -->
+    
+    <!-- CSS and Fonts -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
+    <!-- Header Section with Parallax Background -->
+    <header id="hero">
         <div class="navbar">
             <h1>Srihaas Gorantla</h1>
             <button id="theme-switch">Switch Theme</button>
         </div>
         <nav>
-            <ul>
+            <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
@@ -27,91 +30,119 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
+        <div class="hero-content">
+            <h2>Hi, I'm Srihaas</h2>
+            <p>Full-Stack Developer | Mobile App Developer | Machine Learning Enthusiast</p>
+            <a href="#contact" class="btn">Contact Me</a>
+        </div>
     </header>
 
-    <!-- About Section -->
+    <!-- About Section with Smooth Scrolling -->
     <section id="about" data-aos="fade-up">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <img src="assets/profile.jpg" alt="Srihaas Gorantla" width="150" height="150" loading="lazy">
-            <p>Ambitious software developer with expertise in full-stack development, mobile app creation, and machine learning. Eager to leverage technical expertise to deliver scalable solutions.</p>
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <img src="assets/profile.jpg" alt="Srihaas Gorantla" width="150" height="150" loading="lazy">
+                <p>Ambitious software developer skilled in full-stack development, mobile app creation, and machine learning. I’m eager to leverage technical expertise and problem-solving abilities to deliver scalable solutions in software development. I have a strong foundation in programming and experience working with real-time systems, REST APIs, and machine learning models.</p>
+            </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" data-aos="fade-up">
-        <h2>Technical and Professional Skills</h2>
-        <ul class="skills-list">
-            <li>Programming: Python, JavaScript, Java, C#, C++, PHP, SQL</li>
-            <li>Web & Mobile: HTML, CSS, React Native, REST APIs, Firebase, Flask, Laravel</li>
-            <li>Machine Learning: TensorFlow, Transfer Learning, Neural Networks, Data Preprocessing</li>
-            <li>Tools: Git, VS Code, Android Studio, Expo, MAUI, NoSQL Databases</li>
-        </ul>
+    <!-- Skills Section with Iconography -->
+    <section id="skills" class="parallax" data-aos="fade-up">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <ul class="skills-list">
+                <li><i class="fas fa-code"></i> Programming: Python, JavaScript, Java, C#, C++, PHP, SQL</li>
+                <li><i class="fas fa-laptop-code"></i> Web & Mobile: HTML, CSS, React Native, REST APIs, Firebase, Flask, Laravel</li>
+                <li><i class="fas fa-brain"></i> Machine Learning: TensorFlow, Neural Networks, Data Preprocessing, Model Evaluation</li>
+                <li><i class="fas fa-tools"></i> Tools: Git, VS Code, Android Studio, Expo, MAUI, NoSQL Databases</li>
+            </ul>
+        </div>
     </section>
 
-    <!-- Experience Section -->
+    <!-- Experience Section with Timeline -->
     <section id="experience" data-aos="fade-up">
-        <h2>Professional Experience</h2>
+        <div class="container">
+            <h2>Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right">
+                    <h3>Full Stack Developer (Contract)</h3>
+                    <p><strong>Absolute-Interpreting and Translating Ltd.</strong> - Birmingham, United Kingdom (June 2024 – August 2024)</p>
+                    <ul>
+                        <li>Led full-stack development for NHS, creating scalable APIs using PHP and Laravel.</li>
+                        <li>Improved booking efficiency by 25% through REST API development.</li>
+                        <li>Implemented cybersecurity protocols, ensuring NHS data protection compliance.</li>
+                    </ul>
+                </div>
 
-        <div class="experience-item">
-            <h3>Full Stack Developer (Contract)</h3>
-            <p><strong>Absolute-Interpreting and Translating Ltd.</strong> - Birmingham, United Kingdom (June 2024 – August 2024)</p>
-            <ul>
-                <li>Led full-stack development for NHS, creating scalable APIs using PHP and Laravel.</li>
-                <li>Improved booking efficiency by 25% through REST API development.</li>
-                <li>Implemented cybersecurity protocols, ensuring NHS data protection compliance.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <h3>Software Development Intern</h3>
-            <p><strong>Progressive Technologies (PRO TECH)</strong> - Hyderabad, India (Dec 2022 – Sep 2023)</p>
-            <ul>
-                <li>Developed Python-based IoT solutions for real-time data monitoring, supporting 1,000+ users.</li>
-                <li>Led a team in UI/UX design, increasing team productivity by 30%.</li>
-                <li>Reduced bugs by 40% through code reviews and established testing procedures.</li>
-            </ul>
+                <div class="timeline-item" data-aos="fade-left">
+                    <h3>Software Development Intern</h3>
+                    <p><strong>Progressive Technologies (PRO TECH)</strong> - Hyderabad, India (Dec 2022 – Sep 2023)</p>
+                    <ul>
+                        <li>Developed Python-based IoT solutions for real-time data monitoring, supporting 1,000+ users.</li>
+                        <li>Led a team in UI/UX design, increasing team productivity by 30%.</li>
+                        <li>Reduced bugs by 40% through code reviews and testing procedures.</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects Section with Hover Animations -->
     <section id="projects" data-aos="fade-up">
-        <h2>Key Projects</h2>
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card" data-aos="flip-left">
+                    <h3>Real-Time Sign Language Translation</h3>
+                    <p>Tools: Python, TensorFlow</p>
+                    <p>Developed a sign language translation system using transfer learning, achieving 90% accuracy.</p>
+                </div>
 
-        <div class="project-item">
-            <h3>Real-Time Sign Language Translation</h3>
-            <p>Tools: Python, TensorFlow</p>
-            <p>Developed a sign language translation system using transfer learning, achieving 90% accuracy.</p>
+                <div class="project-card" data-aos="flip-right">
+                    <h3>MAUI Task Management App</h3>
+                    <p>Tools: .NET MAUI, C#</p>
+                    <p>Created a task management app with geolocation-based notifications, improving productivity by 25%.</p>
+                </div>
+
+                <div class="project-card" data-aos="flip-left">
+                    <h3>Bill-Splitting Android Application</h3>
+                    <p>Tools: Android Studio, Java, Firebase</p>
+                    <p>Built an Android app for splitting bills, with real-time data synchronization using Firebase.</p>
+                </div>
+
+                <div class="project-card" data-aos="flip-right">
+                    <h3>E-commerce Platform with Laravel</h3>
+                    <p>Tools: Laravel, PHP, MySQL</p>
+                    <p>Developed a secure, scalable e-commerce platform with a focus on backend optimization.</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="project-item">
-            <h3>MAUI Task Management App</h3>
-            <p>Tools: .NET MAUI, C#</p>
-            <p>Created a task management app with geolocation-based notifications, improving productivity by 25%.</p>
-        </div>
-
-        <div class="project-item">
-            <h3>Bill-Splitting Android Application</h3>
-            <p>Tools: Android Studio, Java, Firebase</p>
-            <p>Built an Android app for splitting bills, with real-time data synchronization using Firebase.</p>
-        </div>
-
-        <div class="project-item">
-            <h3>E-commerce Platform with Laravel</h3>
-            <p>Tools: Laravel, PHP, MySQL</p>
-            <p>Developed a secure, scalable e-commerce platform with a focus on backend optimization.</p>
+    <!-- Gallery Section -->
+    <section id="gallery" class="parallax" data-aos="fade-up">
+        <div class="container">
+            <h2>Project Gallery</h2>
+            <div class="gallery">
+                <img src="assets/project1.jpg" alt="Sign Language Project" loading="lazy">
+                <img src="assets/project2.jpg" alt="Task Management App" loading="lazy">
+            </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" data-aos="fade-up">
-        <h2>Contact Me</h2>
-        <p>Feel free to reach out via the following platforms:</p>
-        <ul>
-            <li><a href="mailto:srihaas@example.com"><i class="fas fa-envelope"></i> Email</a></li>
-            <li><a href="https://linkedin.com/in/srihaas"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-            <li><a href="https://github.com/Srihaas007"><i class="fab fa-github"></i> GitHub</a></li>
-        </ul>
+        <div class="container">
+            <h2>Contact Me</h2>
+            <p>Feel free to reach out via the following platforms:</p>
+            <ul class="contact-list">
+                <li><a href="mailto:srihaas@example.com"><i class="fas fa-envelope"></i> Email</a></li>
+                <li><a href="https://linkedin.com/in/srihaas"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                <li><a href="https://github.com/Srihaas007"><i class="fab fa-github"></i> GitHub</a></li>
+            </ul>
+        </div>
     </section>
 
     <!-- Footer Section -->
@@ -119,12 +150,12 @@
         <p>© 2024 Srihaas Gorantla. All Rights Reserved.</p>
     </footer>
 
-    <!-- Scripts -->
+    <!-- External JS and Animation Initialization -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="js/script.js"></script>
     <script src="js/githubApi.js"></script>
     <script>
-        AOS.init(); // Initialize animations on scroll
+        AOS.init(); // Initialize AOS animations
     </script>
 </body>
 </html>
