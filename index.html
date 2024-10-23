@@ -58,6 +58,7 @@
             text-align: center;
             z-index: 1000;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
 
         .navbar {
@@ -95,10 +96,22 @@
             background: linear-gradient(to bottom, rgba(108, 99, 255, 0.8), rgba(255, 101, 132, 0.8));
             color: white;
             clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+            transition: all 0.3s ease;
+        }
+
+        .hero-content.shrink {
+            padding: 20px;
+            clip-path: none;
+            background: var(--primary-color);
         }
 
         .hero-content h2 {
             font-size: 3em;
+            transition: all 0.3s ease;
+        }
+
+        .hero-content.shrink h2 {
+            font-size: 1.5em;
         }
 
         .btn {
@@ -133,7 +146,7 @@
         h2 {
             text-align: center;
             margin-bottom: 40px;
-            font-size: 2.5em;
+            font-size: 2.8em;
         }
 
         .about-content {
@@ -154,8 +167,8 @@
 
         .about-content p {
             max-width: 600px;
-            font-size: 1.1em;
-            line-height: 1.6;
+            font-size: 1.3em;
+            line-height: 1.8;
         }
 
         /* Timeline for Experience */
@@ -183,7 +196,7 @@
         }
 
         .timeline-item h3 {
-            font-size: 1.5em;
+            font-size: 1.8em;
             margin-bottom: 10px;
         }
 
@@ -209,7 +222,7 @@
         }
 
         .project-card img {
-            max-width: 60px;
+            max-width: 80px;
             margin-bottom: 20px;
         }
 
@@ -225,7 +238,7 @@
         .contact-list li a {
             text-decoration: none;
             color: var(--primary-color);
-            font-size: 1.5em;
+            font-size: 1.7em;
             transition: color 0.3s;
         }
 
@@ -245,6 +258,19 @@
             border: none;
             background: transparent;
             cursor: pointer;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sun-and-moon {
+            width: 36px;
+            height: 36px;
+        }
+
+        .mode-text {
+            font-size: 1em;
         }
     </style>
 </head>
@@ -255,7 +281,7 @@
         <div class="navbar">
             <h1>Srihaas Gorantla</h1>
             <button class="theme-toggle" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">
-                <svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
+                <svg class="sun-and-moon" aria-hidden="true" width="36" height="36" viewBox="0 0 24 24">
                     <mask class="moon" id="moon-mask">
                         <rect x="0" y="0" width="100%" height="100%" fill="white" />
                         <circle cx="24" cy="10" r="6" fill="black" />
@@ -272,6 +298,7 @@
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
                     </g>
                 </svg>
+                <span class="mode-text">Light Mode / Dark Mode</span>
             </button>
         </div>
         <nav>
@@ -283,7 +310,7 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
-        <div class="hero-content" data-aos="zoom-in">
+        <div class="hero-content" data-aos="zoom-in" id="hero-content">
             <h2>Hi, I'm Srihaas</h2>
             <p>Full-Stack Developer | Mobile App Developer | Machine Learning Enthusiast</p>
             <a href="#contact" class="btn">Contact Me</a>
@@ -430,6 +457,16 @@
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', ({ matches: isDark }) => {
             theme.value = isDark ? 'dark' : 'light';
             setPreference();
+        });
+
+        // Shrink header on scroll
+        window.addEventListener('scroll', () => {
+            const heroContent = document.getElementById('hero-content');
+            if (window.scrollY > 50) {
+                heroContent.classList.add('shrink');
+            } else {
+                heroContent.classList.remove('shrink');
+            }
         });
     </script>
 </body>
