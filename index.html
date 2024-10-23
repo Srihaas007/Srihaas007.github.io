@@ -1,21 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Srihaas Gorantla | Full-Stack Developer Portfolio">
     <title>Srihaas Gorantla | Portfolio</title>
-    
-    <!-- CSS and Fonts -->
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/Srihaas007/Srihaas007.github.io/main/style.css">
+
+    <!-- CSS Stylesheets Embedded -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #222222;
+            --light-color: #f4f4f4;
+            --dark-color: #121212;
+            --accent-color: #ff6f61;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-color);
+            color: var(--secondary-color);
+            scroll-behavior: smooth;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Dark Theme */
+        body.dark-mode {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+        }
+
+        /* Header and Hero Section */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .hero-content {
+            margin-top: 100px;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e55a4f;
+        }
+
+        /* Sections */
+        section {
+            padding: 50px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-content img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        /* Timeline for Experience */
+        .timeline {
+            border-left: 3px solid var(--primary-color);
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .timeline-item {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+
+        .project-card img {
+            max-width: 50px;
+            margin-bottom: 15px;
+        }
+
+        /* Contact Section */
+        .contact-list {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .contact-list li a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+
+        .contact-list li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: var(--primary-color);
+            color: white;
+        }
+    </style>
 </head>
+
 <body>
-    <!-- Header Section with Parallax Background -->
+    <!-- Header Section -->
     <header id="hero">
         <div class="navbar">
             <h1>Srihaas Gorantla</h1>
@@ -37,97 +227,77 @@
         </div>
     </header>
 
-    <!-- About Section with Smooth Scrolling -->
+    <!-- About Section -->
     <section id="about" data-aos="fade-up">
         <div class="container">
             <h2>About Me</h2>
             <div class="about-content">
-                <img src="assets/profile.jpg" alt="Srihaas Gorantla" width="150" height="150" loading="lazy">
-                <p>Ambitious software developer skilled in full-stack development, mobile app creation, and machine learning. I’m eager to leverage technical expertise and problem-solving abilities to deliver scalable solutions in software development. I have a strong foundation in programming and experience working with real-time systems, REST APIs, and machine learning models.</p>
+                <img src="assets/profile.jpg" alt="Srihaas Gorantla" loading="lazy">
+                <p>Experienced Full Stack Developer with over 2 years of experience in web and mobile app development. Proficient in PHP, Laravel, and React, with a strong background in machine learning and cybersecurity.</p>
             </div>
         </div>
     </section>
 
     <!-- Skills Section with Iconography -->
-    <section id="skills" class="parallax" data-aos="fade-up">
+    <section id="skills" data-aos="fade-up">
         <div class="container">
             <h2>Technical Skills</h2>
             <ul class="skills-list">
-                <li><i class="fas fa-code"></i> Programming: Python, JavaScript, Java, C#, C++, PHP, SQL</li>
-                <li><i class="fas fa-laptop-code"></i> Web & Mobile: HTML, CSS, React Native, REST APIs, Firebase, Flask, Laravel</li>
-                <li><i class="fas fa-brain"></i> Machine Learning: TensorFlow, Neural Networks, Data Preprocessing, Model Evaluation</li>
-                <li><i class="fas fa-tools"></i> Tools: Git, VS Code, Android Studio, Expo, MAUI, NoSQL Databases</li>
+                <li>Python, JavaScript, Java, C#, PHP, SQL</li>
+                <li>Laravel, Flask, .NET, React</li>
+                <li>Firebase, Azure DevOps, Adobe XD, MATLAB</li>
+                <li>Windows, macOS, Linux</li>
             </ul>
         </div>
     </section>
 
-    <!-- Experience Section with Timeline -->
+    <!-- Experience Section -->
     <section id="experience" data-aos="fade-up">
         <div class="container">
             <h2>Professional Experience</h2>
             <div class="timeline">
                 <div class="timeline-item" data-aos="fade-right">
-                    <h3>Full Stack Developer (Contract)</h3>
-                    <p><strong>Absolute-Interpreting and Translating Ltd.</strong> - Birmingham, United Kingdom (June 2024 – August 2024)</p>
+                    <h3>Full Stack Developer</h3>
+                    <p>Absolute-Interpreting and Translating Ltd. (June 2024 - Present)</p>
                     <ul>
-                        <li>Led full-stack development for NHS, creating scalable APIs using PHP and Laravel.</li>
-                        <li>Improved booking efficiency by 25% through REST API development.</li>
-                        <li>Implemented cybersecurity protocols, ensuring NHS data protection compliance.</li>
+                        <li>Engaged in full-stack development using PHP and Laravel.</li>
+                        <li>Developed REST APIs to facilitate data exchange and integration.</li>
+                        <li>Enhanced the functionality and reliability of web applications.</li>
                     </ul>
                 </div>
-
                 <div class="timeline-item" data-aos="fade-left">
-                    <h3>Software Development Intern</h3>
-                    <p><strong>Progressive Technologies (PRO TECH)</strong> - Hyderabad, India (Dec 2022 – Sep 2023)</p>
+                    <h3>Full Stack Developer Intern</h3>
+                    <p>Progressive Technologies (PRO TECH) (Dec 2022 – Sep 2023)</p>
                     <ul>
-                        <li>Developed Python-based IoT solutions for real-time data monitoring, supporting 1,000+ users.</li>
-                        <li>Led a team in UI/UX design, increasing team productivity by 30%.</li>
-                        <li>Reduced bugs by 40% through code reviews and testing procedures.</li>
+                        <li>Developed a Python-based Android app for real-time data monitoring.</li>
+                        <li>Led UI/UX design, improving efficiency by 30%.</li>
+                        <li>Reduced bugs by 40% through code reviews and testing.</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section with Hover Animations -->
+    <!-- Projects Section -->
     <section id="projects" data-aos="fade-up">
         <div class="container">
             <h2>Projects</h2>
             <div class="projects-grid">
                 <div class="project-card" data-aos="flip-left">
-                    <h3>Real-Time Sign Language Translation</h3>
-                    <p>Tools: Python, TensorFlow</p>
-                    <p>Developed a sign language translation system using transfer learning, achieving 90% accuracy.</p>
+                    <h3>Sign Language Translation</h3>
+                    <a href="https://github.com/Srihaas007/BSL-ISL-Transfer-learning">
+                        <img src="https://img.icons8.com/?size=100&id=EYPGefvaMGEC&format=png&color=000000" alt="Sign Language Icon">
+                    </a>
+                    <p>Real-time ISL translation project aimed at enhancing accessibility.</p>
                 </div>
 
                 <div class="project-card" data-aos="flip-right">
-                    <h3>MAUI Task Management App</h3>
-                    <p>Tools: .NET MAUI, C#</p>
-                    <p>Created a task management app with geolocation-based notifications, improving productivity by 25%.</p>
+                    <h3>Voice-Over Chatbot</h3>
+                    <a href="https://github.com/Srihaas007/ChatBot">
+                        <img src="https://img.icons8.com/color/48/000000/bot.png" alt="Chatbot Icon">
+                    </a>
+                    <p>Created a chatbot with voice-over capability.</p>
                 </div>
-
-                <div class="project-card" data-aos="flip-left">
-                    <h3>Bill-Splitting Android Application</h3>
-                    <p>Tools: Android Studio, Java, Firebase</p>
-                    <p>Built an Android app for splitting bills, with real-time data synchronization using Firebase.</p>
-                </div>
-
-                <div class="project-card" data-aos="flip-right">
-                    <h3>E-commerce Platform with Laravel</h3>
-                    <p>Tools: Laravel, PHP, MySQL</p>
-                    <p>Developed a secure, scalable e-commerce platform with a focus on backend optimization.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="parallax" data-aos="fade-up">
-        <div class="container">
-            <h2>Project Gallery</h2>
-            <div class="gallery">
-                <img src="assets/project1.jpg" alt="Sign Language Project" loading="lazy">
-                <img src="assets/project2.jpg" alt="Task Management App" loading="lazy">
             </div>
         </div>
     </section>
@@ -136,26 +306,43 @@
     <section id="contact" data-aos="fade-up">
         <div class="container">
             <h2>Contact Me</h2>
-            <p>Feel free to reach out via the following platforms:</p>
             <ul class="contact-list">
-                <li><a href="mailto:srihaas@example.com"><i class="fas fa-envelope"></i> Email</a></li>
+                <li><a href="mailto:srihaasgorantla@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
                 <li><a href="https://linkedin.com/in/srihaas"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
                 <li><a href="https://github.com/Srihaas007"><i class="fab fa-github"></i> GitHub</a></li>
             </ul>
         </div>
     </section>
 
-    <!-- Footer Section -->
+    <!-- Footer -->
     <footer>
         <p>© 2024 Srihaas Gorantla. All Rights Reserved.</p>
     </footer>
 
-    <!-- External JS and Animation Initialization -->
+    <!-- JS and Animation Initialization -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/githubApi.js"></script>
     <script>
         AOS.init(); // Initialize AOS animations
+
+        // Theme switcher logic
+        const themeSwitch = document.getElementById('theme-switch');
+        const body = document.body;
+
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeSwitch.textContent = "Switch to Light Mode";
+        } else {
+            themeSwitch.textContent = "Switch to Dark Mode";
+        }
+
+        themeSwitch.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+            themeSwitch.textContent = theme === 'dark' ? "Switch to Light Mode" : "Switch to Dark Mode";
+        });
     </script>
 </body>
+
 </html>
