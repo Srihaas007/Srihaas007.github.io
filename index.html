@@ -7,7 +7,7 @@
     <title>Srihaas Gorantla | Portfolio</title>
 
     <!-- CSS Stylesheets Embedded -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHq6ARgx5MZbHg4j0EfHMbVKWp4fxSV6YJ+9S+xvMeUKyFdxi0eGvZQjNV0yrNw1Y4M+wS0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +28,7 @@
             --accent-color: #ff4081; /* Pink */
             --transition-speed: 0.3s;
         }
-
+    
         [data-theme="dark"] {
             --bg-color: #121212;
             --text-color: #e0e0e0;
@@ -38,11 +38,11 @@
             --secondary-color: #03dac6;
             --accent-color: #ff4081;
         }
-
+    
         * {
             box-sizing: border-box;
         }
-
+    
         body {
             margin: 0;
             padding: 0;
@@ -53,7 +53,7 @@
             scroll-behavior: smooth;
             transition: background-color var(--transition-speed) ease-in-out, color var(--transition-speed) ease-in-out;
         }
-
+    
         /* Header and Navbar */
         header {
             position: sticky;
@@ -65,27 +65,93 @@
             box-shadow: 0 4px 6px var(--shadow);
             transition: all var(--transition-speed) ease;
         }
-
+    
         .navbar {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            padding: 0 20px;
             position: relative;
         }
-
+    
         .navbar h1 {
             font-size: 2em;
             margin: 0;
             color: var(--primary-color);
-            flex: 1;
-            text-align: center;
         }
-
+    
+        /* Theme Switcher */
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    
+        .theme-labels {
+            display: none; /* Hidden on desktop, will show on mobile */
+        }
+    
+        .theme-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+    
+        .theme-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+    
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--secondary-color);
+            transition: background-color 0.4s;
+            border-radius: 34px;
+        }
+    
+        .slider::before {
+            position: absolute;
+            content: '\f185';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 18px;
+            color: var(--card-bg);
+            height: 26px;
+            width: 26px;
+            left: 2px;
+            bottom: 2px;
+            background-color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.4s, background-color 0.4s, content 0.4s;
+            border-radius: 50%;
+        }
+    
+        input:checked + .slider::before {
+            transform: translateX(30px);
+            content: '\f186';
+            background-color: var(--primary-color);
+        }
+    
+        /* Optional: Change background color when toggled */
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+    
+        /* Navigation Menu */
         nav {
             flex: 1;
         }
-
-        nav ul {
+    
+        .nav-links {
             list-style: none;
             display: flex;
             gap: 20px;
@@ -93,83 +159,28 @@
             justify-content: center;
             margin: 0;
         }
-
-        nav ul li a {
+    
+        .nav-links li a {
             color: var(--text-color);
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1em;
             transition: color var(--transition-speed);
         }
-
-        nav ul li a:hover {
+    
+        .nav-links li a:hover {
             color: var(--accent-color);
         }
-
-        .theme-switch-wrapper {
-            position: absolute;
-            left: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .theme-switch {
-            display: inline-block;
-            height: 24px;
-            position: relative;
-            width: 50px;
-        }
-
-        .theme-switch input {
+    
+        /* Hamburger Menu Icon */
+        .menu-icon {
             display: none;
-        }
-
-        .slider {
-            background-color: var(--secondary-color);
-            bottom: 0;
             cursor: pointer;
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            transition: background-color 0.4s;
-            border-radius: 34px;
+            font-size: 24px;
+            color: var(--text-color);
+            z-index: 2000;
         }
-
-        .slider::before {
-            position: absolute;
-            content: '';
-            height: 20px;
-            width: 20px;
-            left: 2px;
-            bottom: 2px;
-            background-color: var(--card-bg);
-            transition: transform 0.4s;
-            border-radius: 50%;
-        }
-
-        input:checked + .slider::before {
-            transform: translateX(26px);
-        }
-
-        /* Sun and Moon Icons */
-        .slider::after {
-            content: '\f185'; /* FontAwesome sun icon */
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            position: absolute;
-            top: 3px;
-            left: 5px;
-            font-size: 16px;
-            color: var(--card-bg);
-            transition: transform 0.4s;
-        }
-
-        input:checked + .slider::after {
-            content: '\f186'; /* FontAwesome moon icon */
-            transform: translateX(26px);
-        }
-
+    
         /* Hero Section */
         .hero-content {
             display: flex;
@@ -179,27 +190,29 @@
             padding: 80px 20px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
+            text-align: center;
             transition: all var(--transition-speed) ease, opacity var(--transition-speed) ease;
         }
-
+    
         .hero-content h2 {
-            font-size: 2.5em;
+            font-size: 3em;
             margin-bottom: 20px;
-            background-color: #f0f4f8;
+            background-color: #e0e0e0;
         }
-
+    
         .hero-content p {
-            font-size: 1.2em;
-            max-width: 600px;
-            text-align: center;
+            font-size: 1.5em;
+            max-width: 800px;
             margin-bottom: 30px;
         }
-
+    
         .btn-group {
             display: flex;
             gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
-
+    
         .btn {
             display: inline-block;
             padding: 12px 35px;
@@ -211,19 +224,19 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             transition: background-color var(--transition-speed), transform var(--transition-speed);
         }
-
+    
         .btn:hover {
             background-color: #c51162;
             transform: translateY(-3px);
         }
-
+    
         /* Sections */
         section {
             padding: 80px 20px;
         }
-
+    
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 40px;
             background: var(--card-bg);
@@ -232,23 +245,23 @@
             transition: background-color var(--transition-speed);
             overflow: hidden;
         }
-
+    
         h2 {
             text-align: center;
             margin-bottom: 40px;
             font-size: 2.5em;
             color: var(--primary-color);
         }
-
+    
         /* About Section */
         .about-content {
             display: flex;
             gap: 40px;
             align-items: center;
-            justify-content: center;
             flex-wrap: wrap;
+            justify-content: center;
         }
-
+    
         .about-content img {
             border-radius: 50%;
             width: 220px;
@@ -256,14 +269,14 @@
             object-fit: cover;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-
+    
         .about-content p {
             max-width: 600px;
             font-size: 1.2em;
             line-height: 1.8;
             color: var(--text-color);
         }
-
+    
         /* Skills Section */
         .skills-list {
             display: grid;
@@ -271,7 +284,7 @@
             gap: 20px;
             text-align: center;
         }
-
+    
         .skills-list div {
             background: var(--card-bg);
             padding: 20px;
@@ -279,14 +292,14 @@
             box-shadow: 0 4px 12px var(--shadow);
             transition: background-color var(--transition-speed);
         }
-
+    
         /* Experience Section */
         .timeline {
             position: relative;
             padding: 20px 0;
             overflow: hidden;
         }
-
+    
         .timeline::before {
             content: '';
             position: absolute;
@@ -297,7 +310,7 @@
             background: var(--primary-color);
             transform: translateX(-50%);
         }
-
+    
         .timeline-item {
             width: 45%;
             padding: 20px;
@@ -308,19 +321,19 @@
             margin-bottom: 40px;
             transition: background-color var(--transition-speed);
         }
-
+    
         .timeline-item:nth-child(odd) {
             float: left;
             clear: both;
             transform: translateX(-12%);
         }
-
+    
         .timeline-item:nth-child(even) {
             float: right;
             clear: both;
             transform: translateX(12%);
         }
-
+    
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -332,39 +345,40 @@
             border: 4px solid var(--card-bg);
             z-index: 1;
         }
-
+    
         .timeline-item:nth-child(odd)::before {
             right: -10px;
         }
-
+    
         .timeline-item:nth-child(even)::before {
             left: -10px;
         }
-
+    
         .timeline-item h3 {
             font-size: 1.8em;
             margin-bottom: 10px;
             color: var(--primary-color);
         }
-
+    
         .timeline-item ul {
             padding-left: 20px;
             list-style-type: disc;
             color: var(--text-color);
         }
-
-        .timeline-item p, .timeline-item ul {
+    
+        .timeline-item p,
+        .timeline-item ul {
             font-size: 1em;
             line-height: 1.6;
         }
-
+    
         /* Education Section */
         .education {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-
+    
         .education-item {
             background: var(--card-bg);
             padding: 20px;
@@ -372,26 +386,26 @@
             box-shadow: 0 4px 12px var(--shadow);
             transition: background-color var(--transition-speed);
         }
-
+    
         .education-item h3 {
             font-size: 1.8em;
             margin-bottom: 10px;
             color: var(--primary-color);
         }
-
+    
         .education-item p {
             font-size: 1em;
             line-height: 1.6;
             color: var(--text-color);
         }
-
+    
         /* Certifications Section */
         .certifications {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-
+    
         .certification-item {
             background: var(--card-bg);
             padding: 20px;
@@ -399,20 +413,20 @@
             box-shadow: 0 4px 12px var(--shadow);
             transition: background-color var(--transition-speed);
         }
-
+    
         .certification-item h3 {
             font-size: 1.5em;
             margin-bottom: 10px;
             color: var(--primary-color);
         }
-
+    
         /* Projects Section */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
-
+    
         .project-card {
             background: var(--card-bg);
             padding: 20px;
@@ -421,49 +435,51 @@
             text-align: center;
             transition: transform var(--transition-speed), box-shadow var(--transition-speed), background-color var(--transition-speed);
         }
-
+    
         .project-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px var(--shadow);
         }
-
+    
         .project-card img {
             max-width: 60px;
             margin-bottom: 15px;
         }
-
+    
         /* Extracurricular Activities */
         .activities-list {
             list-style: none;
             padding: 0;
         }
-
+    
         .activities-list li {
             margin-bottom: 15px;
             font-size: 1.1em;
             color: var(--text-color);
         }
-
+    
         /* Photography Gallery */
         .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            display: flex;
             gap: 15px;
             margin-top: 30px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
         }
-
-        .gallery img {
-            width: 100%;
-            height: auto;
+    
+        .gallery iframe {
+            width: 200px;
+            height: 300px;
             border-radius: 8px;
             box-shadow: 0 4px 8px var(--shadow);
             transition: transform 0.3s;
+            scroll-snap-align: start;
         }
-
-        .gallery img:hover {
+    
+        .gallery iframe:hover {
             transform: scale(1.05);
         }
-
+    
         /* Contact Section */
         .contact-list {
             list-style: none;
@@ -473,18 +489,18 @@
             justify-content: center;
             margin-top: 40px;
         }
-
+    
         .contact-list li a {
             text-decoration: none;
             color: var(--accent-color);
             font-size: 1.5em;
             transition: color var(--transition-speed);
         }
-
+    
         .contact-list li a:hover {
             color: #c51162;
         }
-
+    
         /* Footer */
         footer {
             text-align: center;
@@ -493,78 +509,158 @@
             color: var(--text-color);
             transition: background-color var(--transition-speed), color var(--transition-speed);
         }
-
+    
         /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                padding: 0 15px;
+        @media (max-width: 1024px) {
+            .hero-content h2 {
+                font-size: 2.5em;
             }
-
-            .theme-switch-wrapper {
-                position: relative;
-                margin-top: 10px;
-                right: auto;
+    
+            .hero-content p {
+                font-size: 1.2em;
             }
-
-            .timeline::before {
-                left: 4px;
-            }
-
+    
             .timeline-item {
                 width: 100%;
                 float: none;
                 clear: both;
                 transform: translateX(0);
-                margin-left: 30px;
-            }
-
-            .timeline-item:nth-child(odd)::before,
-            .timeline-item:nth-child(even)::before {
-                left: -34px;
-            }
-
-            .timeline-item:nth-child(odd),
-            .timeline-item:nth-child(even) {
                 margin-left: 0;
             }
-
-            .timeline {
-                padding-left: 20px;
+    
+            .timeline-item:nth-child(odd)::before,
+            .timeline-item:nth-child(even)::before {
+                left: calc(50% - 10px);
+            }
+    
+            .timeline::before {
+                left: 50%;
             }
         }
-
-        @media (max-width: 480px) {
-            .hero-content h2 {
-                font-size: 1.8em;
+    
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
             }
-
+    
+            .menu-icon {
+                display: block;
+            }
+    
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                background-color: var(--card-bg);
+                width: 100%;
+                padding: 20px;
+                box-shadow: 0 4px 6px var(--shadow);
+                z-index: 1000;
+            }
+    
+            .nav-links.active {
+                display: flex;
+            }
+    
+            .theme-switch-wrapper {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+    
+            .theme-labels {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                margin-bottom: 5px;
+            }
+    
+            .theme-labels span {
+                font-size: 0.9em;
+                color: var(--text-color);
+            }
+    
+            .hero-content h2 {
+                font-size: 2em;
+            }
+    
             .hero-content p {
                 font-size: 1em;
             }
-
+    
+            .btn-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+    
             .about-content {
                 flex-direction: column;
                 text-align: center;
             }
-
+    
             .about-content img {
                 margin-bottom: 20px;
             }
-
-            .contact-list li a {
-                font-size: 1.2em;
+    
+            .timeline::before {
+                left: 4px;
+            }
+    
+            .timeline-item {
+                margin-left: 30px;
+            }
+    
+            .timeline-item::before {
+                left: -34px;
+            }
+        }
+    
+        @media (max-width: 480px) {
+            .theme-switch {
+                width: 50px;
+                height: 25px;
+            }
+    
+            .slider::before {
+                height: 21px;
+                width: 21px;
+                transform: translateX(0);
+            }
+    
+            input:checked + .slider::before {
+                transform: translateX(25px);
+            }
+    
+            .theme-labels span {
+                font-size: 0.8em;
+            }
+    
+            .hero-content h2 {
+                font-size: 1.8em;
+            }
+    
+            .hero-content p {
+                font-size: 0.9em;
             }
         }
     </style>
+    
+    
 </head>
 <body>
     <!-- Header Section -->
     <header id="hero">
         <div class="navbar">
             <h1>Srihaas Gorantla</h1>
+            <div class="menu-icon" id="menu-icon">
+                <i class="fas fa-bars"></i>
+            </div>
             <nav>
-                <ul class="nav-links">
+                <ul class="nav-links" id="nav-links">
                     <li><a href="#about">About</a></li>
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#experience">Experience</a></li>
@@ -581,8 +677,10 @@
                     <span class="slider"></span>
                 </label>
             </div>
+            
         </div>
     </header>
+
 
     <!-- Hero Section -->
     <section class="hero-content" data-aos="zoom-in" id="hero-content">
@@ -701,45 +799,87 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" data-aos="fade-up">
-        <div class="container">
-            <h2>Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card" data-aos="flip-left">
-                    <h3>Real-Time Sign Language Translation</h3>
-                    <a href="https://github.com/Srihaas007/BSL-ISL-Transfer-learning">
-                        <img src="https://img.icons8.com/external-outline-juicy-fish/60/000000/external-sign-language-disability-outline-outline-juicy-fish.png" alt="Sign Language Icon">
-                    </a>
-                    <p>Developed a real-time sign language translation system utilizing transfer learning techniques. Achieved 90% accuracy, with potential applications in wearable technology for accessibility.</p>
-                </div>
-
-                <div class="project-card" data-aos="flip-right">
-                    <h3>MAUI Task Management App</h3>
-                    <a href="https://github.com/Srihaas007/TaskManagementApp">
-                        <img src="https://img.icons8.com/color/60/000000/task.png" alt="Task Management Icon">
-                    </a>
-                    <p>Created a task management app with geolocation-based notifications, improving productivity by 25%. Leveraged .NET MAUI for cross-platform functionality.</p>
-                </div>
-
-                <div class="project-card" data-aos="flip-left">
-                    <h3>Bill-Splitting Android Application</h3>
-                    <a href="https://github.com/Srihaas007/BillSplitApp">
-                        <img src="https://img.icons8.com/color/60/000000/bill.png" alt="Bill Splitting Icon">
-                    </a>
-                    <p>Built an Android app that helps users split bills and track expenses, used by over 500 users. Improved transaction accuracy by 15% through real-time data synchronization with Firebase.</p>
-                </div>
-
-                <div class="project-card" data-aos="flip-right">
-                    <h3>E-commerce Platform with Laravel</h3>
-                    <a href="#">
-                        <img src="https://img.icons8.com/color/60/000000/shopping-cart.png" alt="E-commerce Icon">
-                    </a>
-                    <p>Developed a scalable e-commerce platform supporting secure transactions, user authentication, and product management. Backend optimization resulted in 20% faster load times.</p>
-                </div>
+   <!-- Projects Section -->
+<section id="projects" data-aos="fade-up">
+    <div class="container">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            
+            <!-- Project 1: Real-Time Sign Language Translation -->
+            <div class="project-card" data-aos="flip-left">
+                <h3>Real-Time Sign Language Translation</h3>
+                <a href="https://github.com/Srihaas007/BSL-ISL-Transfer-learning">
+                    <img src="https://img.icons8.com/color/60/000000/handshake.png" alt="Sign Language Icon">
+                </a>
+                <p>Developed a real-time sign language translation system utilizing transfer learning techniques. Achieved 90% accuracy, with potential applications in wearable technology for accessibility.</p>
             </div>
+            
+            <!-- Project 2: Task Manager with Geolocation -->
+            <div class="project-card" data-aos="flip-right">
+                <h3>Task Manager with Geolocation</h3>
+                <a href="https://github.com/Srihaas007/Task_Manager_geo">
+                    <img src="https://img.icons8.com/color/60/000000/task.png" alt="Task Management Icon">
+                </a>
+                <p>A task management app using geolocation to prioritize tasks based on the user's location, enhancing productivity with location-aware notifications.</p>
+            </div>
+            
+            <!-- Project 3: SharePay -->
+            <div class="project-card" data-aos="flip-left">
+                <h3>SharePay</h3>
+                <a href="https://github.com/Srihaas007/SharePay">
+                    <img src="https://img.icons8.com/color/60/000000/bill.png" alt="Bill Splitting Icon">
+                </a>
+                <p>A bill-splitting app for friends or flatmates, offering expense tracking and receipt uploads. Utilizes Google Firebase for secure authentication.</p>
+            </div>
+            
+            <!-- Project 4: Supermarket Website -->
+            <div class="project-card" data-aos="flip-right">
+                <h3>Supermarket Website</h3>
+                <a href="https://github.com/Srihaas007/Supermarket">
+                    <img src="https://img.icons8.com/color/60/000000/shopping-cart.png" alt="Supermarket Icon">
+                </a>
+                <p>A responsive supermarket website created with HTML, CSS, and JavaScript, showcasing products in a user-friendly, mobile-friendly design.</p>
+            </div>
+            
+            <!-- Project 5: Australia Rain Prediction -->
+            <div class="project-card" data-aos="flip-left">
+                <h3>Australia Rain Prediction</h3>
+                <a href="https://github.com/Srihaas007/Australia-Rain-Prediction">
+                    <img src="https://img.icons8.com/color/60/000000/cloud.png" alt="Rain Prediction Icon">
+                </a>
+                <p>Machine learning project predicting Australian rainfall using algorithms like logistic regression and random forest for accurate weather predictions.</p>
+            </div>
+            
+            <!-- Project 6: Restaurant Web App -->
+            <div class="project-card" data-aos="flip-right">
+                <h3>Restaurant Web App</h3>
+                <a href="https://github.com/Srihaas007/RestaurantWebApp">
+                    <img src="https://img.icons8.com/color/60/000000/restaurant.png" alt="Restaurant Icon">
+                </a>
+                <p>A web-based food ordering system featuring customer ordering and admin controls for menu and user management, built with PHP and MySQL.</p>
+            </div>
+            
+            <!-- Project 7: StrongBoxx -->
+            <div class="project-card" data-aos="flip-left">
+                <h3>StrongBoxx</h3>
+                <a href="https://github.com/Srihaas007/StrongBoxx">
+                    <img src="https://img.icons8.com/color/60/000000/lock.png" alt="StrongBoxx Icon">
+                </a>
+                <p>A secure escrow service holding funds between parties for trust-building transactions, with multi-currency support and real-time tracking.</p>
+            </div>
+            
+            <!-- Project 8: BookShop -->
+            <div class="project-card" data-aos="flip-right">
+                <h3>BookShop</h3>
+                <a href="https://github.com/Srihaas007/BookShop">
+                    <img src="https://img.icons8.com/color/60/000000/books.png" alt="BookShop Icon">
+                </a>
+                <p>A simple Flask web application for managing a bookstore, including book catalog, inventory management, and shopping cart functionality.</p>
+            </div>
+            
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Extracurricular Activities Section -->
     <section id="activities" data-aos="fade-up">
@@ -750,10 +890,14 @@
             </ul>
             <div class="gallery" data-aos="fade-up">
                 <!-- Replace the image sources with your own photos -->
-                <img src="photo1.jpg" alt="Photography 1">
-                <img src="photo2.jpg" alt="Photography 2">
-                <img src="photo3.jpg" alt="Photography 3">
-                <img src="photo4.jpg" alt="Photography 4">
+                <iframe src="https://drive.google.com/file/d/1YW-2hSXoDcEqy30Hg0UrvxZ592p2_s-T/preview" allow="autoplay" loading="lazy"></iframe>
+                <iframe src="https://drive.google.com/file/d/17y3PBgPDlfP23pka9ZuP5Uq38BmyX0lX/preview" allow="autoplay" loading="lazy"></iframe>
+                <iframe src="https://drive.google.com/file/d/1J1YgJPSEOLLVUuIGqeCSfnICB-rS_Fuf/preview" allow="autoplay" loading="lazy"></iframe>
+                <iframe src="https://drive.google.com/file/d/1jV8mM41c9PXG_LfhTf7HHr1MPGBFuyfm/preview" allow="autoplay" loading="lazy"></iframe>
+                <iframe src="https://drive.google.com/file/d/1Mb82hQgmwFud5hloURH9P0G-0E2EJ47A/preview" allow="autoplay" loading="lazy"></iframe>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="photography.html" class="btn">View More Photography</a>
             </div>
             <ul class="activities-list">
                 <li><strong>Students' Union Project Placement:</strong> Conducted research on student satisfaction with both on-campus and off-campus classes. Gathered data through surveys, presented findings to faculty, and proposed actionable changes to enhance curriculum and teaching methods.</li>
@@ -822,5 +966,17 @@
             setTheme(newTheme);
         });
     </script>
+    <script>
+        // Hamburger Menu Toggle
+        const menuIcon = document.getElementById('menu-icon');
+        const navLinks = document.getElementById('nav-links');
+
+        menuIcon.addEventListener('click', () => {
+            console.log("Menu icon clicked!"); // Check if this appears in the console
+            navLinks.classList.toggle('active');
+        });
+
+    </script>
+    
 </body>
 </html>
