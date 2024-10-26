@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srihaas Gorantla | Photo Gallery</title>
+
+    <!-- CSS Stylesheets and Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono:wght@300;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* Color Palette and Global Styles */
+        :root {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --shadow: rgba(0, 0, 0, 0.5);
+            --primary-color: #bb86fc;
+            --secondary-color: #03dac6;
+            --accent-color: #cf6679;
+            --transition-speed: 0.3s;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden;
+        }
+
+        section {
+            padding: 60px 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 50px;
+            font-size: 2.8em;
+            font-family: 'Roboto Mono', monospace;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 4px;
+            background-color: var(--accent-color);
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -15px;
+            animation: fadeIn 1s ease;
+        }
+
+        .album-row {
+            margin-bottom: 60px;
+        }
+
+        .album-row h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 2em;
+            text-align: center;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .album-row p.tagline {
+            text-align: center;
+            color: var(--secondary-color);
+            font-size: 1.1em;
+            margin-top: -10px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        /* Swiper Styles */
+        .swiper {
+            width: 100%;
+            padding-bottom: 20px;
+        }
+
+        .swiper-slide {
+            background: var(--card-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px var(--shadow);
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+
+        .swiper-slide:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+
+        .swiper-slide iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        /* Custom layout for 5 slides per row */
+        .custom-slide-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr;
+            gap: 20px;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .custom-slide-layout .swiper-slide:nth-child(3) {
+            transform: scale(1.1);
+            transition: transform 0.3s ease-in-out;
+            z-index: 2;
+        }
+
+        /* Swiper Navigation Buttons */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--primary-color);
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            color: var(--accent-color);
+        }
+
+        /* Floating Scroll Animation */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Scroll Back to Top Button */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 1000;
+        }
+
+        #backToTop:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Responsive Design Enhancements */
+        @media (max-width: 1200px) {
+            .custom-slide-layout {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .custom-slide-layout {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .swiper-slide iframe {
+                height: 300px;
+            }
+
+            h2 {
+                font-size: 2.4em;
+            }
+
+            .album-row h3 {
+                font-size: 1.8em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 2.2em;
+            }
+
+            .album-row h3 {
+                font-size: 1.6em;
+            }
+
+            .custom-slide-layout {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .swiper-slide iframe {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 1.8em;
+            }
+
+            .album-row h3 {
+                font-size: 1.4em;
+            }
+
+            .swiper-slide iframe {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            h2 {
+                font-size: 1.6em;
+            }
+
+            .album-row h3 {
+                font-size: 1.2em;
+            }
+
+            .swiper-slide iframe {
+                height: 180px;
+            }
+
+            #backToTop {
+                width: 40px;
+                height: 40px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Photo Albums Section -->
+    <section id="photo-gallery" data-aos="fade-up">
+        <div class="container">
+            <h2 class="animate__animated animate__fadeInDown" style="font-size: 2em;">Photography Gallery <span style="font-size: 0.6em;">by Srihaas</span></h2>
+
+            <!-- Aesthetics Album -->
+            <div class="album-row animate__animated animate__zoomIn" data-aos="fade-up">
+                <h3 class="floating">Aesthetics</h3>
+                <p class="tagline">"Capturing the beauty in simplicity."</p>
+                <div class="swiper mySwiper custom-slide-layout">
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1zSdNAnawwvLkB_DcyhHIRVQo_mYLg6jG/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1tUAiOrMXSz2GiGBwvHQ_00XFzckwI4lv/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Z2IdW0W-qq51PzxN9KRwB_LRolJrfX5Q/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1YW-2hSXoDcEqy30Hg0UrvxZ592p2_s-T/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1YLFPmbm8zTT0Kvui7Stj-dYuNv1qe9Cu/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Vkp8WZveRhkzioT15HdrnoTLmdKnsgiA/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/13LlK79tIJJav8NiwdTU5pyL6khGdzHYz/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1woPCfyP_3oZ6RGfwqRtup4WKVGvazEeg/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1wRmqjCEglXnLSb4tPEAPwn5RyixtzDU2/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1vDjka613bLjdEg_M-ClwRkk9zZo6vpZB/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1t_AJtGPBSrAyVjdjARJv68WZ6uzJ7rZm/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Xt8DExStOXsSgJ7dO_ucELu__XlHuXNp/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1RkH44GVOZr5sN9dojDqnu49bKobPPTKG/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/15JhMySb-MQjveP6IsSePCK3TsV289bRm/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/146Utf5C2gi_Z_n7bHGtyDSn-EPCQJHOh/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1GHlnY46xtRBbAMiedzeE_hgIXteDP3Vq/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1n3Fhm2effD2156pxJ8GVUZc9T22FOjxR/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1n1QINeWUg8Cxk4rNDkFgXgB81vhUiWPm/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1_5sEM3jbMIHZgeneEhzETYFMdsQPvZX9/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1WS_vt-QKn95TNW2G2L6G1RUnZOM2MryN/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1SWKZV7TYA1m1RnAOnhlHxRDcz_5wcGN6/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Nj3U2vIgf1p0OXbnWcaUiIz4dB3696rv/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1GPNj3K3yJrsFf7t5i-XXbkhwZtZlog8t/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1eMgrxwTS4bMbwlu3ccqbKv-CKb52UpG6/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1K3_wYt5GzUvQ3KhcocpVgJtKSxyhC4Jf/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/159RP4xtTOlkahqQkN-KkcZQMCpKAGbSW/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1wTJro4uQMlezxf1z33FgDZ175Q0Z537g/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1vJnbyGBVQUOmkjFGcE7R3guRZA9F4fTc/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Y-KOX5kknTulIz_jh6C9RKNAorPgPbpz/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1MVaBQtQ6CUvII60k_leo7wEzZLqq0JhQ/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1FN02h0m8JWVySBNBz4SXhzx7VzviPXSo/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1BPQpH2-TmNOCy0DzsoeHP5A7X48eHRIZ/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1A1fB_msmL27Ku3YAJo7hGa2RVcGOzHEF/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/18M41fFB_QdDd8Xs6nVw6_ZR_0kNCdHdH/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                       
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+
+
+           <!-- City Lights Album -->
+            <div class="album-row animate__animated animate__zoomIn" data-aos="fade-up">
+                <h3 class="floating">City Lights</h3>
+                <p class="tagline">"Illuminating the beauty of urban life."</p>
+                <div class="swiper mySwiper custom-slide-layout">
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1OCuuXAiMKLBmHz8teu7MkT1C1WFdnYvQ/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1NGOC_VSq0hVjQv66CdUKwGfbQs-h-gJ2/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1gvoox-gqvVZwELJL0c9lxN7JoWSiyZ1q/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1c32kHhUiqWFNF20xifTlKnsAFItZKguD/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/18Eerjkp3WhaDRbyq6j2SWWD-hhQXxATr/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1EkXrvjQVL9jvW7OlX4XFZqtIdeowP7yg/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1x9MNAzfQwKEzCNki1FjwZJYAVrlSTgjq/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1h4Psna2rHPVMDk2YQpixqJHnuH8U9FIC/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1R_83Yjyva0mLEghwN5GaXUQn8lFOLRQ5/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1M8IZtQMEYb4VhAqGuzMBCmNIYCtJTaQV/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1FTwx6jAD79w0U6YL1109T7YEqgFOuLnE/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1CShTsL1ZWi5Yz3dwpFuOnSKLx6W-_Hno/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/19pbB2A0ThZdBaFVdMLFVJCQLJ4RsiZgK/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/17y3PBgPDlfP23pka9ZuP5Uq38BmyX0lX/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1zops9s6uqdBtjw1WzjssP923JwwA3FWT/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1qgmLvvYH_-BsNb_XreCnTqhbmrqzdLsC/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1pIwrKUVlXCfkfj9HSuGmmehiirDUr9tO/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1knznJqxjJkMeiIf-deQU4blu9Zo1bixY/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1hjW7gWbBNzKPidC4Zbb40AqR6nBEA5u4/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1h8krRLrItZ2HiWsXUSGV1pz7h2lcq4Ex/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1gKOpMDbbtk51LQ-QiNXJ37jI0bfigReM/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1ZSWzVDQ_YUggXHx_V7VI7pcOOl-POplf/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Us5TbvWL6z3hS78SBq8LF8hf4dUDBEKJ/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1UefGbyLKJjGVcdpxUBQXSsLJPtnK3nNy/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1NKaBpMQVd-SZyFjzwhYcvsmNtbOhZqrw/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1FNlY4wgkVibeGL8y9MHOzc4WlxzqSyE_/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1DoneE5Xq9w-1tvW8oQxdDAazfEHDtaiZ/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1y_CBzcQJ-fm610rauBYQ939bRvq4FpSd/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1bfbONH6uE0eHdoZHmkHaFh8SP2OcLzeH/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1CJcWv-58FD5TvmqTE9igp5QzPqIYrVLI/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1WLHPr56FVFoOZvfBdY8CquB9Ul0C5kck/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1u-VknmEIp-MI3zieH1TyuBiq6FLIWICz/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <!-- Swiper Navigation Buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+
+
+            <!-- Water Bodies Album -->
+        
+            <div class="album-row animate__animated animate__zoomIn" data-aos="fade-up">
+                <h3 class="floating">Water Bodies</h3>
+                <p class="tagline">"Serenity captured through flowing waters."</p>
+                <div class="swiper mySwiper custom-slide-layout">
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1yriS9ytM2qPs6KlDLyMwvuDri9UQjitp/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1oF_4DFRDZ9-hXhXPwAdx0enYftyn3TNP/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1bypwartZCLUCbsTtKq61l33gy6cA34y9/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1UYdLWqBER-SSxeCz-USGXHbNcWglWVyB/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1TYkqv7gBIkSqNDqXCoyI1x3qFJkXPOVL/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1RYCHAISk9PjejpKPt5PSbxs83SSoa2ok/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1LrvObajxGFKL8QWS1Le3eXaukLxnnsRV/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1J1YgJPSEOLLVUuIGqeCSfnICB-rS_Fuf/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1IcrW_xO5ltS6OsQu3Q4-UYMM6lC-ix5I/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1DuffHzWqV1e2roPg3ibtJvGE9dHmrw93/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1CwcdVdSN1rkcLlpHC_ZFycAwbTCchut4/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/12jVSIozgZmy2roE8yi1p2KSXAhzkFnFH/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1B45u8gYGihCxjXDLA-7ggVq1Z6hnyhi1/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/13V6VeeHiuOJa1_7qiAA-Sfk1OBIern-n/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1N9AigjkJ6YPIyGLhw9OGK-8wGGLqMR7M/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1bWqq0rY8IjeESp2vsA9S-bmYxCe-v4xr/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/188dTtNy57yzZtKvdeukwTCimB-M9KnG7/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/11H1E0qajeNDFBGlnr2NqxYoCukjOgi_a/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1MLvbC3xm0s9luGLJxiJjTX_jXi9NGwL4/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <!-- Swiper Navigation Buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+            <!-- Animaliaanimals Album -->
+            <div class="album-row animate__animated animate__zoomIn" data-aos="fade-up">
+                <h3 class="floating">Animaliaanimals</h3>
+                <p class="tagline">"A journey through the wonders of the animal kingdom."</p>
+                <div class="swiper mySwiper custom-slide-layout">
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1zglfugoaM26Yhj8CElVCsRDp5SBzzc0r/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1wD6hpRHBScIt5xLiU6HlUcP8GsDVNK97/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1tBSrTepY09f-IPiVAiR-HUKxNgSwWRo0/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1oBdqSJ4HO2-iN1D-lfLT9ctfsmdHsXf5/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1joBFjnGIWAFv2pXOB772u8Iij53UE8P1/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1iiI2apH_GKiTtBmGBoNb9SwAQCWyp8nH/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1ciieh4Q6A6ZXPnfceqKtlpVJYd2OE6mI/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1b0gKtIAm_Gtb8HXfwgVKPBfINsyAbDUN/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1aFJV1odulfrr7Q34X9BI6QlOpJPaVyQw/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1OBy94j1DJ_DN2aT3XF3uxIagQO8hTzzw/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1ujwcR3vfsotBZbey_ciFVEV5BcW_STZe/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1s4mt-oCDAWjQFirma-OakZ7gXafHCrEL/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1lpn2Ky-DIB5pMsPCshvPZBOUpEXZ_5pf/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1jV8mM41c9PXG_LfhTf7HHr1MPGBFuyfm/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1ft1avy5WBQwcr5fbz6IohdcCCO7-eFQ0/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1_bWQ21vtaE1pvyNVYgZj86ow_2rfhU0s/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Z5mjBA-Pm38EfFjNclUeZLBRtIMTFxOG/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Xa4TCK408h-lcwyxFWmiaeAQQkHdzgCK/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1WNdhxpVUpq2iRjukgD29pMB_OV0hpSbX/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1WGAsYLfBliBanVFTVz2PVX6M8U6H31bL/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1RgxZKl1cq8c-FmPeT4Zu-iSbAqMF5KyH/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1M0d86flPaPWI4TmndmGvlaKlJwj_KrU7/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1LFXTvSgcvKia9SS7M9KBZn7HORDNnzIH/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Ky7UWlMyBvGJqsxuM_FuAOX_00b_RaSr/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1H1ONp-fimhQunq849w9y4WY0CLCf1tjh/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/16wjBOLWUvUTCgUgNBsAPRvsfPVC4Lifk/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/16SztmC4VoLFX3DBaOJARewaS7AqRlxIQ/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/13pKDUADjUi7W2dM91hwTeCvlVGPuGfGO/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/138ke_ti5NxnyuxTpq_WYs42Vsvsvr_qL/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1161tOoKbnheOqggCdAU4iZ6ULgMjv99C/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Tthe3GbavSYa8gqTpmTNJnwfGkbwDRSo/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1WnTbLYxXzZvCf-vHeKeSvZpurvHDC_4M/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <!-- Swiper Navigation Buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+
+            <!-- Moon and Sun Album -->
+            <div class="album-row animate__animated animate__zoomIn" data-aos="fade-up">
+                <h3 class="floating">Moon and Sun</h3>
+                <p class="tagline">"A journey through the beauty of celestial bodies."</p>
+                <div class="swiper mySwiper custom-slide-layout">
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1kpmmhfxcIWoI39Z1OuhkETub7hQ9sm15/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1LBjZDbq_ggjryR5Bnpvi85NjvFGBaSWI/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1pLGUwvq74nhuHIzGwmz-q4sFA4_Q5D8R/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Mb82hQgmwFud5hloURH9P0G-0E2EJ47A/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1vWqsOsMfaYX88ZY25VMoDjuwv2994ejP/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1luweBWv5hZtY6wcbZVJxdFRb0yEBYv2G/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Z_RaJ5YqCWYI2LxGPriz_6yoXyptCLjd/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Ex9AtHQxbUAe6v5lC_HBuVDb0_4Xgsg5/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1xr7t25BWn42IMbdpoZBhQRYM56Pmb2Er/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1xPXGCbmrGQO_HgVfSPVQS3MYrxR246-e/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1v3itS3ApN1sq2TsGZXf77R1elulDMZhj/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1jBXC7GVohNTuCrCOhNVaJ7IBCRooJTAu/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1h7Ggw1Zk7izWBQQdQkdM38vIAgPmcMZl/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1d2Dpj4GIGI9gNY7SyVOF6ezDKMc6iY7j/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Y6VXWSxC-ZX4WPKhT9kqm-v13u7IPy0O/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1SL2SB3yOeGQ0Dad7nqU8e3w37UCYarBG/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1R7yGUKvDNRlYCUORMwM7u_6lz0r1y_JG/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Nc6A2QbZNkO0YfhRYy9PTuiITJ_kmS9j/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1NYxdAE6oVE9HQ83kLcLeUbyCm9XMuJKx/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1KWdl58DY4JwP7PYFOu-Xpayq_S60FhtJ/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1FZd_9A7F-6_hzgHoh5vREctGrxeT7CPb/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1DLeqmMxdsLBRHQFsYqQiGHaZFUgUJicy/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <!-- Swiper Navigation Buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+                <!-- Cars and Toys Album -->
+            <div class="album-row" data-aos="fade-up">
+                <h3>Cars and Toys</h3>
+                <p class="tagline">"Exploring the intricate designs and playful spirit of our cherished automobiles and toys."</p> 
+                <div class="swiper mySwiper custom-slide-layout">
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1tm2IriypdnmKCQ1bhjWuJwTqM9bqKLCP/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1t9jTACczu9ihYbN3605TxUE_5_xvaWNf/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1xNhGzbGaEqAIIogan2VY0Ma6eBvPLmcB/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1z78yCMxNLBkGsk7znn5MXGIDP8zXKNBV/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1t-wGjIrpCdaexZMhouQED3nCP--J6eJD/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1lDV4WbkJfL7Hb0ObspRK9Qj9YQFhPyq_/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1d1jaTKDeMd-JXGdLiXzCw-oEymE30K6X/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1aTuAxtPVBIqKWz0FH4mblV-YFp74AzeE/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1EwlbWp5pRglrlz_XTGTYBiU1I-Lmz4tN/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1EU5bI39L8tCuQwxg9Ew5UqTuUjdQjB48/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/12pM-BgNcoaVYhkPGxj0eJTXZhnNCOQTl/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1q-TlqwtOzym6y7GC5lsA_XnaQRX8-ZT6/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1jULv4xYuN4JpP_cvW8QHspwyD3Gw_NoH/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1HMvYbgenvPSiG8bCMryue8_fJFrZfGni/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <!-- Swiper Navigation Buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+            <!-- India Album -->
+            <div class="album-row" data-aos="fade-up">
+                <h3>India</h3>
+                <p  class="tagline">"An odyssey through the vibrant tapestry of India's rich culture, landscapes, and heritage."</p>
+                <div class="swiper mySwiper custom-slide-layout">
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/19hpxB-MG2zgI0v8lp58_5kTzT-iKVVW_/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1yqJUly1efT5MS67fgJKgQQVOZWVrf_Zi/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1A6VhqJouXoAkQMrW4tr-pazV2NJbPHfB/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1EXvc1TBFScLMlWkbO5bEpzeY4e08ZXJL/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1jTFTL9awK1YeXmkToTi66HgbGQ6B5KBR/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1DZIxjSBo-vqtfdM8eBEjeNYxy1AmgBY6/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1xPROTHXDGcrwV-L_2cwh6zV7xfn3tzt3/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1wMrRIDAkbmbMlIdJagO709LUL1PGQL4q/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1rwRbvu8NTpU5qR1xxgx4G-OApOCJTB4q/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1lIrmV5KFUmSneQCEyv4h_698UwWcg4Di/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1lIPyUfNnVkYWiBT5KDvfm8l3ALlELubU/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1j6SBesAZ9Yhto8zl0-BWn5sQAOLwFxE0/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1daw1MjVj-U1r8FU_CG4Y3CFYc7w3nHLv/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1ccTNypia7Wc8Y8FJdhESNIlb8ayWwgul/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Y-yg8tRVjaUxvu-HvoEfFhaiEKH_FtW1/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Wtg8bHwuYvPN1qepKAQu4doQuVfaORzB/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1TFz5d8DF0QafYLz1ndgSlhBXvbyYahzI/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1TF6TO2CnaFatF72HJ4f6uufEll0L3B73/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1SJWDkWHvD6JjyKMDOoBqPsRm1qOyGirK/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1POQELf8Fif0OoXAfjmEIf8EUVcf0fn5H/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1KcqBjIs6GTDTo6Pys-bmVAJTrn1CTW1I/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Jp6gPfjDMeYMmMRYkcf4HLYM2eR4Yr_7/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1IxivFpSKsZSAqqqbAOiD155lXRFOgYQP/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1Huk51hNXfi4STvfLHtHflzOPSlLGzrQb/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1EBEJF7r0Qq551VyEhGCnWPdVsbwvE_qX/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1CU-EJx6wOMWr6--5qtt3aXiR7m0rO_2H/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1C0vYajvoPR_SsF6MUKUhQ3LwO50PksvA/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1AFe6VJiEW0ZmhBBaYSekxhNpYlP1FYET/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/14u8dHVHMc_9mACwJlTxVJn6c-9a5_DLy/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1z-T5xnlRN7w9EDyZOfqSt4Ih3_Pf2dGJ/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1wcAZB-qEXvOO0TKw14_Mf0Fp7ZNdGaVl/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1jrKWLXo7B1fvxnDRpgUPDhUL90oeGNfl/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1dQVLJp1WbvrDtiPs8_rZS5v5WwYDwTVT/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1TkXsZF3sza1AXP81uDF86iCB_ki5fI-4/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/18WFP2hwBQ1WRA576y42V9YVuV4dQTXf_/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/16HUReMHfjpoITjb96rswiCVCMt8xn0JW/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/12oViAPum2tsFkj6WzCeTnTRqW4hTwz9I/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1-d24m_baI8-zxySKNtAsmEaUsRlfMVSM/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1ms5jDNJpPgt4-7ti49YZkZhkIqsFsuC_/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://drive.google.com/file/d/1tUAiOrMXSz2GiGBwvHQ_00XFzckwI4lv/preview" allow="autoplay" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                    <!-- Add Navigation -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+
+    <!-- Scroll Back to Top Button -->
+    <button id="backToTop" onclick="scrollToTop()"><i class="fas fa-chevron-up"></i></button>
+
+    <!-- JS and Animation Initialization -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize AOS animations
+        document.addEventListener('DOMContentLoaded', function () {
+            AOS.init(); 
+        });
+
+        // Function to initialize a Swiper carousel with optimized settings
+        function initializeSwiper(carousel) {
+            new Swiper(carousel, {
+                slidesPerView: 5,
+                spaceBetween: 20,
+                loop: true,
+                centeredSlides: true,
+                autoplay: {
+                    delay: 9000, // Increase autoplay delay to reduce activity
+                    disableOnInteraction: false,
+                },
+                lazy: {
+                    loadPrevNext: true, // Lazy load only nearby slides
+                    loadPrevNextAmount: 1, // Load only one slide before and after
+                },
+                preloadImages: false, // Do not preload all images
+                watchSlidesVisibility: true, // Only render visible slides
+                navigation: {
+                    nextEl: carousel.querySelector('.swiper-button-next'),
+                    prevEl: carousel.querySelector('.swiper-button-prev'),
+                },
+                breakpoints: {
+                    1200: {
+                        slidesPerView: 3,
+                    },
+                    992: {
+                        slidesPerView: 2,
+                    },
+                    768: {
+                        slidesPerView: 1,
+                    },
+                    480: {
+                        slidesPerView: 1,
+                    },
+                    360: {
+                        slidesPerView: 1,
+                    }
+                }
+            });
+        }
+
+        // Initialize Swipers only when they are in the viewport
+        function lazyInitSwipers() {
+            const carousels = document.querySelectorAll('.mySwiper');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        initializeSwiper(entry.target);
+                        observer.unobserve(entry.target); // Stop observing once initialized
+                    }
+                });
+            });
+
+            carousels.forEach(carousel => observer.observe(carousel));
+        }
+
+        // Event listener for DOM ready
+        document.addEventListener('DOMContentLoaded', function () {
+            lazyInitSwipers(); // Use lazy initialization for Swipers
+        });
+
+        // Scroll to Top Function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Event listener for Scroll to Top Button
+        document.addEventListener('DOMContentLoaded', function () {
+            const backToTopButton = document.getElementById('backToTop');
+            backToTopButton.addEventListener('click', scrollToTop);
+        });
+    </script>
+
+</body>
+</html>
