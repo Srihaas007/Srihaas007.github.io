@@ -1,28 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
     <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Srihaas Gorantla | Photo Gallery</title>
+    <title>Srihaas Gorantla | Photography Gallery</title>
 
     <!-- CSS Stylesheets and Libraries -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono:wght@300;500&display=swap" rel="stylesheet">
 
     <style>
-        /* Color Palette and Global Styles */
+        /* Global Styles */
         :root {
-            --bg-color: #121212;
+            --bg-color: #1a1a2e;
             --text-color: #e0e0e0;
-            --card-bg: #1e1e1e;
-            --shadow: rgba(0, 0, 0, 0.5);
-            --primary-color: #bb86fc;
-            --secondary-color: #03dac6;
-            --accent-color: #cf6679;
+            --card-bg: #16213e;
+            --primary-color: #0f3460;
+            --secondary-color: #e94560;
+            --accent-color: #1b98e0;
+            --light-bg-color: #ffffff;
+            --light-text-color: #000000;
             --transition-speed: 0.3s;
         }
 
@@ -33,18 +32,35 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             transition: background-color var(--transition-speed), color var(--transition-speed);
-            overflow-x: hidden;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .profile-photo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         section {
-            padding: 60px 20px;
+            padding: 60px 0;
         }
 
         h2 {
             text-align: center;
-            color: var(--primary-color);
-            margin-bottom: 50px;
-            font-size: 2.8em;
+            color: var(--secondary-color);
+            margin-bottom: 40px;
+            font-size: 2.5em;
             font-family: 'Roboto Mono', monospace;
             position: relative;
         }
@@ -52,34 +68,32 @@
         h2::after {
             content: '';
             position: absolute;
-            width: 120px;
-            height: 4px;
+            width: 80px;
+            height: 3px;
             background-color: var(--accent-color);
             left: 50%;
             transform: translateX(-50%);
-            bottom: -15px;
-            animation: fadeIn 1s ease;
+            bottom: -10px;
         }
 
         .album-row {
             margin-bottom: 60px;
+            text-align: center;
         }
 
         .album-row h3 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            font-size: 2em;
-            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            font-size: 1.8em;
             font-family: 'Roboto Mono', monospace;
         }
 
         .album-row p.tagline {
-            text-align: center;
-            color: var(--secondary-color);
-            font-size: 1.1em;
-            margin-top: -10px;
-            margin-bottom: 30px;
+            color: var(--accent-color);
+            font-size: 1em;
+            margin-bottom: 20px;
             font-style: italic;
+            opacity: 0.8;
         }
 
         /* Swiper Styles */
@@ -90,75 +104,76 @@
 
         .swiper-slide {
             background: var(--card-bg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
             border-radius: 15px;
-            box-shadow: 0 6px 20px var(--shadow);
-            transition: transform 0.5s, box-shadow 0.5s;
+            overflow: hidden;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 400px;
+        }
+
+        .swiper-slide img {
+            width: auto;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
         }
 
         .swiper-slide:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .swiper-slide:hover img {
             transform: scale(1.05);
-            box-shadow: 0 10px 25px var(--shadow);
         }
 
-        .swiper-slide iframe {
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
             width: 100%;
-            height: 400px;
-            border: none;
-            border-radius: 10px;
-        }
-
-        /* Custom layout for 5 slides per row */
-        .custom-slide-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr;
-            gap: 20px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
             align-items: center;
-            justify-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
-        .custom-slide-layout .swiper-slide:nth-child(3) {
-            transform: scale(1.1);
-            transition: transform 0.3s ease-in-out;
-            z-index: 2;
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
         }
 
-        /* Swiper Navigation Buttons */
-        .swiper-button-next,
-        .swiper-button-prev {
-            color: var(--primary-color);
+        .lightbox-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            max-height: 80vh;
+            object-fit: contain;
         }
 
-        .swiper-button-next:hover,
-        .swiper-button-prev:hover {
-            color: var(--accent-color);
-        }
-
-        /* Floating Scroll Animation */
-        .floating {
-            animation: floating 3s ease-in-out infinite;
-        }
-
-        @keyframes floating {
-            0% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0px);
-            }
+        .lightbox-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            font-size: 2em;
+            cursor: pointer;
         }
 
         /* Scroll Back to Top Button */
         #backToTop {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: var(--primary-color);
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--secondary-color);
             color: #fff;
             border: none;
             border-radius: 50%;
@@ -176,89 +191,109 @@
             background-color: var(--accent-color);
         }
 
-        /* Responsive Design Enhancements */
-        @media (max-width: 1200px) {
-            .custom-slide-layout {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 15px;
-            }
+        /* Dark/Light Mode Toggle */
+        #darkLightToggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: none;
+            border-radius: 15px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 1000;
         }
 
-        @media (max-width: 992px) {
-            .custom-slide-layout {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
+        #darkLightToggle:hover {
+            background-color: var(--accent-color);
+        }
 
-            .swiper-slide iframe {
+        #darkLightToggle.light-mode-text::before {
+            content: 'Light Mode';
+        }
+
+        #darkLightToggle.dark-mode-text::before {
+            content: 'Dark Mode';
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--secondary-color);
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-top: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .contact-btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Responsive Design Enhancements */
+        @media (max-width: 1024px) {
+            .swiper-slide {
                 height: 300px;
-            }
-
-            h2 {
-                font-size: 2.4em;
-            }
-
-            .album-row h3 {
-                font-size: 1.8em;
             }
         }
 
         @media (max-width: 768px) {
             h2 {
-                font-size: 2.2em;
+                font-size: 2em;
             }
 
-            .album-row h3 {
-                font-size: 1.6em;
-            }
-
-            .custom-slide-layout {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-
-            .swiper-slide iframe {
+            .swiper-slide {
                 height: 250px;
             }
         }
 
         @media (max-width: 480px) {
             h2 {
-                font-size: 1.8em;
-            }
-
-            .album-row h3 {
-                font-size: 1.4em;
-            }
-
-            .swiper-slide iframe {
-                height: 200px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            h2 {
                 font-size: 1.6em;
             }
 
-            .album-row h3 {
-                font-size: 1.2em;
+            .swiper-slide {
+                height: 200px;
             }
 
-            .swiper-slide iframe {
-                height: 180px;
-            }
-
-            #backToTop {
-                width: 40px;
-                height: 40px;
-                bottom: 20px;
-                right: 20px;
+            .swiper-slide img {
+                object-fit: cover;
             }
         }
     </style>
 </head>
 <body>
+    
+    <!-- Dark/Light Mode Toggle Button -->
+    <button id="darkLightToggle" class="light-mode-text"><i class="fas fa-adjust"></i></button>
+
+    <!-- Header with Profile Photo -->
+    <header>
+        <img src="srihaas.JPG" alt="Profile Photo" class="profile-photo"><br><br>
+    </header>
+
     <!-- Photo Albums Section -->
     <section id="photo-gallery" data-aos="fade-up">
         <div class="container">
@@ -272,107 +307,129 @@
                     <div class="swiper-wrapper">
                         <!-- Slides -->
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1zSdNAnawwvLkB_DcyhHIRVQo_mYLg6jG/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0392%20(2).JPG?updatedAt=1730044171232" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1tUAiOrMXSz2GiGBwvHQ_00XFzckwI4lv/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0192_Original.jpg?updatedAt=1730044171221" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Z2IdW0W-qq51PzxN9KRwB_LRolJrfX5Q/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0072_Original.jpg?updatedAt=1730044171260" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1YW-2hSXoDcEqy30Hg0UrvxZ592p2_s-T/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0103_Original.jpg?updatedAt=1730044171141" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1YLFPmbm8zTT0Kvui7Stj-dYuNv1qe9Cu/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0008_Original.jpg?updatedAt=1730044171202" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Vkp8WZveRhkzioT15HdrnoTLmdKnsgiA/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0016_Original.jpg?updatedAt=1730044171248" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/13LlK79tIJJav8NiwdTU5pyL6khGdzHYz/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0013_Original.jpg?updatedAt=1730044171246" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1woPCfyP_3oZ6RGfwqRtup4WKVGvazEeg/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed_Original.jpg?updatedAt=1730044171229" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1wRmqjCEglXnLSb4tPEAPwn5RyixtzDU2/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0007_Original.jpg?updatedAt=1730044171204" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1vDjka613bLjdEg_M-ClwRkk9zZo6vpZB/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0006_Original.jpg?updatedAt=1730044171291" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1t_AJtGPBSrAyVjdjARJv68WZ6uzJ7rZm/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed%20(2).jpg?updatedAt=1730044171436" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Xt8DExStOXsSgJ7dO_ucELu__XlHuXNp/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed%204.jpg?updatedAt=1730044171374" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1RkH44GVOZr5sN9dojDqnu49bKobPPTKG/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_6670.jpg?updatedAt=1730044171245" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/15JhMySb-MQjveP6IsSePCK3TsV289bRm/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_6499.JPG?updatedAt=1730044171290" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/146Utf5C2gi_Z_n7bHGtyDSn-EPCQJHOh/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_6864.JPG?updatedAt=1730044171219" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1GHlnY46xtRBbAMiedzeE_hgIXteDP3Vq/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_9552.HEIC?updatedAt=1730044171428" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1n3Fhm2effD2156pxJ8GVUZc9T22FOjxR/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_9507.DNG?updatedAt=1730044171280" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1n1QINeWUg8Cxk4rNDkFgXgB81vhUiWPm/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_5837.JPG?updatedAt=1730044171238" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1_5sEM3jbMIHZgeneEhzETYFMdsQPvZX9/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_5722.HEIC?updatedAt=1730044171227" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1WS_vt-QKn95TNW2G2L6G1RUnZOM2MryN/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_3901.DNG?updatedAt=1730044171266" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1SWKZV7TYA1m1RnAOnhlHxRDcz_5wcGN6/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_4587.DNG?updatedAt=1730044171337" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Nj3U2vIgf1p0OXbnWcaUiIz4dB3696rv/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_4594.DNG?updatedAt=1730044171206" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1GPNj3K3yJrsFf7t5i-XXbkhwZtZlog8t/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_4047.DNG?updatedAt=1730044171289" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1eMgrxwTS4bMbwlu3ccqbKv-CKb52UpG6/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_4249.HEIC?updatedAt=1730044171420" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1K3_wYt5GzUvQ3KhcocpVgJtKSxyhC4Jf/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_3827.jpg?updatedAt=1730044171430" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/159RP4xtTOlkahqQkN-KkcZQMCpKAGbSW/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_3902_Original.jpg?updatedAt=1730044171287" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1wTJro4uQMlezxf1z33FgDZ175Q0Z537g/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_3734.DNG?updatedAt=1730044171268" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1vJnbyGBVQUOmkjFGcE7R3guRZA9F4fTc/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_3119.DNG?updatedAt=1730044171332" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Y-KOX5kknTulIz_jh6C9RKNAorPgPbpz/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_2805.DNG?updatedAt=1730044171230" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1MVaBQtQ6CUvII60k_leo7wEzZLqq0JhQ/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_2817.HEIC?updatedAt=1730044171336" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1FN02h0m8JWVySBNBz4SXhzx7VzviPXSo/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_2853.DNG?updatedAt=1730044171372" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1BPQpH2-TmNOCy0DzsoeHP5A7X48eHRIZ/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_2026_Original.jpg?updatedAt=1730044171447" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1A1fB_msmL27Ku3YAJo7hGa2RVcGOzHEF/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_0144.HEIC?updatedAt=1730044171334" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/18M41fFB_QdDd8Xs6nVw6_ZR_0kNCdHdH/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_0025.HEIC?updatedAt=1730044171433" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_2804.HEIC?updatedAt=1730044171429" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_0840.DNG?updatedAt=1730044171335" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_1737.HEIC?updatedAt=1730044171431" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_1746.heic?updatedAt=1730044171375" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/20210929_093612_Original.jpg?updatedAt=1730044171434" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/20220623_210736.jpg?updatedAt=1730044171426" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/7d02be1a-f5a5-4bd6-a8ec-a7a466b640af.jpg?updatedAt=1730044171435" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        
                        
                     </div>
                     <div class="swiper-button-next"></div>
@@ -389,101 +446,101 @@
                     <div class="swiper-wrapper">
                         <!-- Slides -->
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1OCuuXAiMKLBmHz8teu7MkT1C1WFdnYvQ/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0317.JPG?updatedAt=1730042514108" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1NGOC_VSq0hVjQv66CdUKwGfbQs-h-gJ2/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0186.JPG?updatedAt=1730046479176" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1gvoox-gqvVZwELJL0c9lxN7JoWSiyZ1q/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0286.JPG?updatedAt=1730042512313" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1c32kHhUiqWFNF20xifTlKnsAFItZKguD/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0184.JPG?updatedAt=1730042511863" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/18Eerjkp3WhaDRbyq6j2SWWD-hhQXxATr/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0306.JPG?updatedAt=1730046479183" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1EkXrvjQVL9jvW7OlX4XFZqtIdeowP7yg/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0185.JPG?updatedAt=1730046479106" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1x9MNAzfQwKEzCNki1FjwZJYAVrlSTgjq/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0266_Original.JPG?updatedAt=1730046479070" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1h4Psna2rHPVMDk2YQpixqJHnuH8U9FIC/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/Snapseed(5).heic?updatedAt=1730046479075" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1R_83Yjyva0mLEghwN5GaXUQn8lFOLRQ5/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_9551.HEIC?updatedAt=1730046478935" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1M8IZtQMEYb4VhAqGuzMBCmNIYCtJTaQV/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/Snapseed%202.jpg?updatedAt=1730046479072" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1FTwx6jAD79w0U6YL1109T7YEqgFOuLnE/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/Snapseed(1).heic?updatedAt=1730046479046" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1CShTsL1ZWi5Yz3dwpFuOnSKLx6W-_Hno/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_5985.JPG?updatedAt=1730046479076" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/19pbB2A0ThZdBaFVdMLFVJCQLJ4RsiZgK/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/Snapseed(3).heic?updatedAt=1730046479017" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/17y3PBgPDlfP23pka9ZuP5Uq38BmyX0lX/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_5973.JPG?updatedAt=1730046479037" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1zops9s6uqdBtjw1WzjssP923JwwA3FWT/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_6033.JPG?updatedAt=1730046479060" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1qgmLvvYH_-BsNb_XreCnTqhbmrqzdLsC/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_4371.HEIC?updatedAt=1730046478965" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1pIwrKUVlXCfkfj9HSuGmmehiirDUr9tO/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_4362.DNG?updatedAt=1730046479074" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1knznJqxjJkMeiIf-deQU4blu9Zo1bixY/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_8624.JPG?updatedAt=1730046478904" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1hjW7gWbBNzKPidC4Zbb40AqR6nBEA5u4/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_1773.HEIC?updatedAt=1730046479047" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1h8krRLrItZ2HiWsXUSGV1pz7h2lcq4Ex/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_2981.DNG?updatedAt=1730046478943" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1gKOpMDbbtk51LQ-QiNXJ37jI0bfigReM/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_4027.DNG?updatedAt=1730046479029" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1ZSWzVDQ_YUggXHx_V7VI7pcOOl-POplf/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_4186.jpg?updatedAt=1730046478958" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Us5TbvWL6z3hS78SBq8LF8hf4dUDBEKJ/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_2708.HEIC?updatedAt=1730046478972" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1UefGbyLKJjGVcdpxUBQXSsLJPtnK3nNy/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_2604.HEIC?updatedAt=1730046478931" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1NKaBpMQVd-SZyFjzwhYcvsmNtbOhZqrw/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_0745-EFFECTS.jpg?updatedAt=1730046478982" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1FNlY4wgkVibeGL8y9MHOzc4WlxzqSyE_/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_1779.DNG?updatedAt=1730046479028" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1DoneE5Xq9w-1tvW8oQxdDAazfEHDtaiZ/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_1068.HEIC?updatedAt=1730046479045" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1y_CBzcQJ-fm610rauBYQ939bRvq4FpSd/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_2380.JPG?updatedAt=1730046478928" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1bfbONH6uE0eHdoZHmkHaFh8SP2OcLzeH/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/20240416_062221.jpg?updatedAt=1730046478930" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1CJcWv-58FD5TvmqTE9igp5QzPqIYrVLI/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_0307.JPG?updatedAt=1730046479073" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1WLHPr56FVFoOZvfBdY8CquB9Ul0C5kck/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/FullSizeRender(1).jpg?updatedAt=1730046479048" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1u-VknmEIp-MI3zieH1TyuBiq6FLIWICz/preview" allow="autoplay" loading="lazy"></iframe>
-                        </div>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/79aa8fc6-c254-4030-a05e-c71fbe5184f5.jpg?updatedAt=1730046479018" alt="City lights photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>                        
                     </div>
                     <!-- Swiper Navigation Buttons -->
                     <div class="swiper-button-next"></div>
@@ -501,62 +558,62 @@
                     <div class="swiper-wrapper">
                         <!-- Slides -->
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1yriS9ytM2qPs6KlDLyMwvuDri9UQjitp/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/_DSC0349.JPG?updatedAt=1730042463687" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1oF_4DFRDZ9-hXhXPwAdx0enYftyn3TNP/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_2002.DNG?updatedAt=1730042462208" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1bypwartZCLUCbsTtKq61l33gy6cA34y9/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_5860.JPG?updatedAt=1730042458777" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1UYdLWqBER-SSxeCz-USGXHbNcWglWVyB/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_9849-EFFECTS.jpg?updatedAt=1730042457821" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1TYkqv7gBIkSqNDqXCoyI1x3qFJkXPOVL/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/Snapseed.heic?updatedAt=1730042457796" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1RYCHAISk9PjejpKPt5PSbxs83SSoa2ok/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_9067-ANIMATION.gif?updatedAt=1730042457548" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1LrvObajxGFKL8QWS1Le3eXaukLxnnsRV/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_5855.JPG?updatedAt=1730042456021" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1J1YgJPSEOLLVUuIGqeCSfnICB-rS_Fuf/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_3057.DNG?updatedAt=1730042455457" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1IcrW_xO5ltS6OsQu3Q4-UYMM6lC-ix5I/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_5145.JPG?updatedAt=1730042455110" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1DuffHzWqV1e2roPg3ibtJvGE9dHmrw93/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_8191.HEIC?updatedAt=1730042454960" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1CwcdVdSN1rkcLlpHC_ZFycAwbTCchut4/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/5974FA5B-A49B-4515-8FC0-569BFBE47E54.jpg?updatedAt=1730042451813" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/12jVSIozgZmy2roE8yi1p2KSXAhzkFnFH/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/E5A40B7B-2400-4319-8D37-B228CD3FE97E.jpg?updatedAt=1730042451483" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1B45u8gYGihCxjXDLA-7ggVq1Z6hnyhi1/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_2139.HEIC?updatedAt=1730042451372" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/13V6VeeHiuOJa1_7qiAA-Sfk1OBIern-n/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/CA3B5B6E-1072-4440-A530-5A6F8B369590.jpg?updatedAt=1730042451071" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1N9AigjkJ6YPIyGLhw9OGK-8wGGLqMR7M/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/1573365D-B03C-4BB1-A08E-91138EDA0E4B.jpg?updatedAt=1730042451064" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1bWqq0rY8IjeESp2vsA9S-bmYxCe-v4xr/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/319F1E93-B441-4A85-A435-CBD4BFA20D74.jpg?updatedAt=1730042450935" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/188dTtNy57yzZtKvdeukwTCimB-M9KnG7/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/20220419_195919.jpg?updatedAt=1730042450920" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/11H1E0qajeNDFBGlnr2NqxYoCukjOgi_a/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/A4819F80-5438-4119-A5D1-96049A0E87F3.jpg?updatedAt=1730042450838" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1MLvbC3xm0s9luGLJxiJjTX_jXi9NGwL4/preview" allow="autoplay" loading="lazy"></iframe>
-                        </div>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/685FBBD2-9BB0-44EA-90FE-C5DB584270A5.jpg?updatedAt=1730042450532" alt="Water Bodies photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>                        
                     </div>
                     <!-- Swiper Navigation Buttons -->
                     <div class="swiper-button-next"></div>
@@ -571,100 +628,94 @@
                     <div class="swiper-wrapper">
                         <!-- Slides -->
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1zglfugoaM26Yhj8CElVCsRDp5SBzzc0r/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/_DSC0088.JPG?updatedAt=1730042532110" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1wD6hpRHBScIt5xLiU6HlUcP8GsDVNK97/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/_DSC0462.JPG?updatedAt=1730042523238" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1tBSrTepY09f-IPiVAiR-HUKxNgSwWRo0/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed.jpg?updatedAt=1730042522641" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1oBdqSJ4HO2-iN1D-lfLT9ctfsmdHsXf5/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(9).jpg?updatedAt=1730042522056" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1joBFjnGIWAFv2pXOB772u8Iij53UE8P1/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(7).jpg?updatedAt=1730042521876" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1iiI2apH_GKiTtBmGBoNb9SwAQCWyp8nH/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(5).jpg?updatedAt=1730042521771" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1ciieh4Q6A6ZXPnfceqKtlpVJYd2OE6mI/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(2).jpg?updatedAt=1730042521543" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1b0gKtIAm_Gtb8HXfwgVKPBfINsyAbDUN/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(6).jpg?updatedAt=1730042521308" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1aFJV1odulfrr7Q34X9BI6QlOpJPaVyQw/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(3).jpg?updatedAt=1730042520406" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1OBy94j1DJ_DN2aT3XF3uxIagQO8hTzzw/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(17).jpg?updatedAt=1730042519569" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1ujwcR3vfsotBZbey_ciFVEV5BcW_STZe/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(16).jpg?updatedAt=1730042519284" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1s4mt-oCDAWjQFirma-OakZ7gXafHCrEL/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(14).jpg?updatedAt=1730042518545" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1lpn2Ky-DIB5pMsPCshvPZBOUpEXZ_5pf/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(15).jpg?updatedAt=1730042518454" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1jV8mM41c9PXG_LfhTf7HHr1MPGBFuyfm/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(13).jpg?updatedAt=1730042518320" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1ft1avy5WBQwcr5fbz6IohdcCCO7-eFQ0/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(12).jpg?updatedAt=1730042517852" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1_bWQ21vtaE1pvyNVYgZj86ow_2rfhU0s/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(11).jpg?updatedAt=1730042517776" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Z5mjBA-Pm38EfFjNclUeZLBRtIMTFxOG/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/IMG_4953.JPG?updatedAt=1730042517286" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Xa4TCK408h-lcwyxFWmiaeAQQkHdzgCK/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(1).jpg?updatedAt=1730042517254" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1WNdhxpVUpq2iRjukgD29pMB_OV0hpSbX/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(10).jpg?updatedAt=1730042517054" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1WGAsYLfBliBanVFTVz2PVX6M8U6H31bL/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/IMG_6046.HEIC?updatedAt=1730042516811" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1RgxZKl1cq8c-FmPeT4Zu-iSbAqMF5KyH/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/IMG_6407.DNG?updatedAt=1730045269576" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1M0d86flPaPWI4TmndmGvlaKlJwj_KrU7/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/IMG_4494.JPG?updatedAt=1730045269563" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1LFXTvSgcvKia9SS7M9KBZn7HORDNnzIH/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/IMG_1807.heic?updatedAt=1730045269591" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Ky7UWlMyBvGJqsxuM_FuAOX_00b_RaSr/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/IMG_4479.DNG?updatedAt=1730045269652" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1H1ONp-fimhQunq849w9y4WY0CLCf1tjh/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/IMG_1900(1).HEIC?updatedAt=1730045269758" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/16wjBOLWUvUTCgUgNBsAPRvsfPVC4Lifk/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/IMG_1787.heic?updatedAt=1730045269601" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/16SztmC4VoLFX3DBaOJARewaS7AqRlxIQ/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/IMG_0075.HEIC?updatedAt=1730045269599" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/13pKDUADjUi7W2dM91hwTeCvlVGPuGfGO/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/IMG_0110.HEIC?updatedAt=1730045269606" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/138ke_ti5NxnyuxTpq_WYs42Vsvsvr_qL/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/575.JPG?updatedAt=1730045269638" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1161tOoKbnheOqggCdAU4iZ6ULgMjv99C/preview" allow="autoplay" loading="lazy"></iframe>
-                        </div>
-                        <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Tthe3GbavSYa8gqTpmTNJnwfGkbwDRSo/preview" allow="autoplay" loading="lazy"></iframe>
-                        </div>
-                        <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1WnTbLYxXzZvCf-vHeKeSvZpurvHDC_4M/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/44ae78c6-8b15-4af7-a544-75b086dd5f64.jpg?updatedAt=1730045269651" alt="Animalia photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                     </div>
                     <!-- Swiper Navigation Buttons -->
@@ -681,71 +732,71 @@
                     <div class="swiper-wrapper">
                         <!-- Slides -->
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1kpmmhfxcIWoI39Z1OuhkETub7hQ9sm15/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0477.JPG?updatedAt=1730042469353" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1LBjZDbq_ggjryR5Bnpvi85NjvFGBaSWI/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_6057.JPG?updatedAt=1730042468437" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1pLGUwvq74nhuHIzGwmz-q4sFA4_Q5D8R/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0104%20(2).JPG?updatedAt=1730042466451" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Mb82hQgmwFud5hloURH9P0G-0E2EJ47A/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_4937(1).JPG?updatedAt=1730042464716" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1vWqsOsMfaYX88ZY25VMoDjuwv2994ejP/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_9246.HEIC?updatedAt=1730042464267" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1luweBWv5hZtY6wcbZVJxdFRb0yEBYv2G/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_9244.HEIC?updatedAt=1730042464217" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Z_RaJ5YqCWYI2LxGPriz_6yoXyptCLjd/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_8407.HEIC?updatedAt=1730042464017" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Ex9AtHQxbUAe6v5lC_HBuVDb0_4Xgsg5/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_6008.HEIC?updatedAt=1730042463366" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1xr7t25BWn42IMbdpoZBhQRYM56Pmb2Er/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_4944.JPG?updatedAt=1730042462722" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1xPXGCbmrGQO_HgVfSPVQS3MYrxR246-e/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_4937.JPG?updatedAt=1730042462583" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1v3itS3ApN1sq2TsGZXf77R1elulDMZhj/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_4010.DNG?updatedAt=1730042461726" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1jBXC7GVohNTuCrCOhNVaJ7IBCRooJTAu/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_0473.DNG?updatedAt=1730042461664" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1h7Ggw1Zk7izWBQQdQkdM38vIAgPmcMZl/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_2555.jpg?updatedAt=1730042461367" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1d2Dpj4GIGI9gNY7SyVOF6ezDKMc6iY7j/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_1872.DNG?updatedAt=1730042460780" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Y6VXWSxC-ZX4WPKhT9kqm-v13u7IPy0O/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/ec4716eb-6e3b-427d-9f07-82fbdb67140f.jpg?updatedAt=1730042460514" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1SL2SB3yOeGQ0Dad7nqU8e3w37UCYarBG/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/BAFB1DE5-44A0-4FCF-B554-6F5FE43092EC.jpg?updatedAt=1730042460275" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1R7yGUKvDNRlYCUORMwM7u_6lz0r1y_JG/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/cce62982-216e-40fa-bbe5-3ce572ca59d9.jpg?updatedAt=1730042460332" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Nc6A2QbZNkO0YfhRYy9PTuiITJ_kmS9j/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/b4109024-3c44-4a3d-8980-0a28e2e56521.jpg?updatedAt=1730042460131" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1NYxdAE6oVE9HQ83kLcLeUbyCm9XMuJKx/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/93c5b69f-7ef5-44b8-84b9-e1a62de9e74a.jpg?updatedAt=1730042458486" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1KWdl58DY4JwP7PYFOu-Xpayq_S60FhtJ/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/20240417_025713.jpg?updatedAt=1730042458270" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1FZd_9A7F-6_hzgHoh5vREctGrxeT7CPb/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/0c1688b1-45e1-464e-a913-0e9571147bc7.jpg?updatedAt=1730042458016" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1DLeqmMxdsLBRHQFsYqQiGHaZFUgUJicy/preview" allow="autoplay" loading="lazy"></iframe>
-                        </div>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/8d45609a-3e33-4947-a6b4-0258a6de18b3.jpg?updatedAt=1730042457975" alt="Moon and Sun photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>                        
                     </div>
                     <!-- Swiper Navigation Buttons -->
                     <div class="swiper-button-next"></div>
@@ -760,47 +811,48 @@
                     <div class="swiper-wrapper">
                         <!-- Slides -->
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1tm2IriypdnmKCQ1bhjWuJwTqM9bqKLCP/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_6954.jpg?updatedAt=1730042514330" alt="Cars and toys photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1t9jTACczu9ihYbN3605TxUE_5_xvaWNf/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_9210.HEIC?updatedAt=1730042509742" alt="Cars and toys photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1xNhGzbGaEqAIIogan2VY0Ma6eBvPLmcB/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_9860.JPG?updatedAt=1730042508858" alt="Cars and toys photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1z78yCMxNLBkGsk7znn5MXGIDP8zXKNBV/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2780.HEIC?updatedAt=1730042507918" alt="Cars and toys photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1t-wGjIrpCdaexZMhouQED3nCP--J6eJD/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2775.HEIC?updatedAt=1730042505758" alt="Cars and toys photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1lDV4WbkJfL7Hb0ObspRK9Qj9YQFhPyq_/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2767.HEIC?updatedAt=1730042504546" alt="Cars and toys photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1d1jaTKDeMd-JXGdLiXzCw-oEymE30K6X/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2771.HEIC?updatedAt=1730042504420" alt="Cars and toys photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1aTuAxtPVBIqKWz0FH4mblV-YFp74AzeE/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/FullSizeRender%20(2).jpg?updatedAt=1730042503697" alt="Cars and toys photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1EwlbWp5pRglrlz_XTGTYBiU1I-Lmz4tN/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2764.HEIC?updatedAt=1730042501435" alt="Cars and toys photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1EU5bI39L8tCuQwxg9Ew5UqTuUjdQjB48/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2528.HEIC?updatedAt=1730042500199" alt="Cars and toys photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/12pM-BgNcoaVYhkPGxj0eJTXZhnNCOQTl/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2387.JPG?updatedAt=1730042499889" alt="Cars and toys photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1q-TlqwtOzym6y7GC5lsA_XnaQRX8-ZT6/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_1367.HEIC?updatedAt=1730042496834" alt="Cars and toys photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1jULv4xYuN4JpP_cvW8QHspwyD3Gw_NoH/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_20170527_121019.jpg?updatedAt=1730042495445" alt="Cars and toys photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1HMvYbgenvPSiG8bCMryue8_fJFrZfGni/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_0303.HEIC?updatedAt=1730042494372" alt="Cars and toys photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
+                        
                     </div>
                     <!-- Swiper Navigation Buttons -->
                     <div class="swiper-button-next"></div>
@@ -815,125 +867,122 @@
                     <div class="swiper-wrapper">
                         <!-- Slides -->
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/19hpxB-MG2zgI0v8lp58_5kTzT-iKVVW_/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/Snapseed.dng?updatedAt=1730042481695" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1yqJUly1efT5MS67fgJKgQQVOZWVrf_Zi/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_8191.DNG?updatedAt=1730042480522" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1A6VhqJouXoAkQMrW4tr-pazV2NJbPHfB/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_8114-EFFECTS.jpg?updatedAt=1730042480134" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1EXvc1TBFScLMlWkbO5bEpzeY4e08ZXJL/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_8150.HEIC?updatedAt=1730042479900" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1jTFTL9awK1YeXmkToTi66HgbGQ6B5KBR/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/Snapseed(1).dng?updatedAt=1730042479629" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1DZIxjSBo-vqtfdM8eBEjeNYxy1AmgBY6/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7726.DNG?updatedAt=1730042478796" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1xPROTHXDGcrwV-L_2cwh6zV7xfn3tzt3/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_8162.HEIC?updatedAt=1730042478548" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1wMrRIDAkbmbMlIdJagO709LUL1PGQL4q/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7693.DNG?updatedAt=1730042477583" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1rwRbvu8NTpU5qR1xxgx4G-OApOCJTB4q/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7681.DNG?updatedAt=1730042477296" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1lIrmV5KFUmSneQCEyv4h_698UwWcg4Di/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7691.DNG?updatedAt=1730042477216" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1lIPyUfNnVkYWiBT5KDvfm8l3ALlELubU/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7678.DNG?updatedAt=1730042476439" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1j6SBesAZ9Yhto8zl0-BWn5sQAOLwFxE0/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7655.DNG?updatedAt=1730042476060" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1daw1MjVj-U1r8FU_CG4Y3CFYc7w3nHLv/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7452.DNG?updatedAt=1730042475945" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1ccTNypia7Wc8Y8FJdhESNIlb8ayWwgul/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7550.HEIC?updatedAt=1730042475599" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Y-yg8tRVjaUxvu-HvoEfFhaiEKH_FtW1/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7438.DNG?updatedAt=1730042475564" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Wtg8bHwuYvPN1qepKAQu4doQuVfaORzB/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7471.jpg?updatedAt=1730042475515" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1TFz5d8DF0QafYLz1ndgSlhBXvbyYahzI/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7167.DNG?updatedAt=1730042474984" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1TF6TO2CnaFatF72HJ4f6uufEll0L3B73/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7159.DNG?updatedAt=1730042474498" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1SJWDkWHvD6JjyKMDOoBqPsRm1qOyGirK/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7178.DNG?updatedAt=1730042474100" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1POQELf8Fif0OoXAfjmEIf8EUVcf0fn5H/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7293.DNG?updatedAt=1730042473538" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1KcqBjIs6GTDTo6Pys-bmVAJTrn1CTW1I/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7270.DNG?updatedAt=1730042473382" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Jp6gPfjDMeYMmMRYkcf4HLYM2eR4Yr_7/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7172.DNG?updatedAt=1730042472892" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1IxivFpSKsZSAqqqbAOiD155lXRFOgYQP/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7136.DNG?updatedAt=1730042472370" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1Huk51hNXfi4STvfLHtHflzOPSlLGzrQb/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7128.DNG?updatedAt=1730042471378" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1EBEJF7r0Qq551VyEhGCnWPdVsbwvE_qX/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_6965.DNG?updatedAt=1730042471020" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1CU-EJx6wOMWr6--5qtt3aXiR7m0rO_2H/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_6484.JPG?updatedAt=1730042470188" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1C0vYajvoPR_SsF6MUKUhQ3LwO50PksvA/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_6922.JPG?updatedAt=1730042470068" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1AFe6VJiEW0ZmhBBaYSekxhNpYlP1FYET/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_6573.DNG?updatedAt=1730042469899" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/14u8dHVHMc_9mACwJlTxVJn6c-9a5_DLy/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_6068.HEIC?updatedAt=1730042469592" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1z-T5xnlRN7w9EDyZOfqSt4Ih3_Pf2dGJ/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_4639.jpg?updatedAt=1730042469134" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1wcAZB-qEXvOO0TKw14_Mf0Fp7ZNdGaVl/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_6033.HEIC?updatedAt=1730042469060" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1jrKWLXo7B1fvxnDRpgUPDhUL90oeGNfl/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_4546.HEIC?updatedAt=1730042469060" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1dQVLJp1WbvrDtiPs8_rZS5v5WwYDwTVT/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_4554.JPG?updatedAt=1730042468044" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1TkXsZF3sza1AXP81uDF86iCB_ki5fI-4/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_4413.HEIC?updatedAt=1730042467586" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/18WFP2hwBQ1WRA576y42V9YVuV4dQTXf_/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_4260.DNG?updatedAt=1730042467244" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/16HUReMHfjpoITjb96rswiCVCMt8xn0JW/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG-20200901-WA0011_Original.jpg?updatedAt=1730042466508" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/12oViAPum2tsFkj6WzCeTnTRqW4hTwz9I/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_0469.JPG?updatedAt=1730042466449" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1-d24m_baI8-zxySKNtAsmEaUsRlfMVSM/preview" allow="autoplay" loading="lazy"></iframe>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/FullSizeRender.jpg?updatedAt=1730042466137" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
                         </div>
                         <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1ms5jDNJpPgt4-7ti49YZkZhkIqsFsuC_/preview" allow="autoplay" loading="lazy"></iframe>
-                        </div>
-                        <div class="swiper-slide">
-                            <iframe src="https://drive.google.com/file/d/1tUAiOrMXSz2GiGBwvHQ_00XFzckwI4lv/preview" allow="autoplay" loading="lazy"></iframe>
-                        </div>
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/5B3D5ED7-9CE1-4177-8999-EC52A44ABCB4.jpg?updatedAt=1730042465440" alt="India photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>                        
                     </div>
                     <!-- Add Pagination -->
                     <div class="swiper-pagination"></div>
@@ -942,99 +991,108 @@
                     <div class="swiper-button-prev"></div>
                 </div>
             </div>
-
-
-
         </div>
     </section>
 
-    <!-- Scroll Back to Top Button -->
-    <button id="backToTop" onclick="scrollToTop()"><i class="fas fa-chevron-up"></i></button>
+     <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <img id="lightbox-img" src="" alt="">
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Srihaas Gorantla | <a href="#">Privacy Policy</a></p>
+        <a href="mailto:srihaas@example.com" class="contact-btn">Contact Me</a>
+    </footer>
 
     <!-- JS and Animation Initialization -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script>
-        // Initialize AOS animations
         document.addEventListener('DOMContentLoaded', function () {
-            AOS.init(); 
-        });
-
-        // Function to initialize a Swiper carousel with optimized settings
-        function initializeSwiper(carousel) {
-            new Swiper(carousel, {
-                slidesPerView: 5,
-                spaceBetween: 20,
+            // Swiper Initialization
+            new Swiper('.mySwiper', {
+                slidesPerView: 3,
+                spaceBetween: 15,
                 loop: true,
-                centeredSlides: true,
                 autoplay: {
-                    delay: 9000, // Increase autoplay delay to reduce activity
+                    delay: 5000,
                     disableOnInteraction: false,
                 },
-                lazy: {
-                    loadPrevNext: true, // Lazy load only nearby slides
-                    loadPrevNextAmount: 1, // Load only one slide before and after
-                },
-                preloadImages: false, // Do not preload all images
-                watchSlidesVisibility: true, // Only render visible slides
                 navigation: {
-                    nextEl: carousel.querySelector('.swiper-button-next'),
-                    prevEl: carousel.querySelector('.swiper-button-prev'),
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                preloadImages: false,
+                lazy: {
+                    loadPrevNext: true,
                 },
                 breakpoints: {
-                    1200: {
+                    1024: {
                         slidesPerView: 3,
                     },
-                    992: {
+                    768: {
                         slidesPerView: 2,
                     },
-                    768: {
-                        slidesPerView: 1,
-                    },
                     480: {
-                        slidesPerView: 1,
-                    },
-                    360: {
                         slidesPerView: 1,
                     }
                 }
             });
-        }
 
-        // Initialize Swipers only when they are in the viewport
-        function lazyInitSwipers() {
-            const carousels = document.querySelectorAll('.mySwiper');
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        initializeSwiper(entry.target);
-                        observer.unobserve(entry.target); // Stop observing once initialized
-                    }
+            // Scroll to Top Function
+            window.scrollToTop = function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            };
+
+            // Dark/Light Mode Toggle
+            const darkLightToggle = document.getElementById('darkLightToggle');
+            darkLightToggle.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                if (document.body.classList.contains('light-mode')) {
+                    document.body.style.backgroundColor = 'var(--light-bg-color)';
+                    document.body.style.color = 'var(--light-text-color)';
+                    darkLightToggle.classList.remove('light-mode-text');
+                    darkLightToggle.classList.add('dark-mode-text');
+                } else {
+                    document.body.style.backgroundColor = 'var(--bg-color)';
+                    document.body.style.color = 'var(--text-color)';
+                    darkLightToggle.classList.remove('dark-mode-text');
+                    darkLightToggle.classList.add('light-mode-text');
+                }
+            });
+
+            // Lightbox Functionality
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
+            const lightboxClose = document.querySelector('.lightbox-close');
+
+            lightboxTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    lightbox.style.display = 'flex';
+                    lightboxImg.src = trigger.src;
                 });
             });
 
-            carousels.forEach(carousel => observer.observe(carousel));
-        }
-
-        // Event listener for DOM ready
-        document.addEventListener('DOMContentLoaded', function () {
-            lazyInitSwipers(); // Use lazy initialization for Swipers
-        });
-
-        // Scroll to Top Function
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            lightboxClose.addEventListener('click', () => {
+                lightbox.style.display = 'none';
             });
-        }
 
-        // Event listener for Scroll to Top Button
-        document.addEventListener('DOMContentLoaded', function () {
-            const backToTopButton = document.getElementById('backToTop');
-            backToTopButton.addEventListener('click', scrollToTop);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.style.display = 'none';
+                }
+            });
         });
     </script>
-
 </body>
 </html>
