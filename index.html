@@ -335,25 +335,73 @@
         }
 
         /* Skills Section */
-        .skills-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            text-align: center;
-        }
+    .skills-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        text-align: center;
+    }
 
-        .skills-list div {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px var(--shadow);
-            transition: background-color var(--transition-speed), transform var(--transition-speed);
-        }
+    .skills-list div {
+        background: var(--card-bg);
+        padding: 25px;
+        border-radius: 15px;
+        border: 2px solid transparent;
+        background-clip: padding-box;
+        box-shadow: 0 6px 15px var(--shadow);
+        background-image: linear-gradient(var(--card-bg), var(--card-bg)), linear-gradient(135deg, var(--accent-color), var(--highlight-color));
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+        position: relative;
+    }
 
-        .skills-list div:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px var(--shadow);
-        }
+    .skills-list div::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .skills-list div:hover {
+        transform: translateY(-10px);
+        border-color: var(--accent-color);
+        box-shadow: 0 12px 25px var(--shadow);
+    }
+
+    .skills-list div:hover::before {
+        opacity: 0.3;
+    }
+
+    .skills-list div strong, .skills-list div p {
+        color: var(--text-color);
+    }
+
+    .skills-list div strong {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2em;
+        margin-bottom: 8px;
+    }
+
+    .skills-list div p {
+        font-size: 1em;
+        opacity: 0.9;
+    }
+
+    /* Icons styling */
+    .skills-list div i {
+        font-size: 1.4em;
+        margin-right: 10px;
+        color: var(--icon-color);
+    }
+
+
 
         /* Experience Section */
         .timeline {
@@ -514,7 +562,7 @@
         }
 
         .project-card img {
-            max-width: 60px;
+            max-width: 550px;
             margin-bottom: 15px;
         }
 
@@ -588,6 +636,139 @@
             transition: background-color var(--transition-speed), color var(--transition-speed);
             box-shadow: 0 -2px 4px var(--shadow);
         }
+        /* Currently Working On Section - Custom Styles */
+        #currently-working-on .video-container,
+        #currently-working-on .image-container {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            margin-top: 20px;
+            justify-content: space-between;
+        }
+
+        #currently-working-on .video-container video,
+        #currently-working-on .image-container img {
+            width: 45%; /* Each image will take about half the available container space */
+            height: auto; /* Maintains the aspect ratio */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px var(--shadow); /* Adds shadow for a better look */
+            object-fit: cover;
+            max-height: 350px; /* Ensures a consistent max height */
+        }
+
+        /* Tools and Technologies Section Styling */
+        .tools-technologies {
+            background: var(--card-bg);
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow);
+            color: var(--text-color);
+            text-align: left;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .tools-technologies {
+                padding: 20px;
+                max-width: 90%; /* Adjust width for tablets */
+            }
+
+            .tools-technologies h2 {
+                font-size: 1.6em;
+            }
+
+            .tools-technologies li {
+                font-size: 1em;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tools-technologies {
+                padding: 15px;
+                text-align: center; /* Center-align for smaller screens */
+            }
+
+            .tools-technologies h2 {
+                font-size: 1.4em;
+                margin-bottom: 15px;
+            }
+
+            .tools-technologies li {
+                font-size: 0.95em;
+                flex-direction: column; /* Stack items vertically */
+                gap: 8px;
+            }
+
+            .tools-technologies li i {
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tools-technologies {
+                padding: 10px;
+            }
+
+            .tools-technologies h2 {
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+
+            .tools-technologies li {
+                font-size: 0.85em;
+            }
+
+            .tools-technologies li i {
+                font-size: 1em;
+            }
+        }
+
+
+        .tools-technologies h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+
+        .tools-technologies ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tools-technologies li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+        }
+
+        .tools-technologies li i {
+            color: var(--accent-color);
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            #currently-working-on .video-container,
+            #currently-working-on .image-container {
+                flex-direction: column;
+            }
+
+            #currently-working-on .video-container video,
+            #currently-working-on .image-container img {
+                width: 100%; /* Take full width on smaller screens */
+                max-height: none;
+            }
+        }
+
 
         /* Responsive Design */
         @media (max-width: 1024px) {
@@ -806,7 +987,7 @@
         <div class="container">
             <h2>About Me</h2>
             <div class="about-content">
-                <img src="srihaas.jpg" alt="Srihaas Gorantla" loading="lazy">
+                <img src="srihaas.JPG" alt="Srihaas Gorantla" loading="lazy">
                 <p>Ambitious software developer with a strong academic background in computer science, skilled in full-stack development, mobile app creation, and machine learning. Eager to leverage technical expertise and problem-solving abilities to deliver high-quality, scalable solutions as a junior developer.</p>
             </div>
         </div>
@@ -815,21 +996,47 @@
     <!-- Skills Section -->
     <section id="skills" data-aos="fade-up">
         <div class="container">
-            <h2>Technical Skills</h2>
+            <h2 style="text-align: center; margin-bottom: 30px; color: var(--text-color); font-weight: bold;">Technical Skills</h2>
             <div class="skills-list">
-                <div data-aos="fade-right"><strong>Programming Languages:</strong> Python, JavaScript, Java, C#, C++, PHP, SQL</div>
-                <div data-aos="fade-left"><strong>Web & Mobile Development:</strong> HTML, CSS, React Native, REST APIs, Firebase, Flask, Laravel, Android Studio, Expo</div>
-                <div data-aos="fade-right"><strong>Frameworks & Tools:</strong> Git, GitHub, VS Code, Visual Studio, MAUI, NoSQL Databases, MySQL</div>
-                <div data-aos="fade-left"><strong>Methodologies & Patterns:</strong> Agile, SDLC, Waterfall, MVVM, MVC</div>
-                <div data-aos="fade-right"><strong>Machine Learning:</strong> Transfer Learning, Neural Networks, Jupyter Notebooks, Data Preprocessing, Visualization</div>
-                <div data-aos="fade-left"><strong>Other Tools & Software:</strong> MATLAB, Figma, Adobe XD, MS Office Suite</div>
-                <div data-aos="fade-right"><strong>Operating Systems:</strong> Windows, macOS, Linux</div>
-                <div data-aos="fade-left"><strong>Languages:</strong> English, Hindi, Telugu (Fluent)</div>
+                <div data-aos="fade-right">
+                    <strong><i class="fas fa-code" style="margin-right: 8px; color: var(--primary-color);"></i>Programming Languages:</strong>
+                    <p>Python, JavaScript, Java, C#, C++, PHP, SQL</p>
+                </div>
+                <div data-aos="fade-left">
+                    <strong><i class="fas fa-laptop-code" style="margin-right: 8px; color: var(--secondary-color);"></i>Web & Mobile Development:</strong>
+                    <p>HTML, CSS, React Native, REST APIs, Firebase, Flask, Laravel, Android Studio, Expo</p>
+                </div>
+                <div data-aos="fade-right">
+                    <strong><i class="fas fa-toolbox" style="margin-right: 8px; color: var(--accent-color);"></i>Frameworks & Tools:</strong>
+                    <p>Git, GitHub, VS Code, Visual Studio, MAUI, NoSQL Databases, MySQL</p>
+                </div>
+                <div data-aos="fade-left">
+                    <strong><i class="fas fa-project-diagram" style="margin-right: 8px; color: var(--highlight-color);"></i>Methodologies & Patterns:</strong>
+                    <p>Agile, SDLC, Waterfall, MVVM, MVC</p>
+                </div>
+                <div data-aos="fade-right">
+                    <strong><i class="fas fa-brain" style="margin-right: 8px; color: var(--warning-color);"></i>Machine Learning:</strong>
+                    <p>Transfer Learning, Neural Networks, Jupyter Notebooks, Data Preprocessing, Visualization</p>
+                </div>
+                <div data-aos="fade-left">
+                    <strong><i class="fas fa-tools" style="margin-right: 8px; color: var(--info-color);"></i>Other Tools & Software:</strong>
+                    <p>MATLAB, Figma, Adobe XD, MS Office Suite</p>
+                </div>
+                <div data-aos="fade-right">
+                    <strong><i class="fas fa-desktop" style="margin-right: 8px; color: var(--success-color);"></i>Operating Systems:</strong>
+                    <p>Windows, macOS, Linux</p>
+                </div>
+                <div data-aos="fade-left">
+                    <strong><i class="fas fa-globe" style="margin-right: 8px; color: var(--danger-color);"></i>Languages:</strong>
+                    <p>English, Hindi, Telugu (Fluent) & Italian, Japanese (Beginner)</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section -->
+
+
+   <!-- Experience Section -->
     <section id="experience" data-aos="fade-up">
         <div class="container">
             <h2>Professional Experience</h2>
@@ -857,9 +1064,76 @@
                     </ul>
                     <p><strong>Achievement:</strong> Received Turing Funding for international placement.</p>
                 </div>
+                <div class="timeline-item" data-aos="fade-right">
+                    <h3>Freelance Web Developer</h3>
+                    <p><em>Nova Protection</em></p>
+                    <p><strong>September 2023 - January 2024</strong></p>
+                    <ul>
+                        <li>Developed and managed a website using Wix and HTML (<a href="https://www.novaprotection.co.uk/" target="_blank">Visit site</a>).</li>
+                        <li>Handled Google Analytics, SEO, and digital marketing to boost online presence.</li>
+                        <li>Designed business cards, pamphlets, and multiple email templates for branding and outreach.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item" data-aos="fade-left">
+                    <h3>Web Developer</h3>
+                    <p><em>Green Planet Inc.</em></p>
+                    <p><strong>February 2024 - May 2024</strong></p>
+                    <ul>
+                        <li>Provided web development services and maintained the company’s website (<a href="https://www.greenplanetgroup.in/" target="_blank">Visit site</a>).</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Currently Working On Section -->
+    <section id="currently-working-on" data-aos="fade-up">
+        <div class="container">
+            <h2>Currently Working On</h2>
+            <div class="project-card">
+                <h3>Groundio - Sports Venue Booking App</h3>
+                <p>Groundio is a cross-platform application designed to facilitate the booking of stadiums and sports grounds. Users can browse, book, and manage reservations in real-time with secure payment processing via Stripe. The app provides a seamless experience across Android, iOS, and web platforms.</p>
+
+                <!-- Videos Section -->
+                <div class="video-container">
+                    <video autoplay loop muted>
+                        <source src="GroundioSplash.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <video autoplay loop muted>
+                        <source src="success.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <!-- Images Section -->
+                <div class="image-container">
+                    <img src="merchant.png" alt="Groundio Screenshot 1">
+                    <img src="GroundioLogo.jpg" alt="Groundio Screenshot 2">
+                </div>
+
+                <!-- Tools and Technologies -->
+                <div class="tools-technologies">
+                    <h2>Tools and Technologies</h2>
+                    <ul>
+                        <li><i class="fas fa-code"></i> <strong>Programming Languages:</strong> JavaScript</li>
+                        <li><i class="fas fa-layer-group"></i> <strong>Frameworks:</strong> React Native, Firebase</li>
+                        <li><i class="fas fa-tools"></i> <strong>Tools:</strong> Expo, Stripe API for payment processing, Firebase for real-time database</li>
+                        <li><i class="fas fa-mobile-alt"></i> <strong>Platforms:</strong> Android, iOS, Web</li>
+                    </ul>
+                </div>
+
+                <!-- GitHub Link -->
+                <div style="margin-top: 20px; text-align: center;">
+                    <a href="https://github.com/Srihaas007/Groundio" target="_blank" class="btn">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
 
     <!-- Education Section -->
     <section id="education" data-aos="fade-up">
@@ -881,7 +1155,7 @@
         </div>
     </section>
 
-    <!-- Certifications Section -->
+        <!-- Certifications Section -->
     <section id="certifications" data-aos="fade-up">
         <div class="container">
             <h2 style="color: #bb86fc;">Certifications</h2>
@@ -891,7 +1165,7 @@
                     <p>HackerRank</p>
                     <p><strong>Date:</strong> October 2024</p>
                     <p>Intermediate level certificate for understanding and implementing RESTful APIs, covering API concepts, design, and best practices.</p>
-                    <a href="https://www.hackerrank.com/certificates/iframe/f8a50d03a5b8" target="_blank" style="color: #bb86fc;">View Certificate</a>
+                    <a href="$1" target="_blank" style="color: #bb86fc;">View Certificate</a>
                 </div>
                 <div class="certification-item" data-aos="fade-left">
                     <h3 style="color: #bb86fc;">The Complete Python Bootcamp From Zero to Hero in Python</h3>
@@ -905,11 +1179,13 @@
                     <p>HackerRank</p>
                     <p><strong>Date:</strong> February 2022</p>
                     <p>Basic level certificate in Python programming, covering foundational concepts including syntax, data types, and basic control structures.</p>
-                    <a href="https://www.hackerrank.com/certificates/iframe/e61389aad0d7" target="_blank" style="color: #bb86fc;">View Certificate</a>
+                    <a href="$1" target="_blank" style="color: #bb86fc;">View Certificate</a>
                 </div>
             </div>
         </div>
     </section>
+
+
 
    <!-- Projects Section -->
 <section id="projects" data-aos="fade-up">
@@ -998,27 +1274,55 @@
         <div class="container">
             <h2>Extracurricular Activities</h2>
             <ul class="activities-list">
-                <li><strong>Photography:</strong> Passionate about capturing moments. Below is a gallery of my favorite shots.</li>
+                <li>
+                    <strong>Photography:</strong> Passionate about capturing moments through the lens. Below is a curated gallery showcasing some of my favorite shots.
+                </li>
             </ul>
             <div class="gallery" data-aos="fade-up">
-                <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed%20(2).jpg?updatedAt=1730044171436" alt="Image description 1" width="200" height="300">
-                <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/7d02be1a-f5a5-4bd6-a8ec-a7a466b640af.jpg?updatedAt=1730044171435" alt="Image description 2" width="200" height="300">
-                <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0266_Original.JPG?updatedAt=1730046479070" alt="Image description 3" width="200" height="300">
-                <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/CA3B5B6E-1072-4440-A530-5A6F8B369590.jpg?updatedAt=1730042451071" alt="Image description 4" width="200" height="300">
-                <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_6057.JPG?updatedAt=1730042468437" alt="Image description 5" width="200" height="300">
-              </div>
+                <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed%20(2).jpg?updatedAt=1730044171436" alt="Aesthetics Image" width="200" height="300">
+                <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/7d02be1a-f5a5-4bd6-a8ec-a7a466b640af.jpg?updatedAt=1730044171435" alt="Aesthetic Shot" width="200" height="300">
+                <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0266_Original.JPG?updatedAt=1730046479070" alt="City Lights Image" width="200" height="300">
+                <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/CA3B5B6E-1072-4440-A530-5A6F8B369590.jpg?updatedAt=1730042451071" alt="Water Bodies Image" width="200" height="300">
+                <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_6057.JPG?updatedAt=1730042468437" alt="Moon and Sun Image" width="200" height="300">
+            </div>
             <div style="text-align: center; margin-top: 20px;">
                 <a href="photography.html" class="btn">View More Photography</a>
             </div>
             <ul class="activities-list">
-                <li><strong>Students' Union Project Placement:</strong> Conducted research on student satisfaction with both on-campus and off-campus classes. Gathered data through surveys, presented findings to faculty, and proposed actionable changes to enhance curriculum and teaching methods.</li>
-                <li><strong>Royal Australian Chemistry Quiz:</strong> Achieved distinction, ranking in the top 10%.</li>
-                <li><strong>Electronic Music Creation:</strong> Produced original music, achieving over 1,000 plays online.</li>
-                <li><strong>Puzzle Solving:</strong> Mastered Rubik's cubes, consistently solving in under 1 minute.</li>
-                <li><strong>Culinary Enthusiast:</strong> Experimented with over 100 recipes from various global cuisines.</li>
+                <li>
+                    <strong>Students' Union Project Placement:</strong> Conducted comprehensive research on student satisfaction with on-campus and off-campus classes. Collected data through surveys, presented findings to faculty, and recommended actionable changes to enhance teaching and curriculum.
+                </li>
+                <li>
+                    <strong>Royal Australian Chemistry Quiz:</strong> Earned distinction by ranking in the top 10% of participants.
+                </li>
+                <li>
+                    <strong>Electronic Music Creation:</strong> 
+                    Produced and released original tracks, which can be streamed on 
+                    <a href="https://soundcloud.com/srihaas-gorantla/tracks" target="_blank" style="text-decoration: none; color: #ff5500;">
+                        <i class="fab fa-soundcloud" style="color: #ff5500; font-size: 1.2em; vertical-align: middle; margin-right: 5px;"></i>
+                        SoundCloud
+                    </a>, amassing over 1,000 plays. My music explores diverse soundscapes and innovative styles.
+                </li>
+            </ul>
+            <div class="soundcloud-embeds" style="margin-top: 20px;">
+                <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" 
+                    src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/srihaas-gorantla/vengence-unleashed&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+                </iframe>
+                <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" 
+                    src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/srihaas-gorantla/my-may-dream&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+                </iframe>
+            </div>
+            <ul class="activities-list">
+                <li>
+                    <strong>Puzzle Solving:</strong> Mastered solving Rubik's cubes consistently in under one minute.
+                </li>
+                <li>
+                    <strong>Culinary Enthusiast:</strong> Experimented with over 100 unique recipes from various global cuisines, refining techniques and taste.
+                </li>
             </ul>
         </div>
     </section>
+
 
     <!-- Contact Section -->
     <section id="contact" data-aos="fade-up">
