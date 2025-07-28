@@ -160,7 +160,7 @@
     display: block;
 }
 
-/* Photo grid layout - Fixed 2 items per row */
+/* Photo grid layout - Mixed orientation support */
 .photo-grid {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Exactly 2 columns */
@@ -177,8 +177,22 @@
     cursor: pointer;
     transition: all var(--transition-base);
     background: var(--bg-tertiary);
-    margin-bottom: 0; /* Remove margin as grid handles spacing */
-    aspect-ratio: 4/3; /* Consistent aspect ratio container */
+    margin-bottom: 0;
+}
+
+/* Landscape orientation (default) */
+.photo-item.landscape {
+    aspect-ratio: 4/3; /* Landscape photos */
+}
+
+/* Portrait orientation */
+.photo-item.portrait {
+    aspect-ratio: 3/4; /* Portrait photos */
+}
+
+/* Square orientation for special cases */
+.photo-item.square {
+    aspect-ratio: 1/1; /* Square photos */
 }
 
 .photo-item:hover {
@@ -629,8 +643,16 @@
     padding: 1rem;
   }
   
-  .photo-item {
-    aspect-ratio: 3/4; /* Slightly taller on mobile */
+  .photo-item.landscape {
+    aspect-ratio: 4/3; /* Keep landscape ratio on mobile */
+  }
+  
+  .photo-item.portrait {
+    aspect-ratio: 3/4; /* Keep portrait ratio on mobile */
+  }
+  
+  .photo-item.square {
+    aspect-ratio: 1/1; /* Keep square ratio on mobile */
   }
 }
 

@@ -326,27 +326,31 @@
             return url.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-800,h-600,c-at_max');
         }
         
-        // City Lights photo data
+        // City Lights photo data with orientation info
         const cityLightsPhotos = [
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0317.JPG?updatedAt=1730042514108&tr=w-800,h-600,c-force",
                 title: "Urban Glow",
-                description: "City lights painting the night"
+                description: "City lights painting the night",
+                orientation: "landscape"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0186.JPG?updatedAt=1730046479176&tr=w-800,h-600,c-force",
                 title: "Metropolitan Magic",
-                description: "The pulse of the urban heart"
+                description: "The pulse of the urban heart",
+                orientation: "portrait"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0286.JPG?updatedAt=1730042512313&tr=w-800,h-600,c-force",
                 title: "Neon Dreams",
-                description: "Electric veins of the city"
+                description: "Electric veins of the city",
+                orientation: "landscape"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0184.JPG?updatedAt=1730042511863&tr=w-800,h-600,c-force",
                 title: "Night Symphony",
-                description: "Harmony in urban chaos"
+                description: "Harmony in urban chaos",
+                orientation: "portrait"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0306.JPG?updatedAt=1730046479183&tr=w-800,h-600,c-force",
@@ -439,7 +443,7 @@
             
             cityLightsPhotos.forEach((photo, index) => {
                 const photoItem = document.createElement('div');
-                photoItem.className = 'photo-item';
+                photoItem.className = `photo-item ${photo.orientation || 'landscape'}`;
                 photoItem.innerHTML = `
                     <img src="${updateImageUrl(photo.src)}" alt="${photo.title}" loading="lazy" data-index="${index}">
                     <div class="photo-overlay">

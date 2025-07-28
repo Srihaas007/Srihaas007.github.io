@@ -321,7 +321,12 @@
     <script src="js/navigation.js"></script>
     
     <script>
-        // Water Bodies photo data - All images from your original photography.html
+        // Utility function to replace ImageKit transformation parameters
+        function updateImageUrl(url) {
+            return url.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-800,h-600,c-at_max');
+        }
+        
+        // Water Bodies photo data with orientation info
         const waterBodiesPhotos = [
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/_DSC0349.JPG?updatedAt=1730042463687&tr=w-800,h-600,c-force",

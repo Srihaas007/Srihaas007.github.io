@@ -319,57 +319,67 @@
             return url.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-800,h-600,c-at_max');
         }
         
-        // Aesthetics photo data
+        // Aesthetics photo data with orientation info
         const aestheticsPhotos = [
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0392%20(2).JPG?updatedAt=1730044171232&tr=w-800,h-600,c-force",
                 title: "Minimalist Composition",
-                description: "Clean lines and geometric beauty"
+                description: "Clean lines and geometric beauty",
+                orientation: "landscape"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0192_Original.jpg?updatedAt=1730044171221&tr=w-800,h-600,c-force",
                 title: "Natural Elegance",
-                description: "Finding beauty in everyday moments"
+                description: "Finding beauty in everyday moments",
+                orientation: "portrait"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0072_Original.jpg?updatedAt=1730044171260&tr=w-800,h-600,c-force",
                 title: "Artistic Vision",
-                description: "Photography as visual poetry"
+                description: "Photography as visual poetry",
+                orientation: "landscape"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0103_Original.jpg?updatedAt=1730044171141&tr=w-800,h-600,c-force",
                 title: "Timeless Beauty",
-                description: "Capturing eternal moments"
+                description: "Capturing eternal moments",
+                orientation: "portrait"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0008_Original.jpg?updatedAt=1730044171202&tr=w-800,h-600,c-force",
                 title: "Serene Simplicity",
-                description: "Peace found in minimalism"
+                description: "Peace found in minimalism",
+                orientation: "landscape"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0016_Original.jpg?updatedAt=1730044171248&tr=w-800,h-600,c-force",
                 title: "Gentle Contrast",
-                description: "Harmony in opposition"
+                description: "Harmony in opposition",
+                orientation: "portrait"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0013_Original.jpg?updatedAt=1730044171246&tr=w-800,h-600,c-force",
                 title: "Pure Form",
-                description: "Essential beauty revealed"
+                description: "Essential beauty revealed",
+                orientation: "landscape"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed_Original.jpg?updatedAt=1730044171229&tr=w-800,h-600,c-force",
                 title: "Digital Artistry",
-                description: "Modern aesthetic expression"
+                description: "Modern aesthetic expression",
+                orientation: "square"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0007_Original.jpg?updatedAt=1730044171204&tr=w-800,h-600,c-force",
                 title: "Soft Focus",
-                description: "Dreamy visual narrative"
+                description: "Dreamy visual narrative",
+                orientation: "portrait"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0006_Original.jpg?updatedAt=1730044171291&tr=w-800,h-600,c-force",
                 title: "Quiet Moments",
-                description: "Stillness in motion"
+                description: "Stillness in motion",
+                orientation: "landscape"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed%20(2).jpg?updatedAt=1730044171436&tr=w-800,h-600,c-force",
@@ -432,7 +442,7 @@
             
             aestheticsPhotos.forEach((photo, index) => {
                 const photoItem = document.createElement('div');
-                photoItem.className = 'photo-item';
+                photoItem.className = `photo-item ${photo.orientation || 'landscape'}`;
                 photoItem.innerHTML = `
                     <img src="${updateImageUrl(photo.src)}" alt="${photo.title}" loading="lazy" data-index="${index}">
                     <div class="photo-overlay">

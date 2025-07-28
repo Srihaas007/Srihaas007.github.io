@@ -321,22 +321,30 @@
     <script src="js/navigation.js"></script>
     
     <script>
-        // Animals photo data
+        // Utility function to replace ImageKit transformation parameters
+        function updateImageUrl(url) {
+            return url.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-800,h-600,c-at_max');
+        }
+        
+        // Animals photo data with orientation info
         const AnimalsPhotos = [
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Animals/_DSC0392%20(2).JPG?updatedAt=1730044171232&tr=w-800,h-600,c-force",
-                title: "Minimalist Composition",
-                description: "Clean lines and geometric beauty"
+                title: "Wildlife Majesty",
+                description: "Capturing the essence of nature",
+                orientation: "landscape"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Animals/_DSC0192_Original.jpg?updatedAt=1730044171221&tr=w-800,h-600,c-force",
-                title: "Natural Elegance",
-                description: "Finding beauty in everyday moments"
+                title: "Natural Beauty",
+                description: "Animals in their element",
+                orientation: "portrait"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Animals/_DSC0072_Original.jpg?updatedAt=1730044171260&tr=w-800,h-600,c-force",
-                title: "Artistic Vision",
-                description: "Photography as visual poetry"
+                title: "Wild Spirit",
+                description: "The soul of the wilderness",
+                orientation: "square"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Animals/_DSC0103_Original.jpg?updatedAt=1730044171141&tr=w-800,h-600,c-force",
@@ -434,9 +442,9 @@
             
             AnimalsPhotos.forEach((photo, index) => {
                 const photoItem = document.createElement('div');
-                photoItem.className = 'photo-item';
+                photoItem.className = `photo-item ${photo.orientation || 'landscape'}`;
                 photoItem.innerHTML = `
-                    <img src="${photo.src}" alt="${photo.title}" loading="lazy" data-index="${index}">
+                    <img src="${updateImageUrl(photo.src)}" alt="${photo.title}" loading="lazy" data-index="${index}">
                     <div class="photo-overlay">
                         <div class="photo-info">
                             <h3>${photo.title}</h3>
@@ -456,7 +464,7 @@
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             
-            lightboxImg.src = AnimalsPhotos[index].src.replace('tr=w-800,h-600,c-force', 'tr=w-1920,h-1440,c-maintain_ratio');
+            lightboxImg.src = AnimalsPhotos[index].src.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-1920,h-1440,q-100');
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -470,7 +478,7 @@
         function nextImage() {
             currentImageIndex = (currentImageIndex + 1) % AnimalsPhotos.length;
             const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = AnimalsPhotos[currentImageIndex].src.replace('tr=w-800,h-600,c-force', 'tr=w-1920,h-1440,c-maintain_ratio');
+            lightboxImg.src = AnimalsPhotos[currentImageIndex].src.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-1920,h-1440,q-100');
         }
 
         function prevImage() {
