@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Analytics - Admin Dashboard</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/firebase-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--bg-primary);
+            min-height: 100vh;
+        }
+
+        .admin-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .admin-title {
+            color: var(--text-primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .admin-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .data-section {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            padding: 1.5rem;
+            background: rgba(var(--accent-primary-rgb), 0.1);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            margin: 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table th {
+            background: rgba(var(--accent-primary-rgb), 0.05);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .data-table td {
+            color: var(--text-secondary);
+        }
+
+        .data-table tr:hover {
+            background: rgba(var(--accent-primary-rgb), 0.02);
+        }
+
+        .auth-form {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            max-width: 400px;
+            margin: 2rem auto;
+        }
+
+        .auth-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+        }
+
+        .error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .admin-container {
+                padding: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .data-table {
+                font-size: 0.875rem;
+            }
+            
+            .data-table th,
+            .data-table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Authentication Form -->
+        <div id="auth-section" class="auth-form">
+            <h2 style="text-align: center; color: var(--text-primary); margin-bottom: 1.5rem;">Admin Access</h2>
+            <div id="auth-error" class="error" style="display: none;"></div>
+            <input type="password" id="admin-password" class="auth-input" placeholder="Enter admin password">
+            <button onclick="authenticate()" class="auth-btn">Access Dashboard</button>
+        </div>
+
+        <!-- Dashboard Content (Hidden by default) -->
+        <div id="dashboard-content" style="display: none;">
+            <div class="admin-header">
+                <h1 class="admin-title">
+                    <i class="fas fa-chart-line"></i>
+                    Portfolio Analytics
+                </h1>
+                <p class="admin-subtitle">Real-time insights and contact form submissions</p>
+                <button onclick="logout()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 6px; color: var(--text-secondary); cursor: pointer;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-messages">-</div>
+                    <div class="stat-label">Total Messages</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-views">-</div>
+                    <div class="stat-label">Page Views</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-interactions">-</div>
+                    <div class="stat-label">User Interactions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="avg-session">-</div>
+                    <div class="stat-label">Avg Session (min)</div>
+                </div>
+            </div>
+
+            <!-- Contact Messages -->
+            <div class="data-section">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <i class="fas fa-envelope"></i>
+                        Recent Contact Messages
+                    </h3>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Subject</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody id="messages-tbody">
+                            <tr>
+                                <td colspan="5" class="loading">
+                                    <i class="fas fa-spinner fa-spin"></i> Loading messages...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Page Views -->
+            <div class="data-section">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <i class="fas fa-eye"></i>
+                        Recent Page Views
+                    </h3>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Page</th>
+                                <th>User Agent</th>
+                                <th>Screen</th>
+                                <th>Language</th>
+                            </tr>
+                        </thead>
+                        <tbody id="views-tbody">
+                            <tr>
+                                <td colspan="5" class="loading">
+                                    <i class="fas fa-spinner fa-spin"></i> Loading page views...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- User Interactions -->
+            <div class="data-section">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <i class="fas fa-mouse-pointer"></i>
+                        User Interactions
+                    </h3>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Target</th>
+                                <th>Page</th>
+                            </tr>
+                        </thead>
+                        <tbody id="interactions-tbody">
+                            <tr>
+                                <td colspan="4" class="loading">
+                                    <i class="fas fa-spinner fa-spin"></i> Loading interactions...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { getFirestore, collection, getDocs, query, orderBy, limit } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import firebaseConfig from './js/firebase-config.js';
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Simple password protection (In production, use proper authentication)
+        const ADMIN_PASSWORD = 'portfolio2025!';
+
+        window.authenticate = function() {
+            const password = document.getElementById('admin-password').value;
+            const errorDiv = document.getElementById('auth-error');
+            
+            if (password === ADMIN_PASSWORD) {
+                document.getElementById('auth-section').style.display = 'none';
+                document.getElementById('dashboard-content').style.display = 'block';
+                loadDashboardData();
+            } else {
+                errorDiv.textContent = 'Invalid password. Please try again.';
+                errorDiv.style.display = 'block';
+            }
+        };
+
+        window.logout = function() {
+            document.getElementById('auth-section').style.display = 'block';
+            document.getElementById('dashboard-content').style.display = 'none';
+            document.getElementById('admin-password').value = '';
+        };
+
+        async function loadDashboardData() {
+            try {
+                // Load contact messages
+                const messagesQuery = query(
+                    collection(db, 'contact-messages'),
+                    orderBy('timestamp', 'desc'),
+                    limit(20)
+                );
+                const messagesSnapshot = await getDocs(messagesQuery);
+                const messages = messagesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                
+                // Load page views
+                const viewsQuery = query(
+                    collection(db, 'page-views'),
+                    orderBy('timestamp', 'desc'),
+                    limit(50)
+                );
+                const viewsSnapshot = await getDocs(viewsQuery);
+                const pageViews = viewsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                
+                // Load interactions
+                const interactionsQuery = query(
+                    collection(db, 'user-interactions'),
+                    orderBy('timestamp', 'desc'),
+                    limit(30)
+                );
+                const interactionsSnapshot = await getDocs(interactionsQuery);
+                const interactions = interactionsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+                // Update stats
+                document.getElementById('total-messages').textContent = messages.length;
+                document.getElementById('total-views').textContent = pageViews.length;
+                document.getElementById('total-interactions').textContent = interactions.length;
+                document.getElementById('avg-session').textContent = '3.2'; // Placeholder
+
+                // Update tables
+                updateMessagesTable(messages);
+                updateViewsTable(pageViews);
+                updateInteractionsTable(interactions);
+
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+                showError('Failed to load dashboard data. Please refresh and try again.');
+            }
+        }
+
+        function updateMessagesTable(messages) {
+            const tbody = document.getElementById('messages-tbody');
+            if (messages.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--text-secondary);">No messages yet</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = messages.map(msg => `
+                <tr>
+                    <td>${formatDate(msg.timestamp)}</td>
+                    <td>${msg.name || 'N/A'}</td>
+                    <td>${msg.email || 'N/A'}</td>
+                    <td>${msg.subject || 'N/A'}</td>
+                    <td style="max-width: 200px; word-wrap: break-word;">${(msg.message || 'N/A').substring(0, 100)}${msg.message && msg.message.length > 100 ? '...' : ''}</td>
+                </tr>
+            `).join('');
+        }
+
+        function updateViewsTable(views) {
+            const tbody = document.getElementById('views-tbody');
+            if (views.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--text-secondary);">No page views yet</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = views.map(view => `
+                <tr>
+                    <td>${formatDate(view.timestamp)}</td>
+                    <td>${view.page || 'N/A'}</td>
+                    <td style="max-width: 150px; word-wrap: break-word;">${(view.userAgent || 'N/A').substring(0, 50)}...</td>
+                    <td>${view.screenResolution || 'N/A'}</td>
+                    <td>${view.language || 'N/A'}</td>
+                </tr>
+            `).join('');
+        }
+
+        function updateInteractionsTable(interactions) {
+            const tbody = document.getElementById('interactions-tbody');
+            if (interactions.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: var(--text-secondary);">No interactions yet</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = interactions.map(interaction => `
+                <tr>
+                    <td>${formatDate(interaction.timestamp)}</td>
+                    <td>${interaction.type || 'N/A'}</td>
+                    <td>${interaction.projectTitle || interaction.albumName || 'N/A'}</td>
+                    <td>${interaction.page || 'N/A'}</td>
+                </tr>
+            `).join('');
+        }
+
+        function formatDate(timestamp) {
+            if (!timestamp) return 'N/A';
+            const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+            return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+        }
+
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error';
+            errorDiv.textContent = message;
+            document.querySelector('.admin-container').prepend(errorDiv);
+            
+            setTimeout(() => errorDiv.remove(), 5000);
+        }
+
+        // Handle Enter key in password field
+        document.getElementById('admin-password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                authenticate();
+            }
+        });
+    </script>
+</body>
+</html>

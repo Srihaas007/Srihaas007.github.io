@@ -1,0 +1,31 @@
+{
+  "name": "srihaas007.github.io",
+  "version": "1.0.0",
+  "description": "Portfolio website with Firebase integration for contact forms and analytics",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000 || npx http-server -p 8000",
+    "dev": "npx live-server --port=8000 --host=localhost",
+    "build": "echo 'Static site - no build process needed'",
+    "deploy": "echo 'Deploy to GitHub Pages via git push'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "portfolio",
+    "firebase",
+    "web-development",
+    "photography",
+    "contact-forms",
+    "analytics"
+  ],
+  "author": "Srihaas Gorantla",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Srihaas007/Srihaas007.github.io.git"
+  },
+  "homepage": "https://srihaas007.github.io",
+  "dependencies": {
+    "firebase": "^12.0.0"
+  }
+}

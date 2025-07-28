@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Connection Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .test-result {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 6px;
+            border: 1px solid;
+        }
+        .success {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: #22c55e;
+            color: #22c55e;
+        }
+        .error {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+        .pending {
+            background: rgba(249, 115, 22, 0.1);
+            border-color: #f97316;
+            color: #f97316;
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        #test-form {
+            background: #2a2a2a;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        #test-form input, #test-form textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            background: #3a3a3a;
+            border: 1px solid #555;
+            border-radius: 4px;
+            color: white;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔥 Firebase Integration Test</h1>
+    
+    <div id="connection-test" class="test-result pending">
+        <h3>🔗 Firebase Connection</h3>
+        <p>Testing connection to Firebase...</p>
+    </div>
+
+    <div id="config-test" class="test-result pending">
+        <h3>⚙️ Configuration Test</h3>
+        <p>Validating Firebase configuration...</p>
+    </div>
+
+    <div id="firestore-test" class="test-result pending">
+        <h3>📄 Firestore Access</h3>
+        <p>Testing Firestore database access...</p>
+    </div>
+
+    <div id="form-test-section">
+        <h2>📝 Contact Form Test</h2>
+        <div id="test-form">
+            <h3>Test Contact Submission</h3>
+            <input type="text" id="test-name" placeholder="Test Name" value="Test User">
+            <input type="email" id="test-email" placeholder="test@example.com" value="test@example.com">
+            <input type="text" id="test-subject" placeholder="Test Subject" value="Firebase Test Message">
+            <textarea id="test-message" placeholder="Test message..." rows="3">This is a test message to verify Firebase integration is working correctly.</textarea>
+            <button onclick="testContactForm()">🧪 Test Contact Form</button>
+        </div>
+        
+        <div id="form-test-result" class="test-result" style="display: none;">
+            <h3>📋 Form Test Result</h3>
+            <p id="form-result-text">Testing...</p>
+        </div>
+    </div>
+
+    <div id="analytics-test" class="test-result pending">
+        <h3>📊 Analytics Test</h3>
+        <p>Testing analytics tracking...</p>
+        <button onclick="testAnalytics()">🔍 Test Analytics</button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js';
+        import firebaseConfig from './js/firebase-config.js';
+
+        let app, db, analytics;
+
+        // Test Firebase Connection
+        async function testConnection() {
+            try {
+                app = initializeApp(firebaseConfig);
+                updateTestResult('connection-test', 'success', '✅ Firebase Connected Successfully', 'Firebase app initialized and connected.');
+                return true;
+            } catch (error) {
+                updateTestResult('connection-test', 'error', '❌ Firebase Connection Failed', `Error: ${error.message}`);
+                return false;
+            }
+        }
+
+        // Test Configuration
+        async function testConfig() {
+            try {
+                const requiredFields = ['apiKey', 'authDomain', 'projectId', 'storageBucket', 'messagingSenderId', 'appId'];
+                const missing = requiredFields.filter(field => !firebaseConfig[field]);
+                
+                if (missing.length > 0) {
+                    updateTestResult('config-test', 'error', '❌ Configuration Invalid', `Missing fields: ${missing.join(', ')}`);
+                    return false;
+                }
+                
+                updateTestResult('config-test', 'success', '✅ Configuration Valid', 'All required Firebase configuration fields are present.');
+                return true;
+            } catch (error) {
+                updateTestResult('config-test', 'error', '❌ Configuration Error', `Error: ${error.message}`);
+                return false;
+            }
+        }
+
+        // Test Firestore
+        async function testFirestore() {
+            try {
+                db = getFirestore(app);
+                
+                // Test write access
+                const testDoc = await addDoc(collection(db, 'test-connection'), {
+                    message: 'Firebase integration test',
+                    timestamp: serverTimestamp(),
+                    test: true
+                });
+                
+                updateTestResult('firestore-test', 'success', '✅ Firestore Working', `Test document created with ID: ${testDoc.id}`);
+                return true;
+            } catch (error) {
+                updateTestResult('firestore-test', 'error', '❌ Firestore Error', `Error: ${error.message}`);
+                return false;
+            }
+        }
+
+        // Test Analytics
+        window.testAnalytics = async function() {
+            try {
+                analytics = getAnalytics(app);
+                
+                // Test page view tracking
+                await addDoc(collection(db, 'page-views'), {
+                    page: '/test-page',
+                    timestamp: serverTimestamp(),
+                    userAgent: navigator.userAgent,
+                    test: true
+                });
+                
+                updateTestResult('analytics-test', 'success', '✅ Analytics Working', 'Analytics event logged successfully.');
+            } catch (error) {
+                updateTestResult('analytics-test', 'error', '❌ Analytics Error', `Error: ${error.message}`);
+            }
+        };
+
+        // Test Contact Form
+        window.testContactForm = async function() {
+            const resultDiv = document.getElementById('form-test-result');
+            const resultText = document.getElementById('form-result-text');
+            
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'test-result pending';
+            resultText.textContent = 'Testing contact form submission...';
+            
+            try {
+                const formData = {
+                    name: document.getElementById('test-name').value,
+                    email: document.getElementById('test-email').value,
+                    subject: document.getElementById('test-subject').value,
+                    message: document.getElementById('test-message').value,
+                    timestamp: serverTimestamp(),
+                    test: true
+                };
+                
+                const docRef = await addDoc(collection(db, 'contact-messages'), formData);
+                
+                resultDiv.className = 'test-result success';
+                resultText.innerHTML = `
+                    <strong>✅ Contact Form Test Successful!</strong><br>
+                    Document ID: ${docRef.id}<br>
+                    Form submission working correctly.
+                `;
+            } catch (error) {
+                resultDiv.className = 'test-result error';
+                resultText.innerHTML = `
+                    <strong>❌ Contact Form Test Failed</strong><br>
+                    Error: ${error.message}
+                `;
+            }
+        };
+
+        function updateTestResult(elementId, status, title, message) {
+            const element = document.getElementById(elementId);
+            element.className = `test-result ${status}`;
+            element.innerHTML = `
+                <h3>${title}</h3>
+                <p>${message}</p>
+            `;
+        }
+
+        // Run tests on page load
+        window.addEventListener('load', async () => {
+            console.log('🔥 Starting Firebase Integration Tests...');
+            
+            const connectionOk = await testConnection();
+            const configOk = await testConfig();
+            
+            if (connectionOk && configOk) {
+                await testFirestore();
+            }
+            
+            console.log('✅ Firebase tests completed');
+        });
+    </script>
+</body>
+</html>

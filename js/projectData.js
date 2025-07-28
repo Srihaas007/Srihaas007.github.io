@@ -1,4 +1,6 @@
 // Project data and management
+import { createProjectCard } from './projects.js';
+
 const projects = [
     {
         id: 1,
@@ -161,45 +163,32 @@ export function loadProjects() {
 function renderFeaturedProjects(container) {
     const featuredProjects = projects.filter(project => project.featured);
     container.innerHTML = featuredProjects.map(project => createProjectCard(project, true)).join('');
+    
+    // Add animation for featured projects
+    setTimeout(() => {
+        const featuredCards = container.querySelectorAll('.featured-card');
+        featuredCards.forEach((card, index) => {
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+    }, 100);
 }
 
 function renderAllProjects(container) {
     container.innerHTML = projects.map(project => createProjectCard(project, false)).join('');
-}
-
-function createProjectCard(project, isFeatured = false) {
-    const cardClass = isFeatured ? 'project-card featured-card' : 'project-card';
     
-    return `
-        <div class="${cardClass} fade-in-up" data-category="${project.category}">
-            <div class="project-image">
-                <img src="${project.image}" alt="${project.title}" loading="lazy">
-                <div class="project-overlay">
-                    <div class="project-links">
-                        ${project.github ? `<a href="${project.github}" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View source code">
-                            <i class="fab fa-github"></i>
-                        </a>` : ''}
-                        ${project.demo ? `<a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View live demo">
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>` : ''}
-                    </div>
-                </div>
-            </div>
-            <div class="project-content">
-                <div class="project-header">
-                    <h3 class="project-title">${project.title}</h3>
-                    <span class="project-year">${project.year}</span>
-                </div>
-                <p class="project-description">${project.description}</p>
-                <div class="project-technologies">
-                    ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-                </div>
-                <div class="project-status">
-                    <span class="status-badge status-${project.status}">${project.status}</span>
-                </div>
-            </div>
-        </div>
-    `;
+    // Add animation for all projects
+    setTimeout(() => {
+        const projectCards = container.querySelectorAll('.project-card');
+        projectCards.forEach((card, index) => {
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+    }, 100);
 }
 
 export function getProjects() {
