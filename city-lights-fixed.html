@@ -23,52 +23,6 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/photography.css">
-    
-    <style>
-        .gallery-hero {
-            padding: 120px 0 60px;
-            text-align: center;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-        }
-        
-        .gallery-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .gallery-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            font-style: italic;
-        }
-        
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 12px 24px;
-            background: var(--accent-primary);
-            color: white;
-            text-decoration: none;
-            border-radius: var(--border-radius-lg);
-            font-weight: 500;
-            transition: all var(--transition-base);
-            margin-bottom: 2rem;
-        }
-        
-        .back-btn:hover {
-            background: var(--accent-secondary);
-            transform: translateY(-2px);
-        }
-    </style>
 </head>
 <body>
     <!-- Enhanced Navigation -->
@@ -151,11 +105,11 @@
         </div>
     </section>
 
-    <!-- Photo Gallery - Exactly 2 Photos Per Row -->
+    <!-- Photo Gallery -->
     <section class="gallery-content">
         <div class="container">
             <div class="photo-grid" id="photo-grid">
-                <!-- Photos will be loaded here dynamically in 2-column layout -->
+                <!-- Photos will be loaded here dynamically -->
             </div>
         </div>
     </section>
@@ -186,9 +140,8 @@
             return url;  // No need to replace - images already have correct transformations
         }
         
-        // City Lights photo data - Curated with proper orientations for EXACTLY 2-per-row layout
+        // City Lights photo data - Curated with proper orientations for 2-per-row layout
         const cityLightsPhotos = [
-            // Row 1
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0317.JPG?updatedAt=1730042514108&tr=w-600,q-80",
                 title: "Urban Twilight",
@@ -201,8 +154,6 @@
                 description: "Skyscraper reaching toward the stars", 
                 orientation: "portrait"
             },
-            
-            // Row 2
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0286.JPG?updatedAt=1730042512313&tr=w-600,q-80",
                 title: "Night Canvas",
@@ -215,8 +166,6 @@
                 description: "Warm light embracing urban architecture",
                 orientation: "portrait"
             },
-            
-            // Row 3
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0306.JPG?updatedAt=1730046479183&tr=w-600,q-80",
                 title: "City Symphony",
@@ -229,8 +178,6 @@
                 description: "Aspirations reaching skyward",
                 orientation: "portrait"
             },
-            
-            // Row 4
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0266_Original.JPG?updatedAt=1730046479070&tr=w-600,q-80",
                 title: "Evening Embrace",
@@ -243,8 +190,6 @@
                 description: "Sophisticated city aesthetics",
                 orientation: "square"
             },
-            
-            // Row 5
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_5985.JPG?updatedAt=1730046479076&tr=w-600,q-80",
                 title: "Night Reflections",
@@ -257,8 +202,6 @@
                 description: "The enchantment of urban nights",
                 orientation: "landscape"
             },
-            
-            // Row 6
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_6033.JPG?updatedAt=1730046479060&tr=w-600,q-80",
                 title: "Glowing Horizon",
@@ -271,8 +214,6 @@
                 description: "Architecture as artistic expression",
                 orientation: "portrait"
             },
-            
-            // Row 7
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_8624.JPG?updatedAt=1730046478904&tr=w-600,q-80",
                 title: "Metropolitan Dreams",
@@ -285,8 +226,6 @@
                 description: "Peaceful moments in the bustling city",
                 orientation: "landscape"
             },
-            
-            // Row 8
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_2981.DNG?updatedAt=1730046478943&tr=w-600,q-80",
                 title: "Urban Brilliance",
@@ -299,8 +238,6 @@
                 description: "The heartbeat of urban life",
                 orientation: "landscape"
             },
-            
-            // Row 9
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_4186.jpg?updatedAt=1730046478958&tr=w-600,q-80",
                 title: "Golden Towers",
@@ -313,8 +250,6 @@
                 description: "Vibrant colors painting the night",
                 orientation: "square"
             },
-            
-            // Row 10
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_0745-EFFECTS.jpg?updatedAt=1730046478982&tr=w-600,q-80",
                 title: "Artistic Vision",
@@ -331,7 +266,7 @@
 
         let currentImageIndex = 0;
 
-        // Load photos into grid - EXACTLY 2 photos per row
+        // Load photos into grid
         function loadPhotos() {
             const grid = document.getElementById('photo-grid');
             grid.innerHTML = '';
@@ -408,7 +343,7 @@
             }
         });
 
-        // Initialize - This will create exactly 2 photos per row
+        // Initialize
         document.addEventListener('DOMContentLoaded', loadPhotos);
     </script>
 </body>

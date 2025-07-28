@@ -160,14 +160,15 @@
     display: block;
 }
 
-/* Photo grid layout - Perfect 2-column system */
+/* Photo grid layout - Improved 2-column system with auto-sizing */
 .photo-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    padding: 2rem;
-    max-width: 1200px;
+    gap: 2rem; /* Increased gap for better visual separation */
+    padding: 3rem; /* Increased padding */
+    max-width: 1400px; /* Slightly wider container */
     margin: 0 auto;
+    grid-auto-rows: minmax(250px, auto); /* Auto-sizing rows */
 }
 
 .photo-item {
@@ -178,6 +179,8 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: var(--bg-tertiary);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: auto; /* Let content determine height naturally */
 }
 
 .photo-item:hover {
@@ -185,43 +188,53 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
 }
 
-/* Orientation containers with perfect ratios */
-.photo-item.landscape {
-    aspect-ratio: 16/10; /* Beautiful landscape ratio */
-}
-
-.photo-item.portrait {
-    aspect-ratio: 3/4; /* Classic portrait ratio */
-}
-
-.photo-item.square {
-    aspect-ratio: 1/1; /* Perfect square */
-}
-
-.photo-item.wide {
-    aspect-ratio: 21/9; /* Cinematic wide */
-}
-
-.photo-item.tall {
-    aspect-ratio: 9/16; /* Vertical cinematic */
-}
-
-.photo-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+/* Flexible photo containers - images determine their own natural size */
+.photo-item.landscape,
+.photo-item.portrait,
+.photo-item.square,
+.photo-item:not(.landscape):not(.portrait):not(.square) {
+    /* Remove all fixed aspect ratios and heights */
+    min-height: 200px; /* Only a small minimum for loading */
+    height: auto; /* Let image determine height */
+    width: 100%; /* Full width of grid column */
 }
 
 .photo-item img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: auto; /* Let image keep its natural proportions */
     display: block;
+    border-radius: 12px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 100%;
+    object-fit: none; /* Don't force any fitting */
 }
 
 .photo-item:hover img {
     transform: scale(1.02);
+}
+
+/* Mobile responsive - single column on small screens with increased heights */
+@media (max-width: 768px) {
+    .photo-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .photo-item.landscape {
+        aspect-ratio: 4/3;
+        min-height: 300px; /* Smaller but still sufficient height on mobile */
+    }
+    
+    .photo-item.portrait {
+        aspect-ratio: 3/4;
+        min-height: 400px; /* Maintain portrait proportions on mobile */
+    }
+    
+    .photo-item.square {
+        aspect-ratio: 1/1;
+        min-height: 300px; /* Square on mobile */
+    }
 }
 
 .photo-overlay {
@@ -660,51 +673,43 @@
   transform: scale(1.1);
 }
 
-/* Masonry effect for larger screens */
+/* Force exactly 2 columns on all screen sizes (except mobile) with better spacing */
 @media (min-width: 768px) {
   .photo-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .photo-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 1440px) {
-  .photo-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* Mobile optimizations */
-@media (max-width: 768px) {
-  .photo-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 1rem;
+    grid-template-columns: 1fr 1fr; /* Always exactly 2 columns */
+    gap: 2rem; /* Better spacing */
+    padding: 3rem; /* More padding for better layout */
   }
   
+  /* Ensure proper heights for desktop */
   .photo-item.landscape {
-    aspect-ratio: 16/10;
+    min-height: 400px;
   }
   
   .photo-item.portrait {
-    aspect-ratio: 3/4;
+    min-height: 500px;
   }
   
   .photo-item.square {
-    aspect-ratio: 1/1;
+    min-height: 400px;
+  }
+}
+
+/* Mobile optimizations - single column with natural image sizing */
+@media (max-width: 767px) {
+  .photo-grid {
+    grid-template-columns: 1fr !important; /* Force single column on mobile */
+    gap: 1.5rem; /* Better spacing */
+    padding: 1.5rem; /* More padding */
+    grid-auto-rows: auto; /* Auto-sizing rows on mobile too */
   }
   
-  .photo-item.wide {
-    aspect-ratio: 16/9; /* More reasonable on mobile */
-  }
-  
-  .photo-item.tall {
-    aspect-ratio: 9/16;
+  .photo-item.landscape,
+  .photo-item.portrait,
+  .photo-item.square,
+  .photo-item:not(.landscape):not(.portrait):not(.square) {
+    min-height: 150px; /* Small minimum for mobile */
+    height: auto; /* Natural height */
   }
   
   .photo-overlay {
@@ -720,56 +725,98 @@
   }
 }
 
-/* Lightbox Styles */
-.lightbox-overlay {
+/* Enhanced Lightbox Styles for better image display */
+.lightbox {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.95);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 10000;
-    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
 }
 
 .lightbox-content {
     position: relative;
-    max-width: 90vw;
-    max-height: 90vh;
+    max-width: 95vw;
+    max-height: 95vh;
     text-align: center;
+    padding: 2rem;
 }
 
 .lightbox-content img {
     max-width: 100%;
-    max-height: 80vh;
-    object-fit: contain;
+    max-height: 85vh;
+    object-fit: contain; /* Prevent stretching in lightbox */
     border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .lightbox-close {
     position: absolute;
-    top: -50px;
-    right: 0;
-    background: none;
+    top: -20px;
+    right: -20px;
+    background: var(--accent-primary);
     border: none;
     color: white;
-    font-size: 2rem;
+    font-size: 1.5rem;
     cursor: pointer;
-    padding: 10px;
-    line-height: 1;
+    padding: 12px;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
 }
 
-.lightbox-info {
+.lightbox-close:hover {
+    background: var(--accent-secondary);
+    transform: scale(1.1);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
     color: white;
-    margin-top: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
 }
 
-.lightbox-info h3 {
-    color: var(--accent-primary);
-    margin-bottom: 0.5rem;
+.lightbox-prev {
+    left: -70px;
+}
+
+.lightbox-next {
+    right: -70px;
+}
+
+.lightbox-nav:hover {
+    background: var(--accent-primary);
+    transform: translateY(-50%) scale(1.1);
 }
   
   .photo-item:nth-child(8n+1),
@@ -783,7 +830,7 @@
   }
 }
 
-/* Responsive Design */
+/* Responsive Design - Override for consistent 2-column layout */
 @media (max-width: 768px) {
   .photography-hero .hero-title {
     font-size: var(--font-size-3xl);
@@ -807,15 +854,11 @@
     font-size: var(--font-size-xs);
   }
   
+  /* Force single column on mobile for readability */
   .photo-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 2rem 0;
-  }
-  
-  .photo-item {
-    min-height: 400px;
-    aspect-ratio: 3/4;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+    padding: 1rem;
   }
   
   .info-grid {

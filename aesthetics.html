@@ -7,7 +7,17 @@
     <meta name="keywords" content="aesthetics, photography, portfolio, Srihaas Gorantla, beauty, simplicity">
     <title>Aesthetics | Srihaas Gorantla Photography</title>
     
-    <!-- Google Analytics -->
+    <!-- Google         function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % aestheticsPhotos.length;
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = aestheticsPhotos[currentImageIndex].src.replace(/tr=w-\d+,h-\d+,c-at_max/g, 'tr=w-1200,q-90');
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + aestheticsPhotos.length) % aestheticsPhotos.length;
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = aestheticsPhotos[currentImageIndex].src.replace(/tr=w-\d+,h-\d+,c-at_max/g, 'tr=w-1200,q-90');
+        }->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SHJK4J22QE"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -316,120 +326,130 @@
     <script>
         // Utility function to replace ImageKit transformation parameters
         function updateImageUrl(url) {
-            return url.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-800,h-600,c-at_max');
+            return url;  // No need to replace - images already have correct transformations
         }
         
-        // Aesthetics photo data - Perfectly curated with optimal orientations
+        // Aesthetics photo data - Curated with proper orientations for 2-per-row layout
         const aestheticsPhotos = [
             {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0392%20(2).JPG?updatedAt=1730044171232&tr=w-800,h-600,c-force",
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0392%20(2).JPG?updatedAt=1730044171232&tr=w-600,q-80",
                 title: "Stonehenge Majesty",
                 description: "Ancient stones against the endless sky",
                 orientation: "landscape"
             },
             {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0192_Original.jpg?updatedAt=1730044171221&tr=w-800,h-600,c-force",
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0192_Original.jpg?updatedAt=1730044171221&tr=w-600,q-80",
                 title: "Urban Spire",
-                description: "Modern architecture reaching skyward",
+                description: "Modern architecture reaching skyward", 
                 orientation: "portrait"
             },
             {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0072_Original.jpg?updatedAt=1730044171260&tr=w-800,h-600,c-force",
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0072_Original.jpg?updatedAt=1730044171260&tr=w-600,q-80",
                 title: "Winter's Embrace",
                 description: "Snow-laden branches in peaceful silence",
                 orientation: "landscape"
             },
             {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0103_Original.jpg?updatedAt=1730044171141&tr=w-800,h-600,c-force",
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0103_Original.jpg?updatedAt=1730044171141&tr=w-600,q-80",
                 title: "Golden Lamp",
                 description: "Ornate streetlight against cloudy skies",
                 orientation: "portrait"
             },
             {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0008_Original.jpg?updatedAt=1730044171202&tr=w-800,h-600,c-force",
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0008_Original.jpg?updatedAt=1730044171202&tr=w-600,q-80",
                 title: "Construction Dreams",
                 description: "Building the future, one steel beam at a time",
                 orientation: "landscape"
             },
             {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0016_Original.jpg?updatedAt=1730044171248&tr=w-800,h-600,c-force",
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0016_Original.jpg?updatedAt=1730044171248&tr=w-600,q-80",
                 title: "Westminster Tower",
                 description: "Iconic clock tower piercing the London sky",
                 orientation: "portrait"
             },
             {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0013_Original.jpg?updatedAt=1730044171246&tr=w-800,h-600,c-force",
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0013_Original.jpg?updatedAt=1730044171246&tr=w-600,q-80",
                 title: "Ethereal Mist",
                 description: "Soft fog creating mystical atmosphere",
                 orientation: "landscape"
             },
             {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed_Original.jpg?updatedAt=1730044171229&tr=w-800,h-600,c-force",
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed_Original.jpg?updatedAt=1730044171229&tr=w-600,q-80",
                 title: "Wooden Harmony",
                 description: "Natural textures in perfect balance",
                 orientation: "square"
             },
             {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0007_Original.jpg?updatedAt=1730044171204&tr=w-800,h-600,c-force",
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0007_Original.jpg?updatedAt=1730044171204&tr=w-600,q-80",
                 title: "Soft Focus",
                 description: "Dreamy visual narrative",
                 orientation: "portrait"
             },
             {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0006_Original.jpg?updatedAt=1730044171291&tr=w-800,h-600,c-force",
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0006_Original.jpg?updatedAt=1730044171291&tr=w-600,q-80",
                 title: "Quiet Moments",
                 description: "Stillness in motion",
                 orientation: "landscape"
             },
             {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed%20(2).jpg?updatedAt=1730044171436&tr=w-800,h-600,c-force",
-                title: "Creative Vision",
-                description: "Artistic interpretation of reality"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed%204.jpg?updatedAt=1730044171374&tr=w-800,h-600,c-force",
-                title: "Modern Classic",
-                description: "Contemporary timeless appeal"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_6670.jpg?updatedAt=1730044171245&tr=w-800,h-600,c-force",
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_6670.jpg?updatedAt=1730044171245&tr=w-600,q-80",
                 title: "Natural Wonder",
-                description: "Beauty in the ordinary"
+                description: "Beauty in the ordinary",
+                orientation: "landscape"
             },
             {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_6499.JPG?updatedAt=1730044171290&tr=w-800,h-600,c-force",
-                title: "Balanced Composition",
-                description: "Harmony in visual elements"
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_6499.JPG?updatedAt=1730044171290&tr=w-600,q-80",
+                title: "Creative Perspective",
+                description: "Unique viewpoint captured",
+                orientation: "portrait"
             },
             {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_6864.JPG?updatedAt=1730044171219&tr=w-800,h-600,c-force",
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_6864.JPG?updatedAt=1730044171219&tr=w-600,q-80",
                 title: "Elegant Simplicity",
-                description: "Less is more philosophy"
+                description: "Less is more philosophy",
+                orientation: "landscape"
             },
             {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_9552.HEIC?updatedAt=1730044171428&tr=w-800,h-600,c-force",
-                title: "Visual Poetry",
-                description: "Stories told through imagery"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_9507.DNG?updatedAt=1730044171280&tr=w-800,h-600,c-force",
-                title: "Artistic Expression",
-                description: "Creative vision realized"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_5837.JPG?updatedAt=1730044171238&tr=w-800,h-600,c-force",
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_5837.JPG?updatedAt=1730044171238&tr=w-600,q-80",
                 title: "Peaceful Moments",
-                description: "Tranquility captured"
+                description: "Tranquility captured",
+                orientation: "portrait"
             },
             {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_5722.HEIC?updatedAt=1730044171227&tr=w-800,h-600,c-force",
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_5722.HEIC?updatedAt=1730044171227&tr=w-600,q-80",
                 title: "Gentle Beauty",
-                description: "Soft aesthetic appeal"
+                description: "Soft aesthetic appeal",
+                orientation: "square"
             },
             {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_3901.DNG?updatedAt=1730044171266&tr=w-800,h-600,c-force",
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_3901.DNG?updatedAt=1730044171266&tr=w-600,q-80",
                 title: "Pure Aesthetic",
-                description: "Beauty in its essence"
+                description: "Beauty in its essence",
+                orientation: "landscape"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_4587.DNG?updatedAt=1730044171337&tr=w-600,q-80",
+                title: "Artistic Vision",
+                description: "Creative composition",
+                orientation: "portrait"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_3827.jpg?updatedAt=1730044171430&tr=w-600,q-80",
+                title: "Timeless Appeal",
+                description: "Classic beauty captured",
+                orientation: "landscape"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_3902_Original.jpg?updatedAt=1730044171287&tr=w-600,q-80",
+                title: "Natural Frame",
+                description: "Perfect composition",
+                orientation: "portrait"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_2026_Original.jpg?updatedAt=1730044171447&tr=w-600,q-80",
+                title: "Balanced Harmony",
+                description: "Visual equilibrium",
+                orientation: "square"
             }
         ];
 
@@ -465,7 +485,7 @@
             const lightboxImg = document.getElementById('lightbox-img');
             
             // Use high quality for lightbox
-            lightboxImg.src = aestheticsPhotos[index].src.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-1920,h-1440,q-100');
+            lightboxImg.src = aestheticsPhotos[index].src.replace(/tr=w-600,q-80/g, 'tr=w-1200,q-90');
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -479,13 +499,13 @@
         function nextImage() {
             currentImageIndex = (currentImageIndex + 1) % aestheticsPhotos.length;
             const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = aestheticsPhotos[currentImageIndex].src.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-1920,h-1440,q-100');
+            lightboxImg.src = aestheticsPhotos[currentImageIndex].src.replace(/tr=w-600,q-80/g, 'tr=w-1200,q-90');
         }
 
         function prevImage() {
             currentImageIndex = (currentImageIndex - 1 + aestheticsPhotos.length) % aestheticsPhotos.length;
             const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = aestheticsPhotos[currentImageIndex].src.replace('tr=w-800,h-600,c-force', 'tr=w-1920,h-1440,c-maintain_ratio');
+            lightboxImg.src = aestheticsPhotos[currentImageIndex].src.replace(/tr=w-600,q-80/g, 'tr=w-1200,q-90');
         }
 
         // Event listeners
