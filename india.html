@@ -151,30 +151,90 @@
         </div>
     </section>
 
-    <!-- Coming Soon Section -->
-    <section class="coming-soon-section" style="padding: 4rem 0; text-align: center; background: var(--bg-secondary);">
+    <!-- Photo Gallery -->
+    <section class="photo-gallery-section" style="padding: 2rem 0;">
         <div class="container">
-            <div style="max-width: 600px; margin: 0 auto;">
-                <i class="fas fa-camera" style="font-size: 4rem; color: var(--accent-primary); margin-bottom: 2rem; display: block;"></i>
-                <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-primary);">Coming Soon</h2>
-                <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.6;">
-                    I'm currently curating and processing the India photography collection. 
-                    This gallery will showcase the rich culture, stunning architecture, vibrant festivals, 
-                    and diverse landscapes that make India truly incredible.
-                </p>
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="photography.html" class="back-button">
-                        <i class="fas fa-images"></i>
-                        <span>View Other Collections</span>
-                    </a>
-                    <a href="index.html#contact" class="back-button" style="background: var(--bg-tertiary); color: var(--text-primary);">
-                        <i class="fas fa-envelope"></i>
-                        <span>Get Notified</span>
-                    </a>
+            <div class="photo-grid" id="photo-grid">
+                <!-- Photos will be loaded dynamically -->
+                <div class="loading-spinner" style="grid-column: 1 / -1; text-align: center; padding: 4rem 0;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent-primary);"></i>
+                    <p style="margin-top: 1rem; color: var(--text-secondary);">Loading India collection...</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+        // India photo collection
+        const indiaPhotos = [
+            {
+                src: 'https://ik.imagekit.io/u9j5vtftw/photos/India/Snapseed.dng?updatedAt=1730042481695',
+                alt: 'Beautiful landscape in India',
+                title: 'Sacred Landscape'
+            },
+            {
+                src: 'https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_8191.DNG?updatedAt=1730042480522',
+                alt: 'Indian architecture',
+                title: 'Architectural Marvel'
+            },
+            {
+                src: 'https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_8114-EFFECTS.jpg?updatedAt=1730042480134',
+                alt: 'Cultural scene in India',
+                title: 'Cultural Heritage'
+            }
+        ];
+
+        // Load photos dynamically
+        function loadPhotos() {
+            const photoGrid = document.getElementById('photo-grid');
+            photoGrid.innerHTML = '';
+
+            indiaPhotos.forEach((photo, index) => {
+                const photoItem = document.createElement('div');
+                photoItem.className = 'photo-item';
+                photoItem.innerHTML = `
+                    <img src="${photo.src}?tr=w-800,h-600,q-80" 
+                         alt="${photo.alt}" 
+                         loading="lazy"
+                         onclick="openLightbox(${index})"
+                         title="${photo.title}">
+                `;
+                photoGrid.appendChild(photoItem);
+            });
+        }
+
+        // Initialize gallery
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPhotos();
+        });
+
+        // Lightbox functionality
+        function openLightbox(index) {
+            // Simple lightbox implementation
+            const lightbox = document.createElement('div');
+            lightbox.className = 'lightbox-overlay';
+            lightbox.innerHTML = `
+                <div class="lightbox-content">
+                    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+                    <img src="${indiaPhotos[index].src}?tr=w-1200,h-800,q-90" alt="${indiaPhotos[index].alt}">
+                    <div class="lightbox-info">
+                        <h3>${indiaPhotos[index].title}</h3>
+                        <p>${indiaPhotos[index].alt}</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(lightbox);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.querySelector('.lightbox-overlay');
+            if (lightbox) {
+                lightbox.remove();
+                document.body.style.overflow = 'auto';
+            }
+        }
+    </script>
 
     <!-- Footer -->
     <footer style="background: var(--bg-primary); padding: 2rem 0; text-align: center; border-top: 1px solid var(--border-color);">
