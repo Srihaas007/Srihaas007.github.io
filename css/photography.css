@@ -160,10 +160,11 @@
     display: block;
 }
 
-/* Photo grid layout - Column-based masonry */
+/* Photo grid layout - Fixed 2 items per row */
 .photo-grid {
-    column-count: 2;
-    column-gap: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Exactly 2 columns */
+    gap: 2rem;
     padding: 2rem;
     max-width: 1400px;
     margin: 0 auto;
@@ -176,10 +177,8 @@
     cursor: pointer;
     transition: all var(--transition-base);
     background: var(--bg-tertiary);
-    margin-bottom: 2rem;
-    break-inside: avoid;
-    display: inline-block;
-    width: 100%;
+    margin-bottom: 0; /* Remove margin as grid handles spacing */
+    aspect-ratio: 4/3; /* Consistent aspect ratio container */
 }
 
 .photo-item:hover {
@@ -189,8 +188,8 @@
 
 .photo-item img {
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    height: 100%;
+    object-fit: cover; /* This will cover the entire container */
     object-position: center;
     transition: transform var(--transition-base);
     display: block;
@@ -625,13 +624,13 @@
 /* Mobile optimizations */
 @media (max-width: 768px) {
   .photo-grid {
-    column-count: 1;
-    column-gap: 0;
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 1.5rem;
     padding: 1rem;
   }
   
   .photo-item {
-    margin-bottom: 1.5rem;
+    aspect-ratio: 3/4; /* Slightly taller on mobile */
   }
 }
 

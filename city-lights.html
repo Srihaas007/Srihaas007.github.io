@@ -321,6 +321,11 @@
     <script src="js/navigation.js"></script>
     
     <script>
+        // Utility function to replace ImageKit transformation parameters
+        function updateImageUrl(url) {
+            return url.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-800,h-600,c-at_max');
+        }
+        
         // City Lights photo data
         const cityLightsPhotos = [
             {
@@ -436,7 +441,7 @@
                 const photoItem = document.createElement('div');
                 photoItem.className = 'photo-item';
                 photoItem.innerHTML = `
-                    <img src="${photo.src}" alt="${photo.title}" loading="lazy" data-index="${index}">
+                    <img src="${updateImageUrl(photo.src)}" alt="${photo.title}" loading="lazy" data-index="${index}">
                     <div class="photo-overlay">
                         <div class="photo-info">
                             <h3>${photo.title}</h3>
@@ -456,7 +461,7 @@
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             
-            lightboxImg.src = cityLightsPhotos[index].src.replace('tr=w-800,h-600,c-force', 'tr=w-1920,h-1440,c-maintain_ratio');
+            lightboxImg.src = cityLightsPhotos[index].src.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-1920,h-1440,q-100');
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -470,13 +475,13 @@
         function nextImage() {
             currentImageIndex = (currentImageIndex + 1) % cityLightsPhotos.length;
             const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = cityLightsPhotos[currentImageIndex].src.replace('tr=w-800,h-600,c-force', 'tr=w-1920,h-1440,c-maintain_ratio');
+            lightboxImg.src = cityLightsPhotos[currentImageIndex].src.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-1920,h-1440,q-100');
         }
 
         function prevImage() {
             currentImageIndex = (currentImageIndex - 1 + cityLightsPhotos.length) % cityLightsPhotos.length;
             const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = cityLightsPhotos[currentImageIndex].src.replace('tr=w-800,h-600,c-force', 'tr=w-1920,h-1440,c-maintain_ratio');
+            lightboxImg.src = cityLightsPhotos[currentImageIndex].src.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-1920,h-1440,q-100');
         }
 
         // Event listeners
