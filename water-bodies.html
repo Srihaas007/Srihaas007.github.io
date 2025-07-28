@@ -326,37 +326,43 @@
             return url.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-800,h-600,c-at_max');
         }
         
-        // Water Bodies photo data with orientation info
+        // Water Bodies photo data - Aquatic serenity collection
         const waterBodiesPhotos = [
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/_DSC0349.JPG?updatedAt=1730042463687&tr=w-800,h-600,c-force",
-                title: "Serene Waters",
-                description: "Peaceful moments by the water"
+                title: "Durdle Door",
+                description: "Iconic limestone arch on the Jurassic Coast",
+                orientation: "landscape"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_2002.DNG?updatedAt=1730042462208&tr=w-800,h-600,c-force",
-                title: "Flowing Grace",
-                description: "Nature's liquid poetry"
+                title: "Peak District Path",
+                description: "Rolling hills and winding streams",
+                orientation: "landscape"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_5860.JPG?updatedAt=1730042458777&tr=w-800,h-600,c-force",
-                title: "Aquatic Beauty",
-                description: "Life-giving waters"
+                title: "Coastal Retreat",
+                description: "Beach huts against verdant cliffs",
+                orientation: "landscape"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_9849-EFFECTS.jpg?updatedAt=1730042457821&tr=w-800,h-600,c-force",
-                title: "Liquid Mirror",
-                description: "Reflections of tranquility"
+                title: "Island Paradise",
+                description: "Turquoise waters and pristine beaches",
+                orientation: "landscape"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/Snapseed.heic?updatedAt=1730042457796&tr=w-800,h-600,c-force",
-                title: "Water's Edge",
-                description: "Where land meets water"
+                title: "Coastal Drama",
+                description: "Rugged cliffs meeting endless ocean",
+                orientation: "landscape"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_9067-ANIMATION.gif?updatedAt=1730042457548&tr=w-800,h-600,c-force",
-                title: "Animated Flow",
-                description: "Water in motion"
+                title: "Golden Sunset",
+                description: "Waves painted in evening light",
+                orientation: "wide"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_5855.JPG?updatedAt=1730042456021&tr=w-800,h-600,c-force",
@@ -434,9 +440,9 @@
             
             waterBodiesPhotos.forEach((photo, index) => {
                 const photoItem = document.createElement('div');
-                photoItem.className = 'photo-item';
+                photoItem.className = `photo-item ${photo.orientation || 'landscape'}`;
                 photoItem.innerHTML = `
-                    <img src="${photo.src}" alt="${photo.title}" loading="lazy" data-index="${index}">
+                    <img src="${updateImageUrl(photo.src)}" alt="${photo.title}" loading="lazy" data-index="${index}">
                     <div class="photo-overlay">
                         <div class="photo-info">
                             <h3>${photo.title}</h3>

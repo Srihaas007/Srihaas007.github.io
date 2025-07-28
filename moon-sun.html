@@ -335,27 +335,36 @@
     <script src="js/navigation.js"></script>
     
     <script>
-        // Moon & Sun photo data with correct URLs
+        // Utility function for ImageKit transformations
+        function updateImageUrl(url) {
+            return url.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-800,h-600,c-at_max');
+        }
+        
+        // Moon & Sun photo data - Celestial photography
         const moonSunPhotos = [
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0477.JPG?updatedAt=1730042469353&tr=w-800,h-600,c-force",
-                title: "Celestial Dance",
-                description: "The eternal dance of day and night"
+                title: "Lunar Eclipse",
+                description: "The moon in shadow and mystery",
+                orientation: "square"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_6057.JPG?updatedAt=1730042468437&tr=w-800,h-600,c-force",
-                title: "Golden Hour",
-                description: "When sunlight paints the sky"
+                title: "Golden Horizon",
+                description: "Sunset painting the sky in amber",
+                orientation: "landscape"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0104%20(2).JPG?updatedAt=1730042466451&tr=w-800,h-600,c-force",
-                title: "Twilight Beauty",
-                description: "Between day and night"
+                title: "Solar Corona",
+                description: "The sun's majestic halo",
+                orientation: "square"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0104.JPG?updatedAt=1730042466367&tr=w-800,h-600,c-force",
-                title: "Solar Majesty",
-                description: "The power of our star"
+                title: "Evening Star",
+                description: "Celestial beauty in twilight",
+                orientation: "landscape"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0027.JPG?updatedAt=1730042466351&tr=w-800,h-600,c-force",
@@ -458,9 +467,9 @@
             
             moonSunPhotos.forEach((photo, index) => {
                 const photoItem = document.createElement('div');
-                photoItem.className = 'photo-item';
+                photoItem.className = `photo-item ${photo.orientation || 'landscape'}`;
                 photoItem.innerHTML = `
-                    <img src="${photo.src}" alt="${photo.title}" loading="lazy" data-index="${index}">
+                    <img src="${updateImageUrl(photo.src)}" alt="${photo.title}" loading="lazy" data-index="${index}">
                     <div class="photo-overlay">
                         <div class="photo-info">
                             <h3>${photo.title}</h3>
