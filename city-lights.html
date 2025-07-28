@@ -321,27 +321,48 @@
     <script src="js/navigation.js"></script>
     
     <script>
-        // City Lights photo data
+        // Utility function to replace ImageKit transformation parameters
+        function updateImageUrl(url) {
+            return url.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-800,h-600,c-at_max');
+        }
+        
+        // City Lights photo data - Night photography perfection
         const cityLightsPhotos = [
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0317.JPG?updatedAt=1730042514108&tr=w-800,h-600,c-force",
-                title: "Urban Glow",
-                description: "City lights painting the night"
+                title: "Tower Bridge Illuminated",
+                description: "London's iconic bridge bathed in golden light",
+                orientation: "landscape"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0186.JPG?updatedAt=1730046479176&tr=w-800,h-600,c-force",
-                title: "Metropolitan Magic",
-                description: "The pulse of the urban heart"
+                title: "The Gherkin",
+                description: "London's distinctive glass tower against the sky",
+                orientation: "portrait"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0286.JPG?updatedAt=1730042512313&tr=w-800,h-600,c-force",
-                title: "Neon Dreams",
-                description: "Electric veins of the city"
+                title: "Bridge at Twilight",
+                description: "Urban architecture in the blue hour",
+                orientation: "landscape"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0184.JPG?updatedAt=1730042511863&tr=w-800,h-600,c-force",
-                title: "Night Symphony",
-                description: "Harmony in urban chaos"
+                title: "Sky Scrapers",
+                description: "Modern towers reaching into the clouds",
+                orientation: "portrait"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0306.JPG?updatedAt=1730046479183&tr=w-800,h-600,c-force",
+                title: "Urban Skyline",
+                description: "City lights creating a constellation on earth",
+                orientation: "landscape"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0200.JPG?updatedAt=1730042511856&tr=w-800,h-600,c-force",
+                title: "Night Glow",
+                description: "The city that never sleeps",
+                orientation: "portrait"
             },
             {
                 src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0306.JPG?updatedAt=1730046479183&tr=w-800,h-600,c-force",
@@ -434,9 +455,9 @@
             
             cityLightsPhotos.forEach((photo, index) => {
                 const photoItem = document.createElement('div');
-                photoItem.className = 'photo-item';
+                photoItem.className = `photo-item ${photo.orientation || 'landscape'}`;
                 photoItem.innerHTML = `
-                    <img src="${photo.src}" alt="${photo.title}" loading="lazy" data-index="${index}">
+                    <img src="${updateImageUrl(photo.src)}" alt="${photo.title}" loading="lazy" data-index="${index}">
                     <div class="photo-overlay">
                         <div class="photo-info">
                             <h3>${photo.title}</h3>
@@ -456,7 +477,7 @@
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             
-            lightboxImg.src = cityLightsPhotos[index].src.replace('tr=w-800,h-600,c-force', 'tr=w-1920,h-1440,c-maintain_ratio');
+            lightboxImg.src = cityLightsPhotos[index].src.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-1920,h-1440,q-100');
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -470,13 +491,13 @@
         function nextImage() {
             currentImageIndex = (currentImageIndex + 1) % cityLightsPhotos.length;
             const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = cityLightsPhotos[currentImageIndex].src.replace('tr=w-800,h-600,c-force', 'tr=w-1920,h-1440,c-maintain_ratio');
+            lightboxImg.src = cityLightsPhotos[currentImageIndex].src.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-1920,h-1440,q-100');
         }
 
         function prevImage() {
             currentImageIndex = (currentImageIndex - 1 + cityLightsPhotos.length) % cityLightsPhotos.length;
             const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = cityLightsPhotos[currentImageIndex].src.replace('tr=w-800,h-600,c-force', 'tr=w-1920,h-1440,c-maintain_ratio');
+            lightboxImg.src = cityLightsPhotos[currentImageIndex].src.replace(/tr=w-\d+,h-\d+,c-force/g, 'tr=w-1920,h-1440,q-100');
         }
 
         // Event listeners
