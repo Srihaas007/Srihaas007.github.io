@@ -33,7 +33,7 @@ function filterProjects(category, container) {
     
     // Wait for animation, then update projects
     setTimeout(() => {
-        container.innerHTML = projects.map(project => createProjectCard(project)).join('');
+        container.innerHTML = projects.map(project => createProjectCard(project, false)).join('');
         
         // Animate in new projects
         const newCards = container.querySelectorAll('.project-card');
@@ -46,9 +46,12 @@ function filterProjects(category, container) {
     }, 300);
 }
 
-function createProjectCard(project) {
+export function createProjectCard(project, isFeatured = false) {
+    const cardClass = isFeatured ? 'project-card featured-card' : 'project-card';
+    const cardStyle = isFeatured ? 'opacity: 0; transform: translateY(20px); transition: all 0.3s ease;' : 'opacity: 0; transform: translateY(20px); transition: all 0.3s ease;';
+    
     return `
-        <div class="project-card" data-category="${project.category}" style="opacity: 0; transform: translateY(20px); transition: all 0.3s ease;">
+        <div class="${cardClass}" data-category="${project.category}" style="${cardStyle}">
             <div class="project-image">
                 <img src="${project.image}" alt="${project.title}" loading="lazy">
                 <div class="project-overlay">

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Gallery - Srihaas Gorantla</title>
+    <meta name="description" content="Explore Srihaas Gorantla's photography collection featuring aesthetics, city lights, nature, and more.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="srihaas.jpg">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/photography.css">
+    <link rel="stylesheet" href="css/firebase-styles.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="brand-link">
+                    <span class="brand-text">Srihaas</span>
+                    <span class="brand-dot">.</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#experience" class="nav-link">Experience</a>
+                <a href="index.html#projects" class="nav-link">Projects</a>
+                <div class="nav-dropdown">
+                    <a href="photography.html" class="nav-link active">Photography <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="aesthetics.html" class="dropdown-link">Aesthetics</a>
+                        <a href="city-lights.html" class="dropdown-link">City Lights</a>
+                        <a href="water-bodies.html" class="dropdown-link">Water Bodies</a>
+                        <a href="animals.html" class="dropdown-link">Animals</a>
+                        <a href="moon-sun.html" class="dropdown-link">Moon & Sun</a>
+                        <a href="cars-toys.html" class="dropdown-link">Cars & Toys</a>
+                        <a href="india.html" class="dropdown-link">India</a>
+                    </div>
+                </div>
+                <a href="index.html#skills" class="nav-link">Skills</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-content">
+                <a href="index.html" class="mobile-nav-link">Home</a>
+                <a href="index.html#about" class="mobile-nav-link">About</a>
+                <a href="index.html#experience" class="mobile-nav-link">Experience</a>
+                <a href="index.html#projects" class="mobile-nav-link">Projects</a>
+                <a href="photography.html" class="mobile-nav-link active">Photography</a>
+                <a href="aesthetics.html" class="mobile-nav-link">• Aesthetics</a>
+                <a href="city-lights.html" class="mobile-nav-link">• City Lights</a>
+                <a href="water-bodies.html" class="mobile-nav-link">• Water Bodies</a>
+                <a href="animals.html" class="mobile-nav-link">• Animals</a>
+                <a href="moon-sun.html" class="mobile-nav-link">• Moon & Sun</a>
+                <a href="cars-toys.html" class="mobile-nav-link">• Cars & Toys</a>
+                <a href="india.html" class="mobile-nav-link">• India</a>
+                <a href="index.html#skills" class="mobile-nav-link">Skills</a>
+                <a href="index.html#contact" class="mobile-nav-link">Contact</a>
+            </div>
+        </div>
+        <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title animate__animated animate__fadeInUp">
+                Photography Gallery
+                <span class="hero-subtitle">by Srihaas</span>
+            </h1>
+            <p class="hero-description animate__animated animate__fadeInUp animate__delay-1s">
+                Capturing moments, emotions, and the beauty of our world through my lens
+            </p>
+        </div>
+        <div class="hero-background">
+            <div class="hero-image" style="background-image: url('https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0392%20(2).JPG?updatedAt=1730044171232&tr=w-1920,h-1080,c-force');"></div>
+        </div>
+    </section>
+
+    <!-- Photo Albums Section -->
+    <section class="albums-section">
+        <div class="container">
+            <div class="albums-grid">
+                <!-- Aesthetics Album -->
+                <div class="album-card" data-aos="fade-up">
+                    <div class="album-preview">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0392%20(2).JPG?updatedAt=1730044171232&tr=w-800,h-600,c-force" alt="Aesthetics Preview 1" loading="lazy">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0192_Original.jpg?updatedAt=1730044171221&tr=w-800,h-600,c-force" alt="Aesthetics Preview 2" loading="lazy">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0072_Original.jpg?updatedAt=1730044171260&tr=w-800,h-600,c-force" alt="Aesthetics Preview 3" loading="lazy">
+                    </div>
+                    <div class="album-info">
+                        <h3>Aesthetics</h3>
+                        <p class="album-description">Capturing the beauty in simplicity and the art of everyday moments</p>
+                        <p class="album-count">40+ Photos</p>
+                        <a href="aesthetics.html" class="album-btn">
+                            <span>Explore Collection</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- City Lights Album -->
+                <div class="album-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="album-preview">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0317.JPG?updatedAt=1730042514108&tr=w-800,h-600,c-force" alt="City Lights Preview 1" loading="lazy">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0186.JPG?updatedAt=1730046479176&tr=w-800,h-600,c-force" alt="City Lights Preview 2" loading="lazy">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0286.JPG?updatedAt=1730042512313&tr=w-800,h-600,c-force" alt="City Lights Preview 3" loading="lazy">
+                    </div>
+                    <div class="album-info">
+                        <h3>City Lights</h3>
+                        <p class="album-description">Illuminating the beauty of urban life through vibrant cityscapes</p>
+                        <p class="album-count">32+ Photos</p>
+                        <a href="city-lights.html" class="album-btn">
+                            <span>Explore Collection</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Water Bodies Album -->
+                <div class="album-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="album-preview">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/_DSC0349.JPG?updatedAt=1730042463687&tr=w-800,h-600,c-force" alt="Water Bodies Preview 1" loading="lazy">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_2002.DNG?updatedAt=1730042462208&tr=w-800,h-600,c-force" alt="Water Bodies Preview 2" loading="lazy">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_5860.JPG?updatedAt=1730042458777&tr=w-800,h-600,c-force" alt="Water Bodies Preview 3" loading="lazy">
+                    </div>
+                    <div class="album-info">
+                        <h3>Water Bodies</h3>
+                        <p class="album-description">Serenity captured through flowing waters and peaceful reflections</p>
+                        <p class="album-count">19+ Photos</p>
+                        <a href="water-bodies.html" class="album-btn">
+                            <span>Explore Collection</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Animals Album -->
+                <div class="album-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="album-preview">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/_DSC0088.JPG?updatedAt=1730042532110&tr=w-800,h-600,c-force" alt="Animals Preview 1" loading="lazy">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/_DSC0462.JPG?updatedAt=1730042523238&tr=w-800,h-600,c-force" alt="Animals Preview 2" loading="lazy">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed.jpg?updatedAt=1730042522641&tr=w-800,h-600,c-force" alt="Animals Preview 3" loading="lazy">
+                    </div>
+                    <div class="album-info">
+                        <h3>Animals</h3>
+                        <p class="album-description">A journey through the wonders of the animal kingdom</p>
+                        <p class="album-count">30+ Photos</p>
+                        <a href="animals.html" class="album-btn">
+                            <span>Explore Collection</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Moon & Sun Album -->
+                <div class="album-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="album-preview">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0477.JPG?updatedAt=1730042469353&tr=w-800,h-600,c-force" alt="Moon & Sun Preview 1" loading="lazy">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_6057.JPG?updatedAt=1730042468437&tr=w-800,h-600,c-force" alt="Moon & Sun Preview 2" loading="lazy">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0104%20(2).JPG?updatedAt=1730042466451&tr=w-800,h-600,c-force" alt="Moon & Sun Preview 3" loading="lazy">
+                    </div>
+                    <div class="album-info">
+                        <h3>Moon & Sun</h3>
+                        <p class="album-description">Celestial beauty captured through day and night</p>
+                        <p class="album-count">22+ Photos</p>
+                        <a href="moon-sun.html" class="album-btn">
+                            <span>Explore Collection</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cars & Toys Album -->
+                <div class="album-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="album-preview">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_6954.jpg?updatedAt=1730042514330&tr=w-800,h-600,c-force" alt="Cars & Toys Preview 1" loading="lazy">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_9210.HEIC?updatedAt=1730042509742&tr=w-800,h-600,c-force" alt="Cars & Toys Preview 2" loading="lazy">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_9860.JPG?updatedAt=1730042508858&tr=w-800,h-600,c-force" alt="Cars & Toys Preview 3" loading="lazy">
+                    </div>
+                    <div class="album-info">
+                        <h3>Cars & Toys</h3>
+                        <p class="album-description">Exploring intricate designs and playful spirit</p>
+                        <p class="album-count">14+ Photos</p>
+                        <a href="cars-toys.html" class="album-btn">
+                            <span>Explore Collection</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- India Album -->
+                <div class="album-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="album-preview">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/Snapseed.dng?updatedAt=1730042481695&tr=w-800,h-600,c-force" alt="India Preview 1" loading="lazy">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_8191.DNG?updatedAt=1730042480522&tr=w-800,h-600,c-force" alt="India Preview 2" loading="lazy">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_8114-EFFECTS.jpg?updatedAt=1730042480134&tr=w-800,h-600,c-force" alt="India Preview 3" loading="lazy">
+                    </div>
+                    <div class="album-info">
+                        <h3>India</h3>
+                        <p class="album-description">An odyssey through India's vibrant culture and heritage</p>
+                        <p class="album-count">39+ Photos</p>
+                        <a href="india.html" class="album-btn">
+                            <span>Coming Soon</span>
+                            <i class="fas fa-clock"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Section -->
+    <section class="featured-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Featured Photography</h2>
+            <p class="section-description" data-aos="fade-up" data-aos-delay="100">
+                A curated selection of my favorite captures across different themes and moods
+            </p>
+            
+            <div class="featured-gallery" data-aos="fade-up" data-aos-delay="200">
+                <div class="featured-item">
+                    <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0392%20(2).JPG?updatedAt=1730044171232&tr=w-1200,h-800,c-force" alt="Featured Photo 1" loading="lazy">
+                    <div class="featured-overlay">
+                        <h3>Urban Aesthetics</h3>
+                        <p>Aesthetics Collection</p>
+                    </div>
+                </div>
+                <div class="featured-item">
+                    <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0317.JPG?updatedAt=1730042514108&tr=w-1200,h-800,c-force" alt="Featured Photo 2" loading="lazy">
+                    <div class="featured-overlay">
+                        <h3>Night Cityscape</h3>
+                        <p>City Lights Collection</p>
+                    </div>
+                </div>
+                <div class="featured-item">
+                    <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/_DSC0349.JPG?updatedAt=1730042463687&tr=w-1200,h-800,c-force" alt="Featured Photo 3" loading="lazy">
+                    <div class="featured-overlay">
+                        <h3>Serene Waters</h3>
+                        <p>Water Bodies Collection</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>&copy; 2025 Srihaas Gorantla. All rights reserved.</p>
+                    <p>Capturing moments, creating memories</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="index.html#about" class="footer-link">About</a>
+                    <a href="index.html#projects" class="footer-link">Projects</a>
+                    <a href="index.html#contact" class="footer-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="module" src="js/env-config.js"></script>
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/main.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+
+        // Parallax effect for hero background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-image');
+            if (parallax) {
+                const speed = scrolled * 0.5;
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+
+        // Add hover effects for album cards
+        document.querySelectorAll('.album-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

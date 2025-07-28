@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="India Photography Collection by Srihaas Gorantla - Capturing the vibrant culture, heritage, and beauty of India">
+    <meta name="keywords" content="India, photography, portfolio, Srihaas Gorantla, culture, heritage, travel">
+    <title>India | Srihaas Gorantla Photography</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SHJK4J22QE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-SHJK4J22QE');
+    </script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/photography.css">
+    
+    <style>
+        .gallery-hero {
+            padding: 120px 0 60px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+        
+        .gallery-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gallery-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--accent-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: var(--accent-secondary);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="brand-link">
+                    <span class="brand-text">Srihaas</span>
+                    <span class="brand-dot">.</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#experience" class="nav-link">Experience</a>
+                <a href="index.html#projects" class="nav-link">Projects</a>
+                <div class="nav-dropdown">
+                    <a href="photography.html" class="nav-link">Photography <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="aesthetics.html" class="dropdown-link">Aesthetics</a>
+                        <a href="city-lights.html" class="dropdown-link">City Lights</a>
+                        <a href="water-bodies.html" class="dropdown-link">Water Bodies</a>
+                        <a href="animals.html" class="dropdown-link">Animals</a>
+                        <a href="moon-sun.html" class="dropdown-link">Moon & Sun</a>
+                        <a href="cars-toys.html" class="dropdown-link">Cars & Toys</a>
+                        <a href="india.html" class="dropdown-link active">India</a>
+                    </div>
+                </div>
+                <a href="index.html#skills" class="nav-link">Skills</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-content">
+                <a href="index.html" class="mobile-nav-link">Home</a>
+                <a href="index.html#about" class="mobile-nav-link">About</a>
+                <a href="index.html#experience" class="mobile-nav-link">Experience</a>
+                <a href="index.html#projects" class="mobile-nav-link">Projects</a>
+                <a href="photography.html" class="mobile-nav-link">Photography</a>
+                <a href="aesthetics.html" class="mobile-nav-link">• Aesthetics</a>
+                <a href="city-lights.html" class="mobile-nav-link">• City Lights</a>
+                <a href="water-bodies.html" class="mobile-nav-link">• Water Bodies</a>
+                <a href="animals.html" class="mobile-nav-link">• Animals</a>
+                <a href="moon-sun.html" class="mobile-nav-link">• Moon & Sun</a>
+                <a href="cars-toys.html" class="mobile-nav-link">• Cars & Toys</a>
+                <a href="india.html" class="mobile-nav-link active">• India</a>
+                <a href="index.html#skills" class="mobile-nav-link">Skills</a>
+                <a href="index.html#contact" class="mobile-nav-link">Contact</a>
+            </div>
+        </div>
+        <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gallery-hero">
+        <div class="container">
+            <h1 class="gallery-title">India</h1>
+            <p class="gallery-subtitle">
+                A visual journey through the incredible diversity of India - from ancient heritage sites 
+                to vibrant festivals, bustling cities to serene landscapes. Each photograph captures 
+                the essence of this magnificent subcontinent.
+            </p>
+            <a href="photography.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Gallery</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="photo-gallery-section" style="padding: 2rem 0;">
+        <div class="container">
+            <div class="photo-grid" id="photo-grid">
+                <!-- Photos will be loaded dynamically -->
+                <div class="loading-spinner" style="grid-column: 1 / -1; text-align: center; padding: 4rem 0;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--accent-primary);"></i>
+                    <p style="margin-top: 1rem; color: var(--text-secondary);">Loading India collection...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // India photo collection
+        const indiaPhotos = [
+            {
+                src: 'https://ik.imagekit.io/u9j5vtftw/photos/India/Snapseed.dng?updatedAt=1730042481695',
+                alt: 'Beautiful landscape in India',
+                title: 'Sacred Landscape'
+            },
+            {
+                src: 'https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_8191.DNG?updatedAt=1730042480522',
+                alt: 'Indian architecture',
+                title: 'Architectural Marvel'
+            },
+            {
+                src: 'https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_8114-EFFECTS.jpg?updatedAt=1730042480134',
+                alt: 'Cultural scene in India',
+                title: 'Cultural Heritage'
+            }
+        ];
+
+        // Load photos dynamically
+        function loadPhotos() {
+            const photoGrid = document.getElementById('photo-grid');
+            photoGrid.innerHTML = '';
+
+            indiaPhotos.forEach((photo, index) => {
+                const photoItem = document.createElement('div');
+                photoItem.className = 'photo-item';
+                photoItem.innerHTML = `
+                    <img src="${photo.src}?tr=w-800,h-600,q-80" 
+                         alt="${photo.alt}" 
+                         loading="lazy"
+                         onclick="openLightbox(${index})"
+                         title="${photo.title}">
+                `;
+                photoGrid.appendChild(photoItem);
+            });
+        }
+
+        // Initialize gallery
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPhotos();
+        });
+
+        // Lightbox functionality
+        function openLightbox(index) {
+            // Simple lightbox implementation
+            const lightbox = document.createElement('div');
+            lightbox.className = 'lightbox-overlay';
+            lightbox.innerHTML = `
+                <div class="lightbox-content">
+                    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+                    <img src="${indiaPhotos[index].src}?tr=w-1200,h-800,q-90" alt="${indiaPhotos[index].alt}">
+                    <div class="lightbox-info">
+                        <h3>${indiaPhotos[index].title}</h3>
+                        <p>${indiaPhotos[index].alt}</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(lightbox);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.querySelector('.lightbox-overlay');
+            if (lightbox) {
+                lightbox.remove();
+                document.body.style.overflow = 'auto';
+            }
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer style="background: var(--bg-primary); padding: 2rem 0; text-align: center; border-top: 1px solid var(--border-color);">
+        <div class="container">
+            <p style="color: var(--text-secondary); margin: 0;">
+                © 2025 Srihaas Gorantla. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="js/env-config.js"></script>
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

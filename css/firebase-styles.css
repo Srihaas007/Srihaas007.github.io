@@ -1,0 +1,162 @@
+/* Firebase Notification Styles */
+.firebase-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    min-width: 300px;
+    max-width: 400px;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 10000;
+    font-family: var(--font-primary, 'Inter', sans-serif);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transform: translateX(100%);
+    animation: slideIn 0.3s ease-out forwards;
+    backdrop-filter: blur(10px);
+    border: 1px solid;
+}
+
+.firebase-notification--success {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.95), rgba(22, 163, 74, 0.95));
+    border-color: rgba(34, 197, 94, 0.3);
+    color: white;
+}
+
+.firebase-notification--error {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.95), rgba(220, 38, 38, 0.95));
+    border-color: rgba(239, 68, 68, 0.3);
+    color: white;
+}
+
+.firebase-notification__content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.firebase-notification__content i {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.firebase-notification__content span {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.firebase-notification__close {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    margin-left: 8px;
+}
+
+.firebase-notification__close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.firebase-notification--fade-out {
+    animation: slideOut 0.3s ease-in forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Loading state for submit button */
+.submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.submit-btn .fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Mobile responsiveness for notifications */
+@media (max-width: 480px) {
+    .firebase-notification {
+        right: 10px;
+        left: 10px;
+        min-width: auto;
+        max-width: none;
+        top: 10px;
+        transform: translateY(-100%);
+        animation: slideInMobile 0.3s ease-out forwards;
+    }
+
+    .firebase-notification--fade-out {
+        animation: slideOutMobile 0.3s ease-in forwards;
+    }
+
+    @keyframes slideInMobile {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOutMobile {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+    }
+}
+
+/* Enhanced form validation styles */
+.form-group--error input,
+.form-group--error textarea {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.form-group--success input,
+.form-group--success textarea {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}

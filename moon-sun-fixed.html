@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Moon & Sun Photography Collection by Srihaas Gorantla - Capturing celestial beauty and natural light">
+    <meta name="keywords" content="moon, sun, photography, portfolio, Srihaas Gorantla, celestial, light">
+    <title>Moon & Sun | Srihaas Gorantla Photography</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SHJK4J22QE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-SHJK4J22QE');
+    </script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/photography.css">
+    
+    <style>
+        .gallery-hero {
+            padding: 120px 0 60px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+        
+        .gallery-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gallery-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--accent-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--border-radius-lg);
+            font-weight: 500;
+            transition: all var(--transition-base);
+            margin-bottom: 2rem;
+        }
+        
+        .back-btn:hover {
+            background: var(--accent-secondary);
+            transform: translateY(-2px);
+        }
+        
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+        
+        .photo-item {
+            position: relative;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            background: var(--bg-tertiary);
+        }
+        
+        .photo-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: auto;
+            min-height: 400px;
+            max-height: 1000px;
+            object-fit: contain;
+            object-position: center;
+            transition: transform var(--transition-base);
+            display: block;
+            background: var(--bg-secondary);
+        }
+        
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 2rem 1.5rem 1.5rem;
+            transform: translateY(100%);
+            transition: all var(--transition-base);
+        }
+        
+        .photo-item:hover .photo-overlay {
+            transform: translateY(0);
+        }
+        
+        .photo-info h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .photo-info p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+        
+        .lightbox img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: var(--border-radius-md);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            padding: 1rem;
+            cursor: pointer;
+            border-radius: var(--border-radius-md);
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-base);
+        }
+        
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .lightbox-prev {
+            left: -60px;
+        }
+        
+        .lightbox-next {
+            right: -60px;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-title {
+                font-size: 2.5rem;
+            }
+            
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 1rem;
+            }
+            
+            .photo-item img {
+                max-height: 80vh;
+                min-height: 300px;
+            }
+            
+            .lightbox-nav {
+                font-size: 1.5rem;
+                padding: 0.5rem;
+            }
+            
+            .lightbox-prev {
+                left: -50px;
+            }
+            
+            .lightbox-next {
+                right: -50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="brand-link">
+                    <span class="brand-text">Srihaas</span>
+                    <span class="brand-dot">.</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#experience" class="nav-link">Experience</a>
+                <a href="index.html#projects" class="nav-link">Projects</a>
+                <div class="nav-dropdown">
+                    <a href="photography.html" class="nav-link">Photography <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="aesthetics.html" class="dropdown-link">Aesthetics</a>
+                        <a href="city-lights.html" class="dropdown-link">City Lights</a>
+                        <a href="water-bodies.html" class="dropdown-link">Water Bodies</a>
+                        <a href="animals.html" class="dropdown-link">Animals</a>
+                        <a href="moon-sun.html" class="dropdown-link active">Moon & Sun</a>
+                        <a href="cars-toys.html" class="dropdown-link">Cars & Toys</a>
+                        <a href="india.html" class="dropdown-link">India</a>
+                    </div>
+                </div>
+                <a href="index.html#skills" class="nav-link">Skills</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-content">
+                <a href="index.html" class="mobile-nav-link">Home</a>
+                <a href="index.html#about" class="mobile-nav-link">About</a>
+                <a href="index.html#projects" class="mobile-nav-link">Projects</a>
+                <a href="photography.html" class="mobile-nav-link">Photography</a>
+                <a href="aesthetics.html" class="mobile-nav-link">• Aesthetics</a>
+                <a href="city-lights.html" class="mobile-nav-link">• City Lights</a>
+                <a href="water-bodies.html" class="mobile-nav-link">• Water Bodies</a>
+                <a href="animals.html" class="mobile-nav-link">• Animals</a>
+                <a href="moon-sun.html" class="mobile-nav-link active">• Moon & Sun</a>
+                <a href="cars-toys.html" class="mobile-nav-link">• Cars & Toys</a>
+                <a href="india.html" class="mobile-nav-link">• India</a>
+                <a href="index.html#contact" class="mobile-nav-link">Contact</a>
+            </div>
+        </div>
+        <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+    </nav>
+
+    <!-- Gallery Hero Section -->
+    <section class="gallery-hero">
+        <div class="container">
+            <a href="photography.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Gallery
+            </a>
+            <h1 class="gallery-title">Moon & Sun</h1>
+            <p class="gallery-subtitle">Celestial beauty captured through day and night</p>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="gallery-content">
+        <div class="container">
+            <div class="photo-grid" id="photo-grid">
+                <!-- Photos will be loaded here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="lightbox-nav lightbox-prev" id="lightbox-prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img src="" alt="" id="lightbox-img">
+            <button class="lightbox-nav lightbox-next" id="lightbox-next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/navigation.js"></script>
+    
+    <script>
+        // Moon & Sun photo data with correct URLs
+        const moonSunPhotos = [
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0477.JPG?updatedAt=1730042469353&tr=w-800,h-600,c-force",
+                title: "Celestial Dance",
+                description: "The eternal dance of day and night"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_6057.JPG?updatedAt=1730042468437&tr=w-800,h-600,c-force",
+                title: "Golden Hour",
+                description: "When sunlight paints the sky"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0104%20(2).JPG?updatedAt=1730042466451&tr=w-800,h-600,c-force",
+                title: "Twilight Beauty",
+                description: "Between day and night"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0104.JPG?updatedAt=1730042466367&tr=w-800,h-600,c-force",
+                title: "Solar Majesty",
+                description: "The power of our star"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0027.JPG?updatedAt=1730042466351&tr=w-800,h-600,c-force",
+                title: "Lunar Serenity",
+                description: "Peaceful moonlit moments"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0026.JPG?updatedAt=1730042466335&tr=w-800,h-600,c-force",
+                title: "Night's Embrace",
+                description: "When darkness brings light"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0025.JPG?updatedAt=1730042466309&tr=w-800,h-600,c-force",
+                title: "Cosmic Wonder",
+                description: "Marveling at the universe"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0024.JPG?updatedAt=1730042466278&tr=w-800,h-600,c-force",
+                title: "Heavenly Glow",
+                description: "Divine light from above"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0023.JPG?updatedAt=1730042466261&tr=w-800,h-600,c-force",
+                title: "Stellar Magnificence",
+                description: "The grandeur of celestial bodies"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0022.JPG?updatedAt=1730042466242&tr=w-800,h-600,c-force",
+                title: "Daybreak Promise",
+                description: "Hope rises with the sun"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0021.JPG?updatedAt=1730042466223&tr=w-800,h-600,c-force",
+                title: "Evening Tranquility",
+                description: "Peace at day's end"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0020.JPG?updatedAt=1730042466205&tr=w-800,h-600,c-force",
+                title: "Radiant Warmth",
+                description: "Sun's gentle caress"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0019.JPG?updatedAt=1730042466188&tr=w-800,h-600,c-force",
+                title: "Nocturnal Poetry",
+                description: "Stories written in starlight"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0018.JPG?updatedAt=1730042466172&tr=w-800,h-600,c-force",
+                title: "Celestial Harmony",
+                description: "Perfect balance in nature"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0017.JPG?updatedAt=1730042466154&tr=w-800,h-600,c-force",
+                title: "Dawn's First Light",
+                description: "Beginning of a new day"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0016.JPG?updatedAt=1730042466137&tr=w-800,h-600,c-force",
+                title: "Gentle Contrast",
+                description: "Harmony in opposition"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0013.JPG?updatedAt=1730042466103&tr=w-800,h-600,c-force",
+                title: "Pure Form",
+                description: "Essential beauty revealed"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0007.JPG?updatedAt=1730042466063&tr=w-800,h-600,c-force",
+                title: "Soft Focus",
+                description: "Dreamy visual narrative"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0006.JPG?updatedAt=1730042466046&tr=w-800,h-600,c-force",
+                title: "Quiet Moments",
+                description: "Stillness in motion"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_6864.JPG?updatedAt=1730042468418&tr=w-800,h-600,c-force",
+                title: "Elegant Simplicity",
+                description: "Less is more philosophy"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_6670.jpg?updatedAt=1730042468389&tr=w-800,h-600,c-force",
+                title: "Natural Wonder",
+                description: "Beauty in the ordinary"
+            },
+            {
+                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_6499.JPG?updatedAt=1730042468342&tr=w-800,h-600,c-force",
+                title: "Balanced Composition",
+                description: "Harmony in visual elements"
+            }
+        ];
+
+        let currentImageIndex = 0;
+
+        // Load photos into grid
+        function loadPhotos() {
+            const grid = document.getElementById('photo-grid');
+            grid.innerHTML = '';
+            
+            moonSunPhotos.forEach((photo, index) => {
+                const photoItem = document.createElement('div');
+                photoItem.className = 'photo-item';
+                photoItem.innerHTML = `
+                    <img src="${photo.src}" alt="${photo.title}" loading="lazy" data-index="${index}">
+                    <div class="photo-overlay">
+                        <div class="photo-info">
+                            <h3>${photo.title}</h3>
+                            <p>${photo.description}</p>
+                        </div>
+                    </div>
+                `;
+                
+                photoItem.addEventListener('click', () => openLightbox(index));
+                grid.appendChild(photoItem);
+            });
+        }
+
+        // Lightbox functionality
+        function openLightbox(index) {
+            currentImageIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightboxImg.src = moonSunPhotos[index].src;
+            lightboxImg.alt = moonSunPhotos[index].title;
+            lightbox.style.display = 'flex';
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % moonSunPhotos.length;
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = moonSunPhotos[currentImageIndex].src;
+            lightboxImg.alt = moonSunPhotos[currentImageIndex].title;
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + moonSunPhotos.length) % moonSunPhotos.length;
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = moonSunPhotos[currentImageIndex].src;
+            lightboxImg.alt = moonSunPhotos[currentImageIndex].title;
+        }
+
+        // Event listeners
+        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+        document.getElementById('lightbox-prev').addEventListener('click', prevImage);
+        document.getElementById('lightbox-next').addEventListener('click', nextImage);
+        
+        // Close lightbox when clicking outside image
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.style.display === 'flex') {
+                switch(e.key) {
+                    case 'Escape':
+                        closeLightbox();
+                        break;
+                    case 'ArrowLeft':
+                        prevImage();
+                        break;
+                    case 'ArrowRight':
+                        nextImage();
+                        break;
+                }
+            }
+        });
+
+        // Initialize gallery
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPhotos();
+        });
+    </script>
+</body>
+</html>
