@@ -1,86 +1,221 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Moon & Sun Photography Collection by Srihaas Gorantla - Celestial beauty through the lens">
-    <meta name="keywords" content="moon, sun, celestial photography, portfolio, Srihaas Gorantla, astronomy">
-    <title>Moon & Sun | Srihaas Gorantla Photography</title>
-    
-    <!-- Google Analytics -->
+    <title>Moon & Sun - Srihaas Gorantla | Photography Gallery</title>
+
+     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SHJK4J22QE"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-SHJK4J22QE');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-SHJK4J22QE');
     </script>
+
+    <!-- CSS Stylesheets and Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- CSS Files -->
+    <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/photography.css">
     
     <style>
-        .profile-photo {
-            position: fixed;
-            top: 50%;
-            right: 30px;
-            transform: translateY(-50%);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: 3px solid var(--accent-primary);
-            box-shadow: 0 8px 25px rgba(100, 255, 218, 0.3);
-            z-index: 1000;
-            transition: all var(--transition-base);
-            object-fit: cover;
+        /* Global Styles */
+        :root {
+            --bg-color: #1a1a2e;
+            --text-color: #e0e0e0;
+            --card-bg: #16213e;
+            --primary-color: #0f3460;
+            --secondary-color: #e94560;
+            --accent-color: #1b98e0;
+            --light-bg-color: #ffffff;
+            --light-text-color: #000000;
+            --transition-speed: 0.3s;
         }
-        
-        .profile-photo:hover {
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 12px 35px rgba(100, 255, 218, 0.5);
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
         }
-        
-        .gallery-description {
-            color: var(--text-muted);
-            font-size: 1.1rem;
+
+        .container {
+            width: 95%;
+            max-width: 1600px;
+            margin: auto;
+        }
+
+        section {
+            padding: 60px 0;
+            margin-top: 50px; /* Added 50px top margin */
+        }
+
+        h2 {
             text-align: center;
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-            font-style: italic;
+            color: var(--secondary-color);
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            font-family: 'Fira Code', monospace;
+            position: relative;
         }
-        
-        .back-btn {
-            display: inline-flex;
+
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+        }
+
+        .album-row {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        /* Enhanced Swiper Styles */
+        .swiper {
+            width: 100%;
+            padding-bottom: 20px;
+        }
+
+        .swiper-slide {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            display: flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 12px 24px;
-            background: var(--accent-primary);
-            color: white;
-            text-decoration: none;
-            border-radius: var(--border-radius-lg);
-            font-weight: 500;
-            transition: all var(--transition-base);
-            margin-bottom: 2rem;
+            justify-content: center;
+            height: 500px; /* Increased height */
         }
-        
-        .back-btn:hover {
-            background: var(--accent-secondary);
-            transform: translateY(-2px);
+
+        .swiper-slide img {
+            width: auto;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .swiper-slide:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .swiper-slide:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            font-size: 2em;
+            cursor: pointer;
+        }
+
+        /* Back to Top Button */
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--secondary-color);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 1000;
+        }
+
+        #backToTop:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Light theme styles */
+        .light-theme {
+            --bg-color: var(--light-bg-color);
+            --text-color: var(--light-text-color);
+            --card-bg: #f8f9fa;
+        }
+
+        .light-theme .swiper-slide {
+            background: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mobile responsive styles */
+        @media (max-width: 768px) {
+            .container {
+                width: 98%;
+            }
+            
+            h2 {
+                font-size: 2em;
+            }
+
+            .swiper-slide {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .swiper-slide {
+                height: 350px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Enhanced Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-brand">
@@ -96,13 +231,13 @@
                 <a href="index.html#experience" class="nav-link">Experience</a>
                 <a href="index.html#projects" class="nav-link">Projects</a>
                 <div class="nav-dropdown">
-                    <a href="photography.html" class="nav-link active">Photography <i class="fas fa-chevron-down"></i></a>
+                    <a href="photography.html" class="nav-link">Photography <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-menu">
                         <a href="aesthetics.html" class="dropdown-link">Aesthetics</a>
                         <a href="city-lights.html" class="dropdown-link">City Lights</a>
                         <a href="water-bodies.html" class="dropdown-link">Water Bodies</a>
-                        <a href="animals.html" class="dropdown-link">Animals</a>
                         <a href="moon-sun.html" class="dropdown-link active">Moon & Sun</a>
+                        <a href="moon-sun.html" class="dropdown-link">Moon & Sun</a>
                         <a href="cars-toys.html" class="dropdown-link">Cars & Toys</a>
                         <a href="india.html" class="dropdown-link">India</a>
                     </div>
@@ -112,20 +247,18 @@
             </div>
             
             <div class="nav-actions">
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
                     <i class="fas fa-sun"></i>
                 </button>
-                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
         
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobile-menu">
-            <div class="mobile-nav-links">
+            <div class="mobile-menu-content">
                 <a href="index.html" class="mobile-nav-link">Home</a>
                 <a href="index.html#about" class="mobile-nav-link">About</a>
                 <a href="index.html#experience" class="mobile-nav-link">Experience</a>
@@ -134,8 +267,8 @@
                 <a href="aesthetics.html" class="mobile-nav-link">• Aesthetics</a>
                 <a href="city-lights.html" class="mobile-nav-link">• City Lights</a>
                 <a href="water-bodies.html" class="mobile-nav-link">• Water Bodies</a>
-                <a href="animals.html" class="mobile-nav-link">• Animals</a>
                 <a href="moon-sun.html" class="mobile-nav-link active">• Moon & Sun</a>
+                <a href="moon-sun.html" class="mobile-nav-link">• Moon & Sun</a>
                 <a href="cars-toys.html" class="mobile-nav-link">• Cars & Toys</a>
                 <a href="india.html" class="mobile-nav-link">• India</a>
                 <a href="index.html#skills" class="mobile-nav-link">Skills</a>
@@ -145,299 +278,179 @@
         <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
     </nav>
 
-    <!-- Profile Photo -->
-    <img src="srihaas.jpg" alt="Srihaas Gorantla" class="profile-photo">
-
-    <!-- Main Content -->
-    <main class="gallery-container">
+    <!-- Page content -->
+    <section>
         <div class="container">
-            <a href="photography.html" class="back-btn">
-                <i class="fas fa-arrow-left"></i>
-                Back to Photography
-            </a>
-            
-            <h1 class="gallery-title">Moon & Sun</h1>
-            <p class="gallery-description">
-                Capturing the celestial dance of moon and sun through the lens, showcasing the beauty and mystery of our cosmic companions.
+            <h2>Moon & Sun</h2>
+            <p style="text-align: center; color: var(--accent-color); font-style: italic; margin-bottom: 40px;">
+                "Celestial beauty captured in moments of cosmic wonder"
             </p>
-            
-            <div class="photo-grid" id="photo-grid">
-                <!-- Photos will be loaded here by JavaScript -->
+
+            <div class="album-row">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0477.JPG?updatedAt=1730042469353&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_6057.JPG?updatedAt=1730042468437&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0104%20(2).JPG?updatedAt=1730042466451&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_4937(1).JPG?updatedAt=1730042464716&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_9246.HEIC?updatedAt=1730042464267&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_9244.HEIC?updatedAt=1730042464217&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_8407.HEIC?updatedAt=1730042464017&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_6008.HEIC?updatedAt=1730042463366&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_4944.JPG?updatedAt=1730042462722&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_4937.JPG?updatedAt=1730042462583&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_4010.DNG?updatedAt=1730042461726&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_0473.DNG?updatedAt=1730042461664&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_2555.jpg?updatedAt=1730042461367&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_1872.DNG?updatedAt=1730042460780&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/ec4716eb-6e3b-427d-9f07-82fbdb67140f.jpg?updatedAt=1730042460514&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/BAFB1DE5-44A0-4FCF-B554-6F5FE43092EC.jpg?updatedAt=1730042460275&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/cce62982-216e-40fa-bbe5-3ce572ca59d9.jpg?updatedAt=1730042460332&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/b4109024-3c44-4a3d-8980-0a28e2e56521.jpg?updatedAt=1730042460131&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/93c5b69f-7ef5-44b8-84b9-e1a62de9e74a.jpg?updatedAt=1730042458486&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/20240417_025713.jpg?updatedAt=1730042458270&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/0c1688b1-45e1-464e-a913-0e9571147bc7.jpg?updatedAt=1730042458016&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/8d45609a-3e33-4947-a6b4-0258a6de18b3.jpg?updatedAt=1730042457975&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" onclick="openLightbox(this.src)">
+                        </div>
+                    </div>
+                    
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                    
+                    <!-- Add Navigation buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
             </div>
         </div>
-    </main>
+    </section>
 
     <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">
-            <i class="fas fa-times"></i>
-        </button>
-        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous image">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next image">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-        <div class="lightbox-content">
-            <img id="lightbox-img" alt="" loading="lazy">
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-img" src="" alt="Full size image">
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script type="module" src="js/main.js"></script>
     <script src="js/theme.js"></script>
-    <script src="js/navigation.js"></script>
-    
+
     <script>
-        // Utility function to replace ImageKit transformation parameters
-        function updateImageUrl(url) {
-            return url;  // No need to replace - images already have correct transformations
-        }
-        
-        // Moon and Sun photo data - Celestial photography collection
-        const moonSunPhotos = [
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_6499.JPG?updatedAt=1730042468342&tr=w-600,q-80",
-                title: "Balanced Composition",
-                description: "Harmony in visual elements"
+        // Initialize Swiper
+        var swiper = new Swiper('.swiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
             },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_6670.jpg?updatedAt=1730042468389&tr=w-600,q-80",
-                title: "Natural Wonder",
-                description: "Beauty in the ordinary"
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
             },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_6864.JPG?updatedAt=1730042468418&tr=w-600,q-80",
-                title: "Elegant Simplicity",
-                description: "Less is more philosophy"
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
             },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0006.JPG?updatedAt=1730042466046&tr=w-600,q-80",
-                title: "Quiet Moments",
-                description: "Stillness in motion"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0007.JPG?updatedAt=1730042466063&tr=w-600,q-80",
-                title: "Soft Focus",
-                description: "Dreamy visual narrative"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0013.JPG?updatedAt=1730042466103&tr=w-600,q-80",
-                title: "Pure Form",
-                description: "Essential beauty revealed"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0016.JPG?updatedAt=1730042466137&tr=w-600,q-80",
-                title: "Gentle Contrast",
-                description: "Harmony in opposition"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0017.JPG?updatedAt=1730042466154&tr=w-600,q-80",
-                title: "Dawn's First Light",
-                description: "Beginning of a new day"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0018.JPG?updatedAt=1730042466172&tr=w-600,q-80",
-                title: "Celestial Harmony",
-                description: "Perfect balance in nature"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0019.JPG?updatedAt=1730042466188&tr=w-600,q-80",
-                title: "Nocturnal Poetry",
-                description: "Stories written in starlight"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0020.JPG?updatedAt=1730042466205&tr=w-600,q-80",
-                title: "Radiant Warmth",
-                description: "Sun's gentle caress"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0021.JPG?updatedAt=1730042466223&tr=w-600,q-80",
-                title: "Evening Tranquility",
-                description: "Peace at day's end"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0022.JPG?updatedAt=1730042466242&tr=w-600,q-80",
-                title: "Daybreak Promise",
-                description: "Hope rises with the sun"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0023.JPG?updatedAt=1730042466261&tr=w-600,q-80",
-                title: "Stellar Magnificence",
-                description: "The grandeur of celestial bodies"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0024.JPG?updatedAt=1730042466278&tr=w-600,q-80",
-                title: "Heavenly Glow",
-                description: "Divine light from above"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0025.JPG?updatedAt=1730042466309&tr=w-600,q-80",
-                title: "Cosmic Wonder",
-                description: "Marveling at the universe"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0026.JPG?updatedAt=1730042466328&tr=w-600,q-80",
-                title: "Starlit Dreams",
-                description: "Night's gentle embrace"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0027.JPG?updatedAt=1730042466347&tr=w-600,q-80",
-                title: "Solar Glory",
-                description: "The sun in all its splendor"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0028.JPG?updatedAt=1730042466366&tr=w-600,q-80",
-                title: "Lunar Magic",
-                description: "Enchanted by moonlight"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0030.JPG?updatedAt=1730042466404&tr=w-600,q-80",
-                title: "Twilight Serenity",
-                description: "Peaceful end to the day"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0031.JPG?updatedAt=1730042466421&tr=w-600,q-80",
-                title: "Golden Hour",
-                description: "Nature's perfect lighting"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0032.JPG?updatedAt=1730042466438&tr=w-600,q-80",
-                title: "Infinite Sky",
-                description: "Boundless celestial beauty"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0033.JPG?updatedAt=1730042466456&tr=w-600,q-80",
-                title: "Celestial Dance",
-                description: "Cosmic choreography"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0034.JPG?updatedAt=1730042466474&tr=w-600,q-80",
-                title: "Heavenly Vision",
-                description: "Divine perspective"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0035.JPG?updatedAt=1730042466492&tr=w-600,q-80",
-                title: "Universal Beauty",
-                description: "Timeless celestial grace"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0036.JPG?updatedAt=1730042466509&tr=w-600,q-80",
-                title: "Morning Light",
-                description: "Fresh start with sunrise"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0037.JPG?updatedAt=1730042466526&tr=w-600,q-80",
-                title: "Night's Embrace",
-                description: "Comforting darkness"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0038.JPG?updatedAt=1730042466544&tr=w-600,q-80",
-                title: "Radiant Peace",
-                description: "Calm in celestial light"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0039.JPG?updatedAt=1730042466562&tr=w-600,q-80",
-                title: "Eternal Cycle",
-                description: "Day and night forever"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0040.JPG?updatedAt=1730042466579&tr=w-600,q-80",
-                title: "Sublime Moment",
-                description: "Capturing infinity"
-            }
-        ];
-
-        let currentImageIndex = 0;
-
-        // Load photos into grid - EXACTLY 2 photos per row
-        function loadPhotos() {
-            const grid = document.getElementById('photo-grid');
-            grid.innerHTML = '';
-            
-            moonSunPhotos.forEach((photo, index) => {
-                const photoItem = document.createElement('div');
-                photoItem.className = `photo-item ${photo.orientation || 'landscape'}`;
-                photoItem.innerHTML = `
-                    <img src="${updateImageUrl(photo.src)}" alt="${photo.title}" loading="lazy" data-index="${index}">
-                    <div class="photo-overlay">
-                        <div class="photo-info">
-                            <h3>${photo.title}</h3>
-                            <p>${photo.description}</p>
-                        </div>
-                    </div>
-                `;
-                
-                photoItem.addEventListener('click', () => openLightbox(index));
-                grid.appendChild(photoItem);
-            });
-        }
-
-        // Lightbox functionality
-        function openLightbox(index) {
-            currentImageIndex = index;
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            
-            lightboxImg.src = moonSunPhotos[index].src;
-            lightboxImg.alt = moonSunPhotos[index].title;
-            lightbox.style.display = 'flex';
-            
-            // Prevent body scroll
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        function nextImage() {
-            currentImageIndex = (currentImageIndex + 1) % moonSunPhotos.length;
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = moonSunPhotos[currentImageIndex].src;
-            lightboxImg.alt = moonSunPhotos[currentImageIndex].title;
-        }
-
-        function prevImage() {
-            currentImageIndex = (currentImageIndex - 1 + moonSunPhotos.length) % moonSunPhotos.length;
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = moonSunPhotos[currentImageIndex].src;
-            lightboxImg.alt = moonSunPhotos[currentImageIndex].title;
-        }
-
-        // Event listeners
-        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-        document.getElementById('lightbox-next').addEventListener('click', nextImage);
-        document.getElementById('lightbox-prev').addEventListener('click', prevImage);
-        
-        // Close lightbox when clicking outside the image
-        document.getElementById('lightbox').addEventListener('click', (e) => {
-            if (e.target.id === 'lightbox') {
-                closeLightbox();
-            }
-        });
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            const lightbox = document.getElementById('lightbox');
-            if (lightbox.style.display === 'flex') {
-                switch(e.key) {
-                    case 'Escape':
-                        closeLightbox();
-                        break;
-                    case 'ArrowLeft':
-                        prevImage();
-                        break;
-                    case 'ArrowRight':
-                        nextImage();
-                        break;
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 40,
+                },
+                1200: {
+                    slidesPerView: 4,
+                    spaceBetween: 50,
                 }
             }
         });
 
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', loadPhotos);
+        // Lightbox functionality
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // Back to top functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide back to top button
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>

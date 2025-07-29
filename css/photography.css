@@ -56,8 +56,615 @@
     background: var(--accent-secondary);
 }
 
-/* Mobile dropdown styles */
+/* Photography Hero Section */
+.photography-hero {
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    min-height: 100vh; /* Ensure full page height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    margin-top: -70px; /* Overlap the navbar */
+    padding-top: 70px; /* Account for navbar */
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Full height to match hero */
+    background-image: url('https://ik.imagekit.io/srihaas/background.webp?updatedAt=1737318632969');
+    background-size: cover; /* Cover the entire area */
+    background-position: center 70%; /* Move image up to show more bottom part */
+    background-repeat: no-repeat;
+    filter: brightness(0.7);
+    z-index: -2;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        rgba(10, 10, 15, 0.8) 0%,
+        rgba(10, 10, 15, 0.6) 50%,
+        rgba(10, 10, 15, 0.8) 100%
+    );
+    z-index: -1;
+}
+
+.photography-hero .hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl);
+    color: #f5f5f5; /* Off-white color */
+}
+
+.hero-left {
+    flex: 1;
+    text-align: left;
+}
+
+.hero-right {
+    flex: 1;
+    text-align: right;
+    padding-left: var(--spacing-2xl);
+}
+
+.photography-hero .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-lg);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #f8f8f8; /* Light gray */
+}
+
+.photography-hero .hero-subtitle {
+    display: block;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 300;
+    color: var(--accent-primary);
+    margin-top: var(--spacing-sm);
+}
+
+.photography-hero .hero-description {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    margin-bottom: 0;
+    max-width: 300px;
+    margin-left: auto;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    color: #e8e8e8; /* Light gray for description */
+    line-height: 1.6;
+}
+
+.photography-hero .hero-quote {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-style: italic;
+    font-weight: 300;
+    color: #d0d0d0; /* Light gray for quote */
+    margin-bottom: var(--spacing-lg);
+    max-width: 300px;
+    margin-left: auto;
+    position: relative;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    line-height: 1.6;
+}
+
+.photography-hero .hero-quote:before,
+.photography-hero .hero-quote:after {
+    content: '"';
+    font-size: 1.5em;
+    color: var(--accent-secondary);
+    opacity: 0.8;
+}
+
+.photography-hero .hero-quote:before {
+    margin-right: 0.2em;
+}
+
+.photography-hero .hero-quote:after {
+    margin-left: 0.2em;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-2xl);
+    margin-top: var(--spacing-2xl);
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--accent-primary);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.stat-label {
+    display: block;
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: var(--spacing-xs);
+}
+
+/* Photography Page Album Layout */
+.albums-section {
+    padding: 6rem 0;
+    background: var(--bg-primary);
+}
+
+.albums-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Enhanced Album Card Styles */
+.album-card {
+    position: relative;
+    border-radius: var(--border-radius-xl);
+    overflow: hidden;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.album-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.album-image {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+}
+
+.album-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform var(--transition-base);
+}
+
+.album-card:hover .album-image img {
+    transform: scale(1.05);
+}
+
+.album-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.1) 0%,
+        rgba(0, 0, 0, 0.3) 50%,
+        rgba(0, 0, 0, 0.8) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--spacing-xl);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.album-card:hover .album-overlay {
+    opacity: 1;
+}
+
+.album-info h3 {
+    color: white;
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.album-info p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-xs);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.photo-count {
+    color: var(--accent-primary);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    margin-bottom: var(--spacing-md);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.album-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius-sm);
+    font-weight: 500;
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all var(--transition-base);
+    align-self: flex-start;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.album-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+    background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+}
+
+.album-link i {
+    font-size: var(--font-size-xs);
+    transition: transform var(--transition-base);
+}
+
+.album-link:hover i {
+    transform: translateX(2px);
+}
+
+/* Explore Button in Hero */
+.explore-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-xl);
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    font-size: var(--font-size-base);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all var(--transition-base);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    margin-top: var(--spacing-lg);
+}
+
+.explore-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(99, 102, 241, 0.4);
+    background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+}
+
+.explore-btn i {
+    transition: transform var(--transition-base);
+}
+
+.explore-btn:hover i {
+    transform: translateX(4px);
+}
+
+/* Enhanced Album Link Styles for Photography Page */
+.album-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-xl);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius-lg);
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all var(--transition-base);
+    border: 2px solid transparent;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.25);
+    backdrop-filter: blur(10px);
+}
+
+.album-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.album-link i {
+    font-size: 1.1em;
+    transition: transform var(--transition-base);
+}
+
+.album-link:hover i {
+    transform: translateX(5px) scale(1.1);
+}
+
+/* Enhanced Explore Button */
+.explore-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-xl);
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    font-size: var(--font-size-base);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all var(--transition-base);
+    border: 2px solid transparent;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin-top: var(--spacing-lg);
+}
+
+.explore-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.explore-btn:hover:before {
+    left: 100%;
+}
+
+.explore-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+    background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.explore-btn i {
+    font-size: 1.1em;
+    transition: all var(--transition-base);
+}
+
+.explore-btn:hover i {
+    transform: translateX(4px);
+}
+
+/* Album Overlay Improvements */
+.album-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.3) 50%,
+        rgba(0, 0, 0, 0.8) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: var(--spacing-xl);
+    opacity: 0;
+    transition: all var(--transition-base);
+}
+
+.album-card:hover .album-overlay {
+    opacity: 1;
+}
+
+.album-info h3 {
+    color: white;
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.album-info p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-sm);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.photo-count {
+    color: var(--accent-primary);
+    font-weight: 600;
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--spacing-md);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Explore Collections CTA Section */
+.explore-collections-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.explore-collections-section:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.5;
+}
+
+.explore-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.explore-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: var(--spacing-xl);
+    text-shadow: none;
+}
+
+.explore-description {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto var(--spacing-3xl);
+    line-height: 1.8;
+}
+
+.explore-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-xl);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.collection-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-xl) var(--spacing-2xl);
+    border-radius: var(--border-radius-xl);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: var(--font-size-lg);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all var(--transition-base);
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.collection-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.collection-btn:hover:before {
+    left: 100%;
+}
+
+.aesthetics-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.aesthetics-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+}
+
+.city-btn {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.city-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(240, 147, 251, 0.4);
+}
+
+.water-btn {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+}
+
+.water-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(79, 172, 254, 0.4);
+}
+
+.animals-btn {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    color: white;
+}
+
+.animals-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(67, 233, 123, 0.4);
+}
+
+.collection-btn i {
+    font-size: 1.4em;
+    transition: transform var(--transition-base);
+}
+
+.collection-btn:hover i {
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* Mobile responsive design */
 @media (max-width: 768px) {
+    .photography-hero .hero-content {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-xl);
+    }
+    
+    .hero-left,
+    .hero-right {
+        flex: none;
+        text-align: center;
+        padding-left: 0;
+    }
+    
+    .photography-hero .hero-description,
+    .photography-hero .hero-quote {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
     .nav-dropdown .dropdown-menu {
         position: static;
         opacity: 1;
@@ -66,6 +673,139 @@
         background: transparent;
         border: none;
         box-shadow: none;
+        backdrop-filter: none;
+    }
+
+    .albums-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .album-card {
+        max-width: 100%;
+    }
+
+    .album-image {
+        height: 250px;
+    }
+
+    .photography-hero {
+        min-height: 100vh;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+    }
+
+    /* Fix for gallery sub-pages */
+    .container {
+        width: 95%;
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+
+    section {
+        padding: 40px 0;
+        margin-top: 80px; /* Increased margin for mobile */
+    }
+
+    /* Fix Swiper layout issues */
+    .swiper {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+
+    .swiper-slide {
+        width: auto;
+        height: auto;
+    }
+
+    .swiper-slide img {
+        width: 100%;
+        height: auto;
+        max-height: 70vh;
+        object-fit: contain;
+    }
+
+    /* Fix custom slide layout */
+    .custom-slide-layout {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .custom-slide-layout .swiper-slide {
+        height: auto;
+        min-height: 300px;
+    }
+
+    /* Album row spacing */
+    .album-row {
+        margin-bottom: 40px;
+        padding: 0 1rem;
+    }
+
+    .album-row h3 {
+        font-size: 1.5em;
+        margin-bottom: 0.5rem;
+    }
+
+    .album-row p.tagline {
+        font-size: 0.9em;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .albums-grid {
+        gap: 1.5rem;
+    }
+
+    .album-image {
+        height: 200px;
+    }
+
+    .photography-hero {
+        min-height: 100vh;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .explore-btn {
+        padding: var(--spacing-sm) var(--spacing-lg);
+        font-size: var(--font-size-sm);
+    }
+
+    /* Fix navigation overlap */
+    section {
+        margin-top: 100px;
+    }
+
+    /* Ensure proper zoom level */
+    html {
+        zoom: 1;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+    }
+
+    body {
+        zoom: 1;
+        transform: scale(1);
+        transform-origin: top left;
+    }
+}
         padding: 0;
         margin-left: var(--spacing-md);
     }
@@ -76,67 +816,82 @@
         border-left: 2px solid var(--border-color);
         margin: var(--spacing-xs) 0;
     }
+    
+    .photography-hero {
+        height: 100vh;
+        min-height: 300px;
+        padding: var(--spacing-xl) 0;
+    }
+    
+    .photography-hero .hero-title {
+        font-size: clamp(2rem, 8vw, 3rem);
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .photography-hero .hero-description {
+        font-size: var(--font-size-base);
+        margin-bottom: var(--spacing-xl);
+        padding: 0 var(--spacing-md);
+    }
+    
+    .hero-stats {
+        gap: var(--spacing-lg);
+        flex-wrap: wrap;
+    }
+    
+    .albums-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+        padding: 0 var(--spacing-md);
+    }
+    
+    .explore-actions {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .collection-btn {
+        padding: var(--spacing-lg) var(--spacing-xl);
+        font-size: var(--font-size-base);
+    }
+    
+    .explore-collections-section {
+        padding: 4rem 0;
+    }
+    
+    .explore-title {
+        font-size: clamp(2rem, 6vw, 3rem);
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .explore-description {
+        font-size: var(--font-size-base);
+        margin-bottom: var(--spacing-xl);
+        padding: 0 var(--spacing-md);
+    }
+}
+    
+    .albums-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+    
+    .album-preview {
+        height: 200px;
+    }
 }
 
-/* Profile Photo */
-.profile-photo {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--accent-primary);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-}
-
-/* Photography Page Album Layout */
-.albums-section {
-    padding: 4rem 0;
-    background: var(--bg-primary);
-}
-
-.albums-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 3rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-.album-card {
-    background: var(--bg-secondary);
-    border-radius: var(--border-radius-lg);
-    border: 1px solid var(--border-color);
-    overflow: hidden;
-    transition: transform var(--transition-base), box-shadow var(--transition-base);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.album-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-}
-
-.album-preview {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    height: 250px;
-    overflow: hidden;
-    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
-}
-
-.album-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transition: transform var(--transition-base);
-    border-radius: 2px;
+@media (max-width: 480px) {
+    .photography-hero {
+        height: 100vh;
+        min-height: 300px;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
 }
 
 /* Handle portrait images better */
@@ -151,36 +906,34 @@
 .gallery-grid img {
     width: 100%;
     height: auto;
-    min-height: 400px;
-    max-height: 1000px;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
     border-radius: var(--border-radius-md);
     background: var(--bg-secondary);
     display: block;
+    aspect-ratio: 4/3;
+    max-height: 500px;
 }
 
-/* Photo grid layout - Improved 2-column system with auto-sizing */
+/* Photo grid layout - Improved responsive system */
 .photo-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem; /* Increased gap for better visual separation */
-    padding: 3rem; /* Increased padding */
-    max-width: 1400px; /* Slightly wider container */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 3rem;
+    max-width: 1200px;
     margin: 0 auto;
-    grid-auto-rows: minmax(250px, auto); /* Auto-sizing rows */
 }
 
 .photo-item {
     position: relative;
-    border-radius: 12px;
+    border-radius: var(--border-radius-lg);
     overflow: hidden;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all var(--transition-base);
     background: var(--bg-tertiary);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    height: auto; /* Let content determine height naturally */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    aspect-ratio: 4/3;
 }
 
 .photo-item:hover {
@@ -188,29 +941,94 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
 }
 
-/* Flexible photo containers - images determine their own natural size */
-.photo-item.landscape,
-.photo-item.portrait,
-.photo-item.square,
-.photo-item:not(.landscape):not(.portrait):not(.square) {
-    /* Remove all fixed aspect ratios and heights */
-    min-height: 200px; /* Only a small minimum for loading */
-    height: auto; /* Let image determine height */
-    width: 100%; /* Full width of grid column */
-}
-
 .photo-item img {
     width: 100%;
-    height: auto; /* Let image keep its natural proportions */
-    display: block;
-    border-radius: 12px;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    max-width: 100%;
-    object-fit: none; /* Don't force any fitting */
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform var(--transition-base);
+    border-radius: var(--border-radius-lg);
 }
 
 .photo-item:hover img {
-    transform: scale(1.02);
+    transform: scale(1.05);
+}
+
+/* Gallery container for individual gallery pages */
+.gallery-container {
+    min-height: 100vh;
+    padding-top: var(--navbar-height);
+    background: var(--bg-primary);
+}
+
+.gallery-hero {
+    padding: 4rem 0;
+    background: var(--bg-secondary);
+    text-align: center;
+}
+
+.gallery-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+}
+
+.gallery-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xl);
+    font-style: italic;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--accent-primary);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--spacing-xl);
+    transition: all var(--transition-base);
+}
+
+.back-btn:hover {
+    background: var(--accent-secondary);
+    transform: translateX(-2px);
+}
+
+/* Mobile responsive design */
+@media (max-width: 768px) {
+    .photo-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 2rem 1rem;
+    }
+    
+    .gallery-hero {
+        padding: 2rem 0;
+    }
+    
+    .gallery-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-grid {
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .gallery-hero {
+        padding: 1.5rem 0;
+    }
+    
+    .photo-item {
+        aspect-ratio: 1;
+    }
 }
 
 /* Mobile responsive - single column on small screens with increased heights */
@@ -228,7 +1046,7 @@
     
     .photo-item.portrait {
         aspect-ratio: 3/4;
-        min-height: 400px; /* Maintain portrait proportions on mobile */
+        min-height: 300px; /* Maintain portrait proportions on mobile */
     }
     
     .photo-item.square {
@@ -683,7 +1501,7 @@
   
   /* Ensure proper heights for desktop */
   .photo-item.landscape {
-    min-height: 400px;
+    min-height: 300px;
   }
   
   .photo-item.portrait {
@@ -691,7 +1509,7 @@
   }
   
   .photo-item.square {
-    min-height: 400px;
+    min-height: 300px;
   }
 }
 
@@ -955,4 +1773,161 @@
   .photo-item img {
     animation: none;
   }
+}
+
+/* Enhanced Album Card Styles */
+.album-card {
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius-xl);
+    overflow: hidden;
+    transition: all var(--transition-base);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.album-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+    border-color: var(--accent-primary);
+}
+
+.album-category {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+}
+
+.album-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    transition: all var(--transition-base);
+}
+
+.album-card:hover .album-icon {
+    background: var(--accent-primary);
+    transform: scale(1.1);
+}
+
+.album-image-stack {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.album-image-stack::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    z-index: 2;
+}
+
+.album-metadata {
+    padding: 1.5rem;
+}
+
+.album-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.album-description {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.album-stats {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.album-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.album-stat i {
+    color: var(--accent-primary);
+}
+
+.album-theme {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--border-radius-lg);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Quote Section */
+.quote-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    text-align: center;
+}
+
+.quote-content blockquote {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.quote-content cite {
+    font-size: 1rem;
+    color: var(--accent-primary);
+    font-weight: 500;
+}
+
+/* Dark theme adjustments */
+body.dark-theme .album-category {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+}
+
+body.dark-theme .album-icon {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-theme .album-card:hover .album-icon {
+    background: var(--accent-primary);
+}
+
+body.dark-theme .quote-section {
+    background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
 }

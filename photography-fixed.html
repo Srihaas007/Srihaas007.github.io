@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srihaas Gorantla | Photography Gallery</title>
+
+     <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SHJK4J22QE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-SHJK4J22QE');
+    </script>
+
+    <!-- CSS Stylesheets and Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/photography.css">
+    
+    <style>
+        /* Global Styles */
+        :root {
+            --bg-color: #1a1a2e;
+            --text-color: #e0e0e0;
+            --card-bg: #16213e;
+            --primary-color: #0f3460;
+            --secondary-color: #e94560;
+            --accent-color: #1b98e0;
+            --light-bg-color: #ffffff;
+            --light-text-color: #000000;
+            --transition-speed: 0.3s;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        /* Fix top spacing */
+        section {
+            padding: 120px 0 60px 0; /* Added more top padding to fix spacing */
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            font-family: 'Fira Code', monospace;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+        }
+
+        .album-row {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .album-row h3 {
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            font-size: 1.8em;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .album-row p.tagline {
+            color: var(--accent-color);
+            font-size: 1em;
+            margin-bottom: 20px;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        /* Swiper Styles - Increased size */
+        .swiper {
+            width: 100%;
+            padding-bottom: 20px;
+        }
+
+        .swiper-slide {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 500px; /* Increased from 400px to 500px */
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .swiper-slide:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .swiper-slide:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            font-size: 2em;
+            cursor: pointer;
+        }
+
+        /* Back to Top Button */
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--secondary-color);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 1000;
+        }
+
+        #backToTop:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Responsive Design Enhancements */
+        @media (max-width: 1024px) {
+            .swiper-slide {
+                height: 400px; /* Reduced for tablets */
+            }
+        }
+
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 2em;
+            }
+
+            .swiper-slide {
+                height: 350px; /* Reduced for mobile */
+            }
+
+            section {
+                padding: 100px 0 60px 0; /* Adjusted for mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 1.6em;
+            }
+
+            .swiper-slide {
+                height: 250px; /* Reduced for small mobile */
+            }
+
+            section {
+                padding: 80px 0 40px 0; /* Adjusted for small mobile */
+            }
+        }
+    </style>
+</head>
+      
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="brand-link">
+                    <span class="brand-text">Srihaas</span>
+                    <span class="brand-dot">.</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#experience" class="nav-link">Experience</a>
+                <a href="index.html#projects" class="nav-link">Projects</a>
+                <div class="nav-dropdown">
+                    <a href="photography.html" class="nav-link active">Photography <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="aesthetics.html" class="dropdown-link">Aesthetics</a>
+                        <a href="city-lights.html" class="dropdown-link">City Lights</a>
+                        <a href="water-bodies.html" class="dropdown-link">Water Bodies</a>
+                        <a href="animals.html" class="dropdown-link">Animals</a>
+                        <a href="moon-sun.html" class="dropdown-link">Moon & Sun</a>
+                        <a href="cars-toys.html" class="dropdown-link">Cars & Toys</a>
+                        <a href="india.html" class="dropdown-link">India</a>
+                    </div>
+                </div>
+                <a href="index.html#skills" class="nav-link">Skills</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-content">
+                <a href="index.html" class="mobile-nav-link">Home</a>
+                <a href="index.html#about" class="mobile-nav-link">About</a>
+                <a href="index.html#experience" class="mobile-nav-link">Experience</a>
+                <a href="index.html#projects" class="mobile-nav-link">Projects</a>
+                <a href="photography.html" class="mobile-nav-link active">Photography</a>
+                <a href="aesthetics.html" class="mobile-nav-link">• Aesthetics</a>
+                <a href="city-lights.html" class="mobile-nav-link">• City Lights</a>
+                <a href="water-bodies.html" class="mobile-nav-link">• Water Bodies</a>
+                <a href="animals.html" class="mobile-nav-link">• Animals</a>
+                <a href="moon-sun.html" class="mobile-nav-link">• Moon & Sun</a>
+                <a href="cars-toys.html" class="mobile-nav-link">• Cars & Toys</a>
+                <a href="india.html" class="mobile-nav-link">• India</a>
+                <a href="index.html#skills" class="mobile-nav-link">Skills</a>
+                <a href="index.html#contact" class="mobile-nav-link">Contact</a>
+            </div>
+        </div>
+        <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+    </nav>
+
+    <!-- Photo Albums Section -->
+    <section id="photo-gallery" data-aos="fade-up">
+        <div class="container">
+            <h2 class="animate__animated animate__fadeInDown" style="font-size: 2em;">Photography Gallery <span style="font-size: 0.6em;">by Srihaas</span></h2>
+
+            <!-- Aesthetics Album -->
+            <div class="album-row animate__animated animate__zoomIn" data-aos="fade-up">
+                <h3 class="floating">Aesthetics</h3>
+                <p class="tagline">"Capturing the beauty in simplicity."</p>
+                <div class="swiper mySwiper custom-slide-layout">
+                    <div class="swiper-wrapper">
+                        <!-- Slides with corrected URLs -->
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0392%20(2).JPG?updatedAt=1730044171232&tr=w-1200,h-800,c-at_max" alt="Aesthetic photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0192_Original.jpg?updatedAt=1730044171221&tr=w-1200,h-800,c-at_max" alt="Aesthetic photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0072_Original.jpg?updatedAt=1730044171260&tr=w-1200,h-800,c-at_max" alt="Aesthetic photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0103_Original.jpg?updatedAt=1730044171141&tr=w-1200,h-800,c-at_max" alt="Aesthetic photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0008_Original.jpg?updatedAt=1730044171202&tr=w-1200,h-800,c-at_max" alt="Aesthetic photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0016_Original.jpg?updatedAt=1730044171248&tr=w-1200,h-800,c-at_max" alt="Aesthetic photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0013_Original.jpg?updatedAt=1730044171246&tr=w-1200,h-800,c-at_max" alt="Aesthetic photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed_Original.jpg?updatedAt=1730044171229&tr=w-1200,h-800,c-at_max" alt="Aesthetic photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0007_Original.jpg?updatedAt=1730044171204&tr=w-1200,h-800,c-at_max" alt="Aesthetic photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0006_Original.jpg?updatedAt=1730044171291&tr=w-1200,h-800,c-at_max" alt="Aesthetic photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+
+           <!-- City Lights Album -->
+            <div class="album-row animate__animated animate__zoomIn" data-aos="fade-up">
+                <h3 class="floating">City Lights</h3>
+                <p class="tagline">"Illuminating the beauty of urban life."</p>
+                <div class="swiper mySwiper custom-slide-layout">
+                    <div class="swiper-wrapper">
+                        <!-- Slides with corrected URLs -->
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0317.JPG?updatedAt=1730042514108&tr=w-1200,h-800,c-at_max" alt="City lights photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0186.JPG?updatedAt=1730046479176&tr=w-1200,h-800,c-at_max" alt="City lights photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0286.JPG?updatedAt=1730042512313&tr=w-1200,h-800,c-at_max" alt="City lights photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0184.JPG?updatedAt=1730042511863&tr=w-1200,h-800,c-at_max" alt="City lights photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0306.JPG?updatedAt=1730046479183&tr=w-1200,h-800,c-at_max" alt="City lights photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0185.JPG?updatedAt=1730046479106&tr=w-1200,h-800,c-at_max" alt="City lights photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0266_Original.JPG?updatedAt=1730046479070&tr=w-1200,h-800,c-at_max" alt="City lights photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/Snapseed(5).heic?updatedAt=1730046479075&tr=w-1200,h-800,c-at_max" alt="City lights photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_9551.HEIC?updatedAt=1730046478935&tr=w-1200,h-800,c-at_max" alt="City lights photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/Snapseed%202.jpg?updatedAt=1730046479072&tr=w-1200,h-800,c-at_max" alt="City lights photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                    </div>
+                    <!-- Swiper Navigation Buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+
+            <!-- Water Bodies Album -->
+            <div class="album-row animate__animated animate__zoomIn" data-aos="fade-up">
+                <h3 class="floating">Water Bodies</h3>
+                <p class="tagline">"Serenity captured through flowing waters."</p>
+                <div class="swiper mySwiper custom-slide-layout">
+                    <div class="swiper-wrapper">
+                        <!-- Slides with corrected URLs -->
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/_DSC0349.JPG?updatedAt=1730042463687&tr=w-1200,h-800,c-at_max" alt="Water Bodies photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_2002.DNG?updatedAt=1730042462208&tr=w-1200,h-800,c-at_max" alt="Water Bodies photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_5860.JPG?updatedAt=1730042458777&tr=w-1200,h-800,c-at_max" alt="Water Bodies photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_9849-EFFECTS.jpg?updatedAt=1730042457821&tr=w-1200,h-800,c-at_max" alt="Water Bodies photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/Snapseed.heic?updatedAt=1730042457796&tr=w-1200,h-800,c-at_max" alt="Water Bodies photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_9067-ANIMATION.gif?updatedAt=1730042457548&tr=w-1200,h-800,c-at_max" alt="Water Bodies photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_5855.JPG?updatedAt=1730042456021&tr=w-1200,h-800,c-at_max" alt="Water Bodies photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_3057.DNG?updatedAt=1730042455457&tr=w-1200,h-800,c-at_max" alt="Water Bodies photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_5145.JPG?updatedAt=1730042455110&tr=w-1200,h-800,c-at_max" alt="Water Bodies photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_8191.HEIC?updatedAt=1730042454960&tr=w-1200,h-800,c-at_max" alt="Water Bodies photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                    </div>
+                    <!-- Swiper Navigation Buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+
+            <!-- Animals Album -->
+            <div class="album-row animate__animated animate__zoomIn" data-aos="fade-up">
+                <h3 class="floating">Animals</h3>
+                <p class="tagline">"A journey through the wonders of the animal kingdom."</p>
+                <div class="swiper mySwiper custom-slide-layout">
+                    <div class="swiper-wrapper">
+                        <!-- Slides with corrected URLs -->
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/_DSC0088.JPG?updatedAt=1730042532110&tr=w-1200,h-800,c-at_max" alt="Animals photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/_DSC0462.JPG?updatedAt=1730042523238&tr=w-1200,h-800,c-at_max" alt="Animals photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed.jpg?updatedAt=1730042522641&tr=w-1200,h-800,c-at_max" alt="Animals photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(9).jpg?updatedAt=1730042522056&tr=w-1200,h-800,c-at_max" alt="Animals photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(7).jpg?updatedAt=1730042521876&tr=w-1200,h-800,c-at_max" alt="Animals photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(5).jpg?updatedAt=1730042521771&tr=w-1200,h-800,c-at_max" alt="Animals photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(2).jpg?updatedAt=1730042521543&tr=w-1200,h-800,c-at_max" alt="Animals photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(6).jpg?updatedAt=1730042521308&tr=w-1200,h-800,c-at_max" alt="Animals photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(3).jpg?updatedAt=1730042520406&tr=w-1200,h-800,c-at_max" alt="Animals photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(17).jpg?updatedAt=1730042519569&tr=w-1200,h-800,c-at_max" alt="Animals photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                    </div>
+                    <!-- Swiper Navigation Buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+
+            <!-- Moon and Sun Album -->
+            <div class="album-row animate__animated animate__zoomIn" data-aos="fade-up">
+                <h3 class="floating">Moon & Sun</h3>
+                <p class="tagline">"A journey through the beauty of celestial bodies."</p>
+                <div class="swiper mySwiper custom-slide-layout">
+                    <div class="swiper-wrapper">
+                        <!-- Slides with corrected URLs -->
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0477.JPG?updatedAt=1730042469353&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_6057.JPG?updatedAt=1730042468437&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/_DSC0104%20(2).JPG?updatedAt=1730042466451&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_4937(1).JPG?updatedAt=1730042464716&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_9246.HEIC?updatedAt=1730042464267&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_9244.HEIC?updatedAt=1730042464217&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_8407.HEIC?updatedAt=1730042464017&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_6008.HEIC?updatedAt=1730042463366&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_4944.JPG?updatedAt=1730042462722&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_4937.JPG?updatedAt=1730042462583&tr=w-1200,h-800,c-at_max" alt="Moon and Sun photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                    </div>
+                    <!-- Swiper Navigation Buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+
+            <!-- Cars & Toys Album -->
+            <div class="album-row animate__animated animate__zoomIn" data-aos="fade-up">
+                <h3 class="floating">Cars & Toys</h3>
+                <p class="tagline">"Exploring the intricate designs and playful spirit of our cherished automobiles and toys."</p>
+                <div class="swiper mySwiper custom-slide-layout">
+                    <div class="swiper-wrapper">
+                        <!-- Slides with corrected URLs -->
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_6954.jpg?updatedAt=1730042514330&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_9210.HEIC?updatedAt=1730042509742&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_9860.JPG?updatedAt=1730042508858&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2780.HEIC?updatedAt=1730042507918&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2775.HEIC?updatedAt=1730042505758&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2767.HEIC?updatedAt=1730042504546&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2771.HEIC?updatedAt=1730042504420&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/FullSizeRender%20(2).jpg?updatedAt=1730042503697&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2764.HEIC?updatedAt=1730042501435&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2528.HEIC?updatedAt=1730042500199&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                    </div>
+                    <!-- Swiper Navigation Buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+
+            <!-- India Album -->
+            <div class="album-row animate__animated animate__zoomIn" data-aos="fade-up">
+                <h3 class="floating">India</h3>
+                <p class="tagline">"An odyssey through the vibrant tapestry of India's rich culture, landscapes, and heritage."</p>
+                <div class="swiper mySwiper custom-slide-layout">
+                    <div class="swiper-wrapper">
+                        <!-- Slides with corrected URLs -->
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/Snapseed.dng?updatedAt=1730042481695&tr=w-1200,h-800,c-at_max" alt="India photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_8191.DNG?updatedAt=1730042480522&tr=w-1200,h-800,c-at_max" alt="India photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_8114-EFFECTS.jpg?updatedAt=1730042480134&tr=w-1200,h-800,c-at_max" alt="India photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_8150.HEIC?updatedAt=1730042479900&tr=w-1200,h-800,c-at_max" alt="India photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/Snapseed(1).dng?updatedAt=1730042479629&tr=w-1200,h-800,c-at_max" alt="India photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7726.DNG?updatedAt=1730042478796&tr=w-1200,h-800,c-at_max" alt="India photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_8162.HEIC?updatedAt=1730042478548&tr=w-1200,h-800,c-at_max" alt="India photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7693.DNG?updatedAt=1730042477583&tr=w-1200,h-800,c-at_max" alt="India photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7681.DNG?updatedAt=1730042477296&tr=w-1200,h-800,c-at_max" alt="India photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7691.DNG?updatedAt=1730042477216&tr=w-1200,h-800,c-at_max" alt="India photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                    </div>
+                    <!-- Swiper Navigation Buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <img id="lightbox-img" src="" alt="">
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- JS and Animation Initialization -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Swiper Initialization
+            new Swiper('.mySwiper', {
+                slidesPerView: 4,
+                spaceBetween: 20,
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                preloadImages: false,
+                lazy: {
+                    loadPrevNext: true,
+                },
+                breakpoints: {
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 15,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 15,
+                    },
+                    480: {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                    }
+                }
+            });
+
+            // Scroll to Top Function
+            window.scrollToTop = function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            };
+
+            // Lightbox Functionality
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
+            const lightboxClose = document.querySelector('.lightbox-close');
+
+            lightboxTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    lightbox.style.display = 'flex';
+                    lightboxImg.src = trigger.src;
+                });
+            });
+
+            lightboxClose.addEventListener('click', () => {
+                lightbox.style.display = 'none';
+            });
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

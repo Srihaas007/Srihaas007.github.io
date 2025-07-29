@@ -4,7 +4,7 @@
     <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>India - Srihaas Gorantla | Photography Gallery</title>
+    <title>Cars & Toys - Srihaas Gorantla | Photography Gallery</title>
 
      <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SHJK4J22QE"></script>
@@ -52,7 +52,7 @@
 
         .container {
             width: 95%;
-            max-width: 1600px;
+            max-width: 1400px;
             margin: auto;
         }
 
@@ -85,7 +85,22 @@
             text-align: center;
         }
 
-        /* Enhanced Swiper Styles */
+        .album-row h3 {
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            font-size: 1.8em;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .album-row p.tagline {
+            color: var(--accent-color);
+            font-size: 1em;
+            margin-bottom: 20px;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        /* Swiper Styles - Enhanced size */
         .swiper {
             width: 100%;
             padding-bottom: 20px;
@@ -103,7 +118,7 @@
         }
 
         .swiper-slide img {
-            width: auto;
+            width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.3s ease-in-out;
@@ -180,41 +195,41 @@
             background-color: var(--accent-color);
         }
 
-        /* Light theme styles */
-        .light-theme {
-            --bg-color: var(--light-bg-color);
-            --text-color: var(--light-text-color);
-            --card-bg: #f8f9fa;
-        }
-
-        .light-theme .swiper-slide {
-            background: #ffffff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Mobile responsive styles */
-        @media (max-width: 768px) {
-            .container {
-                width: 98%;
-            }
-            
-            h2 {
-                font-size: 2em;
-            }
-
+        /* Responsive Design Enhancements */
+        @media (max-width: 1024px) {
             .swiper-slide {
                 height: 400px;
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 2em;
+            }
+
             .swiper-slide {
                 height: 350px;
             }
         }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 1.6em;
+            }
+
+            .swiper-slide {
+                height: 250px;
+            }
+
+            .swiper-slide img {
+                object-fit: cover;
+            }
+        }
     </style>
 </head>
+      
 <body>
+    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-brand">
@@ -230,14 +245,14 @@
                 <a href="index.html#experience" class="nav-link">Experience</a>
                 <a href="index.html#projects" class="nav-link">Projects</a>
                 <div class="nav-dropdown">
-                    <a href="photography.html" class="nav-link">Photography <i class="fas fa-chevron-down"></i></a>
+                    <a href="photography.html" class="nav-link active">Photography <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-menu">
                         <a href="aesthetics.html" class="dropdown-link">Aesthetics</a>
                         <a href="city-lights.html" class="dropdown-link">City Lights</a>
                         <a href="water-bodies.html" class="dropdown-link">Water Bodies</a>
-                        <a href="india.html" class="dropdown-link active">India</a>
+                        <a href="animals.html" class="dropdown-link">Animals</a>
                         <a href="moon-sun.html" class="dropdown-link">Moon & Sun</a>
-                        <a href="cars-toys.html" class="dropdown-link">Cars & Toys</a>
+                        <a href="cars-toys.html" class="dropdown-link active">Cars & Toys</a>
                         <a href="india.html" class="dropdown-link">India</a>
                     </div>
                 </div>
@@ -266,9 +281,9 @@
                 <a href="aesthetics.html" class="mobile-nav-link">• Aesthetics</a>
                 <a href="city-lights.html" class="mobile-nav-link">• City Lights</a>
                 <a href="water-bodies.html" class="mobile-nav-link">• Water Bodies</a>
-                <a href="india.html" class="mobile-nav-link active">• India</a>
+                <a href="animals.html" class="mobile-nav-link">• Animals</a>
                 <a href="moon-sun.html" class="mobile-nav-link">• Moon & Sun</a>
-                <a href="cars-toys.html" class="mobile-nav-link">• Cars & Toys</a>
+                <a href="cars-toys.html" class="mobile-nav-link active">• Cars & Toys</a>
                 <a href="india.html" class="mobile-nav-link">• India</a>
                 <a href="index.html#skills" class="mobile-nav-link">Skills</a>
                 <a href="index.html#contact" class="mobile-nav-link">Contact</a>
@@ -277,59 +292,61 @@
         <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
     </nav>
 
-    <!-- Page content -->
-    <section>
+    <!-- Photo Albums Section -->
+    <section id="photo-gallery" data-aos="fade-up">
         <div class="container">
-            <h2>India</h2>
-            <p style="text-align: center; color: var(--accent-color); font-style: italic; margin-bottom: 40px;">
-                "Colors, culture, and the soul of incredible India"
-            </p>
+            <h2 class="animate__animated animate__fadeInDown" style="font-size: 2em;">Cars & Toys <span style="font-size: 0.6em;">by Srihaas</span></h2>
 
-            <div class="album-row">
-                <div class="swiper">
+            <!-- Cars & Toys Album -->
+            <div class="album-row animate__animated animate__zoomIn" data-aos="fade-up">
+                <h3 class="floating">Cars & Toys</h3>
+                <p class="tagline">"Exploring the intricate designs and playful spirit of our cherished automobiles and toys."</p>
+                <div class="swiper mySwiper custom-slide-layout">
                     <div class="swiper-wrapper">
+                        <!-- All Cars & Toys Images -->
                         <div class="swiper-slide">
-                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/_DSC0473.JPG?updatedAt=1730042559827&tr=w-1200,h-800,c-at_max" alt="India Photo 1" onclick="openLightbox(this.src)">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_6954.jpg?updatedAt=1730042514330&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
                         </div>
                         <div class="swiper-slide">
-                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/_DSC0475.JPG?updatedAt=1730042559874&tr=w-1200,h-800,c-at_max" alt="India Photo 2" onclick="openLightbox(this.src)">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_9210.HEIC?updatedAt=1730042509742&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
                         </div>
                         <div class="swiper-slide">
-                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/_DSC0478.JPG?updatedAt=1730042559920&tr=w-1200,h-800,c-at_max" alt="India Photo 3" onclick="openLightbox(this.src)">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_9860.JPG?updatedAt=1730042508858&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
                         </div>
                         <div class="swiper-slide">
-                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/_DSC0480.JPG?updatedAt=1730042559966&tr=w-1200,h-800,c-at_max" alt="India Photo 4" onclick="openLightbox(this.src)">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2780.HEIC?updatedAt=1730042507918&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
                         </div>
                         <div class="swiper-slide">
-                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/_DSC0483.JPG?updatedAt=1730042560012&tr=w-1200,h-800,c-at_max" alt="India Photo 5" onclick="openLightbox(this.src)">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2775.HEIC?updatedAt=1730042505758&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
                         </div>
                         <div class="swiper-slide">
-                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/_DSC0485.JPG?updatedAt=1730042560058&tr=w-1200,h-800,c-at_max" alt="India Photo 6" onclick="openLightbox(this.src)">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2767.HEIC?updatedAt=1730042504546&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
                         </div>
                         <div class="swiper-slide">
-                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/_DSC0488.JPG?updatedAt=1730042560104&tr=w-1200,h-800,c-at_max" alt="India Photo 7" onclick="openLightbox(this.src)">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2771.HEIC?updatedAt=1730042504420&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
                         </div>
                         <div class="swiper-slide">
-                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/_DSC0490.JPG?updatedAt=1730042560149&tr=w-1200,h-800,c-at_max" alt="India Photo 8" onclick="openLightbox(this.src)">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/FullSizeRender%20(2).jpg?updatedAt=1730042503697&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
                         </div>
                         <div class="swiper-slide">
-                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/_DSC0493.JPG?updatedAt=1730042560195&tr=w-1200,h-800,c-at_max" alt="India Photo 9" onclick="openLightbox(this.src)">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2764.HEIC?updatedAt=1730042501435&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
                         </div>
                         <div class="swiper-slide">
-                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/_DSC0495.JPG?updatedAt=1730042560240&tr=w-1200,h-800,c-at_max" alt="India Photo 10" onclick="openLightbox(this.src)">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2528.HEIC?updatedAt=1730042500199&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
                         </div>
                         <div class="swiper-slide">
-                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/_DSC0498.JPG?updatedAt=1730042560285&tr=w-1200,h-800,c-at_max" alt="India Photo 11" onclick="openLightbox(this.src)">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2387.JPG?updatedAt=1730042499889&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
                         </div>
                         <div class="swiper-slide">
-                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/India/_DSC0500.JPG?updatedAt=1730042560330&tr=w-1200,h-800,c-at_max" alt="India Photo 12" onclick="openLightbox(this.src)">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_1367.HEIC?updatedAt=1730042496834&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_20170527_121019.jpg?updatedAt=1730042495445&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_0303.HEIC?updatedAt=1730042494372&tr=w-1200,h-800,c-at_max" alt="Cars and toys photograph" loading="lazy" class="lightbox-trigger">
                         </div>
                     </div>
-                    
-                    <!-- Add Pagination -->
-                    <div class="swiper-pagination"></div>
-                    
-                    <!-- Add Navigation buttons -->
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                 </div>
@@ -337,88 +354,87 @@
         </div>
     </section>
 
-    <!-- Lightbox -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-            <img id="lightbox-img" src="" alt="Full size image">
+     <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <img id="lightbox-img" src="" alt="">
         </div>
     </div>
 
     <!-- Back to Top Button -->
-    <button id="backToTop" onclick="scrollToTop()">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+    <button id="backToTop" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
 
-    <!-- JavaScript Libraries -->
+    <!-- JS and Animation Initialization -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/theme.js"></script>
-
+    <script type="module" src="js/main.js"></script>
     <script>
-        // Initialize Swiper
-        var swiper = new Swiper('.swiper', {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
+        document.addEventListener('DOMContentLoaded', function () {
+            // Swiper Initialization
+            new Swiper('.mySwiper', {
+                slidesPerView: 4,
+                spaceBetween: 20,
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
                 },
-                768: {
-                    slidesPerView: 2,
-                    spaceBetween: 30,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
                 },
-                1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 40,
+                preloadImages: false,
+                lazy: {
+                    loadPrevNext: true,
                 },
-                1200: {
-                    slidesPerView: 4,
-                    spaceBetween: 50,
+                breakpoints: {
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 15,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 15,
+                    },
+                    480: {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                    }
                 }
-            }
-        });
-
-        // Lightbox functionality
-        function openLightbox(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
-        }
-
-        // Back to top functionality
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
             });
-        }
 
-        // Show/hide back to top button
-        window.addEventListener('scroll', function() {
-            const backToTop = document.getElementById('backToTop');
-            if (window.pageYOffset > 300) {
-                backToTop.style.display = 'flex';
-            } else {
-                backToTop.style.display = 'none';
-            }
+            // Scroll to Top Function
+            window.scrollToTop = function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            };
+
+            // Lightbox Functionality
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
+            const lightboxClose = document.querySelector('.lightbox-close');
+
+            lightboxTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    lightbox.style.display = 'flex';
+                    lightboxImg.src = trigger.src;
+                });
+            });
+
+            lightboxClose.addEventListener('click', () => {
+                lightbox.style.display = 'none';
+            });
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
