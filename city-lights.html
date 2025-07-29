@@ -1,77 +1,253 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="City Lights Photography Collection by Srihaas Gorantla - Illuminating urban beauty">
-    <meta name="keywords" content="city lights, urban photography, portfolio, Srihaas Gorantla, cityscape, night photography">
-    <title>City Lights | Srihaas Gorantla Photography</title>
-    
-    <!-- Google Analytics -->
+    <title>City Lights - Srihaas Gorantla | Photography Gallery</title>
+
+     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SHJK4J22QE"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-SHJK4J22QE');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-SHJK4J22QE');
     </script>
+
+    <!-- CSS Stylesheets and Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Stylesheets -->
+    <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/photography.css">
     
     <style>
-        .gallery-hero {
-            padding: 120px 0 60px;
+        /* Global Styles */
+        :root {
+            --bg-color: #1a1a2e;
+            --text-color: #e0e0e0;
+            --card-bg: #16213e;
+            --primary-color: #0f3460;
+            --secondary-color: #e94560;
+            --accent-color: #1b98e0;
+            --light-bg-color: #ffffff;
+            --light-text-color: #000000;
+            --transition-speed: 0.3s;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1600px;
+            margin: auto;
+        }
+
+        section {
+            padding: 60px 0;
+            margin-top: 50px; /* Added 50px top margin */
+        }
+
+        h2 {
             text-align: center;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            color: var(--secondary-color);
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            font-family: 'Fira Code', monospace;
+            position: relative;
         }
-        
-        .gallery-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
         }
-        
-        .gallery-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 2rem;
+
+        .album-row {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .album-row h3 {
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            font-size: 1.8em;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .album-row p.tagline {
+            color: var(--accent-color);
+            font-size: 1em;
+            margin-bottom: 20px;
             font-style: italic;
+            opacity: 0.8;
         }
-        
-        .back-btn {
-            display: inline-flex;
+
+        /* Enhanced Swiper Styles */
+        .swiper {
+            width: 100%;
+            padding-bottom: 20px;
+        }
+
+        .swiper-slide {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            display: flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 12px 24px;
-            background: var(--accent-primary);
-            color: white;
-            text-decoration: none;
-            border-radius: var(--border-radius-lg);
-            font-weight: 500;
-            transition: all var(--transition-base);
-            margin-bottom: 2rem;
+            justify-content: center;
+            height: 500px; /* Increased height */
         }
-        
-        .back-btn:hover {
-            background: var(--accent-secondary);
-            transform: translateY(-2px);
+
+        .swiper-slide img {
+            width: auto;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .swiper-slide:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .swiper-slide:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            font-size: 2em;
+            cursor: pointer;
+        }
+
+        /* Back to Top Button */
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--secondary-color);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 1000;
+        }
+
+        #backToTop:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+
+        /* Light theme styles */
+        .light-theme {
+            --bg-color: var(--light-bg-color);
+            --text-color: var(--light-text-color);
+            --card-bg: #f8f9fa;
+        }
+
+        .light-theme .swiper-slide {
+            background: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .light-theme footer {
+            background-color: #f8f9fa;
+        }
+
+        /* Mobile responsive styles */
+        @media (max-width: 768px) {
+            .container {
+                width: 98%;
+            }
+            
+            h2 {
+                font-size: 2em;
+            }
+
+            .album-row h3 {
+                font-size: 1.5em;
+            }
+
+            .swiper-slide {
+                height: 400px; /* Adjusted for mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .swiper-slide {
+                height: 350px; /* Further adjusted for small screens */
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Enhanced Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-brand">
@@ -87,15 +263,15 @@
                 <a href="index.html#experience" class="nav-link">Experience</a>
                 <a href="index.html#projects" class="nav-link">Projects</a>
                 <div class="nav-dropdown">
-                    <a href="photography.html" class="nav-link active">Photography <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-content">
-                        <a href="aesthetics.html">Aesthetics</a>
-                        <a href="city-lights.html" class="active">City Lights</a>
-                        <a href="water-bodies.html">Water Bodies</a>
-                        <a href="animals.html">Animals</a>
-                        <a href="moon-sun.html">Moon & Sun</a>
-                        <a href="cars-toys.html">Cars & Toys</a>
-                        <a href="india.html">India</a>
+                    <a href="photography.html" class="nav-link">Photography <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="aesthetics.html" class="dropdown-link">Aesthetics</a>
+                        <a href="city-lights.html" class="dropdown-link active">City Lights</a>
+                        <a href="water-bodies.html" class="dropdown-link">Water Bodies</a>
+                        <a href="animals.html" class="dropdown-link">Animals</a>
+                        <a href="moon-sun.html" class="dropdown-link">Moon & Sun</a>
+                        <a href="cars-toys.html" class="dropdown-link">Cars & Toys</a>
+                        <a href="india.html" class="dropdown-link">India</a>
                     </div>
                 </div>
                 <a href="index.html#skills" class="nav-link">Skills</a>
@@ -103,13 +279,11 @@
             </div>
             
             <div class="nav-actions">
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
                     <i class="fas fa-sun"></i>
                 </button>
-                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
@@ -136,280 +310,219 @@
         <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
     </nav>
 
-    <!-- Profile Photo -->
-    <img src="srihaas.jpg" alt="Srihaas Gorantla" class="profile-photo">
-
-    <!-- Gallery Header -->
-    <section class="gallery-hero">
+    <!-- Page content -->
+    <section>
         <div class="container">
-            <a href="photography.html" class="back-btn">
-                <i class="fas fa-arrow-left"></i>
-                Back to Gallery
-            </a>
-            <h1 class="gallery-title">City Lights</h1>
-            <p class="gallery-subtitle">"Illuminating the beauty of urban life through vibrant cityscapes"</p>
-        </div>
-    </section>
+            <h2>City Lights</h2>
+            <p style="text-align: center; color: var(--accent-color); font-style: italic; margin-bottom: 40px;">
+                "Illuminating the beauty of urban life through vibrant cityscapes"
+            </p>
 
-    <!-- Photo Gallery - Exactly 2 Photos Per Row -->
-    <section class="gallery-content">
-        <div class="container">
-            <div class="photo-grid" id="photo-grid">
-                <!-- Photos will be loaded here dynamically in 2-column layout -->
+            <div class="album-row">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0317.JPG?updatedAt=1730042514108&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 1" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0186.JPG?updatedAt=1730046479176&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 2" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0286.JPG?updatedAt=1730042512313&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 3" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0261.JPG?updatedAt=1730042512138&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 4" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0236.JPG?updatedAt=1730042511897&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 5" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0251.JPG?updatedAt=1730042512053&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 6" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0320.JPG?updatedAt=1730042514159&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 7" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0303.JPG?updatedAt=1730042513880&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 8" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0306.JPG?updatedAt=1730042513935&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 9" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0322.JPG?updatedAt=1730042514209&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 10" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0315.JPG?updatedAt=1730042514067&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 11" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0328.JPG?updatedAt=1730042514321&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 12" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0334.JPG?updatedAt=1730042514412&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 13" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0338.JPG?updatedAt=1730042514472&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 14" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0341.JPG?updatedAt=1730042514527&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 15" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0344.JPG?updatedAt=1730042514579&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 16" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0348.JPG?updatedAt=1730042514625&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 17" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0353.JPG?updatedAt=1730042514694&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 18" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0356.JPG?updatedAt=1730042514748&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 19" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0373.JPG?updatedAt=1730042514901&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 20" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0380.JPG?updatedAt=1730042514972&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 21" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0377.JPG?updatedAt=1730042514937&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 22" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0382.JPG?updatedAt=1730042515005&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 23" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0386.JPG?updatedAt=1730042515055&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 24" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0389.JPG?updatedAt=1730042515101&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 25" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0392.JPG?updatedAt=1730042515145&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 26" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0395.JPG?updatedAt=1730042515203&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 27" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0399.JPG?updatedAt=1730042515262&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 28" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0402.JPG?updatedAt=1730042515307&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 29" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0406.JPG?updatedAt=1730042515357&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 30" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0408.JPG?updatedAt=1730042515414&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 31" onclick="openLightbox(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0410.JPG?updatedAt=1730042515459&tr=w-1200,h-800,c-at_max" alt="City Lights Photo 32" onclick="openLightbox(this.src)">
+                        </div>
+                    </div>
+                    
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                    
+                    <!-- Add Navigation buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
-            <button class="lightbox-close" id="lightbox-close">
-                <i class="fas fa-times"></i>
-            </button>
-            <button class="lightbox-nav lightbox-prev" id="lightbox-prev">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <img id="lightbox-img" src="" alt="">
-            <button class="lightbox-nav lightbox-next" id="lightbox-next">
-                <i class="fas fa-chevron-right"></i>
-            </button>
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-img" src="" alt="Full size image">
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Srihaas Gorantla | <a href="index.html#contact" style="color: var(--accent-color);">Privacy Policy</a></p>
+            <div style="margin-top: 20px;">
+                <a href="index.html#contact" style="background-color: var(--secondary-color); color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Contact Me</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script type="module" src="js/main.js"></script>
     <script src="js/theme.js"></script>
-    <script src="js/navigation.js"></script>
-    
+
     <script>
-        // Utility function to replace ImageKit transformation parameters
-        function updateImageUrl(url) {
-            return url;  // No need to replace - images already have correct transformations
-        }
-        
-        // City Lights photo data - Curated with proper orientations for EXACTLY 2-per-row layout
-        const cityLightsPhotos = [
-            // Row 1
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0317.JPG?updatedAt=1730042514108&tr=w-600,q-80",
-                title: "Urban Twilight",
-                description: "City awakening under the evening sky",
-                orientation: "landscape"
+        // Initialize Swiper
+        var swiper = new Swiper('.swiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
             },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0186.JPG?updatedAt=1730046479176&tr=w-600,q-80",
-                title: "Metropolitan Tower",
-                description: "Skyscraper reaching toward the stars", 
-                orientation: "portrait"
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
             },
-            
-            // Row 2
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0286.JPG?updatedAt=1730042512313&tr=w-600,q-80",
-                title: "Night Canvas",
-                description: "The city painted in light",
-                orientation: "landscape"
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
             },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0184.JPG?updatedAt=1730042511863&tr=w-600,q-80",
-                title: "Golden Hour Glow",
-                description: "Warm light embracing urban architecture",
-                orientation: "portrait"
-            },
-            
-            // Row 3
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0306.JPG?updatedAt=1730046479183&tr=w-600,q-80",
-                title: "City Symphony",
-                description: "Rhythmic patterns of urban life",
-                orientation: "landscape"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0185.JPG?updatedAt=1730046479106&tr=w-600,q-80",
-                title: "Vertical Dreams",
-                description: "Aspirations reaching skyward",
-                orientation: "portrait"
-            },
-            
-            // Row 4
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0266_Original.JPG?updatedAt=1730046479070&tr=w-600,q-80",
-                title: "Evening Embrace",
-                description: "Soft light wrapping the city",
-                orientation: "landscape"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_9551.HEIC?updatedAt=1730046478935&tr=w-600,q-80",
-                title: "Urban Elegance",
-                description: "Sophisticated city aesthetics",
-                orientation: "square"
-            },
-            
-            // Row 5
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_5985.JPG?updatedAt=1730046479076&tr=w-600,q-80",
-                title: "Night Reflections",
-                description: "City lights dancing on surfaces",
-                orientation: "portrait"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_5973.JPG?updatedAt=1730046479037&tr=w-600,q-80",
-                title: "Metropolitan Magic",
-                description: "The enchantment of urban nights",
-                orientation: "landscape"
-            },
-            
-            // Row 6
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_6033.JPG?updatedAt=1730046479060&tr=w-600,q-80",
-                title: "Glowing Horizon",
-                description: "City skyline illuminated",
-                orientation: "landscape"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_4371.HEIC?updatedAt=1730046478965&tr=w-600,q-80",
-                title: "Urban Artistry",
-                description: "Architecture as artistic expression",
-                orientation: "portrait"
-            },
-            
-            // Row 7
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_8624.JPG?updatedAt=1730046478904&tr=w-600,q-80",
-                title: "Metropolitan Dreams",
-                description: "City visions come to life",
-                orientation: "square"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_1773.HEIC?updatedAt=1730046479047&tr=w-600,q-80",
-                title: "Evening Serenity",
-                description: "Peaceful moments in the bustling city",
-                orientation: "landscape"
-            },
-            
-            // Row 8
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_2981.DNG?updatedAt=1730046478943&tr=w-600,q-80",
-                title: "Urban Brilliance",
-                description: "Brightness cutting through the darkness",
-                orientation: "portrait"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_4027.DNG?updatedAt=1730046479029&tr=w-600,q-80",
-                title: "City Pulse",
-                description: "The heartbeat of urban life",
-                orientation: "landscape"
-            },
-            
-            // Row 9
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_4186.jpg?updatedAt=1730046478958&tr=w-600,q-80",
-                title: "Golden Towers",
-                description: "Majestic buildings bathed in light",
-                orientation: "portrait"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_2708.HEIC?updatedAt=1730046478972&tr=w-600,q-80",
-                title: "Neon Nights",
-                description: "Vibrant colors painting the night",
-                orientation: "square"
-            },
-            
-            // Row 10
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_0745-EFFECTS.jpg?updatedAt=1730046478982&tr=w-600,q-80",
-                title: "Artistic Vision",
-                description: "Creative interpretation of city lights",
-                orientation: "landscape"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/IMG_0307.JPG?updatedAt=1730046479073&tr=w-600,q-80",
-                title: "Urban Harmony",
-                description: "Perfect balance of light and shadow",
-                orientation: "portrait"
-            }
-        ];
-
-        let currentImageIndex = 0;
-
-        // Load photos into grid - EXACTLY 2 photos per row
-        function loadPhotos() {
-            const grid = document.getElementById('photo-grid');
-            grid.innerHTML = '';
-            
-            cityLightsPhotos.forEach((photo, index) => {
-                const photoItem = document.createElement('div');
-                photoItem.className = `photo-item ${photo.orientation || 'landscape'}`;
-                photoItem.innerHTML = `
-                    <img src="${updateImageUrl(photo.src)}" alt="${photo.title}" loading="lazy" data-index="${index}">
-                    <div class="photo-overlay">
-                        <div class="photo-info">
-                            <h3>${photo.title}</h3>
-                            <p>${photo.description}</p>
-                        </div>
-                    </div>
-                `;
-                
-                photoItem.addEventListener('click', () => openLightbox(index));
-                grid.appendChild(photoItem);
-            });
-        }
-
-        // Lightbox functionality
-        function openLightbox(index) {
-            currentImageIndex = index;
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            
-            lightboxImg.src = cityLightsPhotos[index].src.replace(/tr=w-\d+,h-\d+,c-at_max/g, 'tr=w-1200,q-90');
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        function nextImage() {
-            currentImageIndex = (currentImageIndex + 1) % cityLightsPhotos.length;
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = cityLightsPhotos[currentImageIndex].src.replace(/tr=w-\d+,h-\d+,c-at_max/g, 'tr=w-1200,q-90');
-        }
-
-        function prevImage() {
-            currentImageIndex = (currentImageIndex - 1 + cityLightsPhotos.length) % cityLightsPhotos.length;
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = cityLightsPhotos[currentImageIndex].src.replace(/tr=w-\d+,h-\d+,c-at_max/g, 'tr=w-1200,q-90');
-        }
-
-        // Event listeners
-        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-        document.getElementById('lightbox-next').addEventListener('click', nextImage);
-        document.getElementById('lightbox-prev').addEventListener('click', prevImage);
-        document.getElementById('lightbox').addEventListener('click', (e) => {
-            if (e.target.id === 'lightbox') closeLightbox();
-        });
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (document.getElementById('lightbox').classList.contains('active')) {
-                switch(e.key) {
-                    case 'Escape':
-                        closeLightbox();
-                        break;
-                    case 'ArrowRight':
-                        nextImage();
-                        break;
-                    case 'ArrowLeft':
-                        prevImage();
-                        break;
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 40,
+                },
+                1200: {
+                    slidesPerView: 4,
+                    spaceBetween: 50,
                 }
             }
         });
 
-        // Initialize - This will create exactly 2 photos per row
-        document.addEventListener('DOMContentLoaded', loadPhotos);
+        // Lightbox functionality
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // Back to top functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide back to top button
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>

@@ -6,7 +6,7 @@ const projects = [
         id: 1,
         title: "Groundio - Sports Venue Booking",
         description: "Cross-platform mobile application for booking stadiums and sports grounds with real-time availability, secure payment processing via Stripe, and comprehensive venue management.",
-        image: "https://raw.githubusercontent.com/Srihaas007/Groundio/main/assets/merchant.png",
+        image: "GroundioLogo.jpg",
         technologies: ["React Native", "Firebase", "Stripe API", "Expo", "JavaScript"],
         category: "mobile",
         status: "featured",

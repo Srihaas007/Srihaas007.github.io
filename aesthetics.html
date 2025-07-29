@@ -1,227 +1,270 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Aesthetics Photography Collection by Srihaas Gorantla - Capturing beauty in simplicity">
-    <meta name="keywords" content="aesthetics, photography, portfolio, Srihaas Gorantla, beauty, simplicity">
-    <title>Aesthetics | Srihaas Gorantla Photography</title>
-    
-    <!-- Google         function nextImage() {
-            currentImageIndex = (currentImageIndex + 1) % aestheticsPhotos.length;
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = aestheticsPhotos[currentImageIndex].src.replace(/tr=w-\d+,h-\d+,c-at_max/g, 'tr=w-1200,q-90');
-        }
+    <title>Aesthetics - Srihaas Gorantla | Photography Gallery</title>
 
-        function prevImage() {
-            currentImageIndex = (currentImageIndex - 1 + aestheticsPhotos.length) % aestheticsPhotos.length;
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = aestheticsPhotos[currentImageIndex].src.replace(/tr=w-\d+,h-\d+,c-at_max/g, 'tr=w-1200,q-90');
-        }->
+     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SHJK4J22QE"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-SHJK4J22QE');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-SHJK4J22QE');
     </script>
+
+    <!-- CSS Stylesheets and Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
-    
-    <!-- Stylesheets -->
+    <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/photography.css">
     
     <style>
-        .gallery-hero {
-            padding: 120px 0 60px;
+        /* Global Styles */
+        :root {
+            --bg-color: #1a1a2e;
+            --text-color: #e0e0e0;
+            --card-bg: #16213e;
+            --primary-color: #0f3460;
+            --secondary-color: #e94560;
+            --accent-color: #1b98e0;
+            --light-bg-color: #ffffff;
+            --light-text-color: #000000;
+            --transition-speed: 0.3s;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        .container {
+            width: 95%;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        section {
+            padding: 60px 0;
+            margin-top: 50px; /* Added 50px top margin */
+        }
+
+        h2 {
             text-align: center;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-        }
-        
-        .gallery-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .gallery-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            font-style: italic;
-        }
-        
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 12px 24px;
-            background: var(--accent-primary);
-            color: white;
-            text-decoration: none;
-            border-radius: var(--border-radius-lg);
-            font-weight: 500;
-            transition: all var(--transition-base);
-            margin-bottom: 2rem;
-        }
-        
-        .back-btn:hover {
-            background: var(--accent-secondary);
-            transform: translateY(-2px);
-        }
-        
-        /* Use global photo-grid styles from photography.css */
-        
-        .photo-item {
+            color: var(--secondary-color);
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            font-family: 'Fira Code', monospace;
             position: relative;
-            border-radius: var(--border-radius-lg);
-            overflow: hidden;
-            cursor: pointer;
-            transition: all var(--transition-base);
-            background: var(--bg-tertiary);
-            /* Remove fixed aspect ratio to allow natural image proportions */
         }
-        
-        .photo-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
         }
-        
-        .photo-item img {
+
+        .album-row {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .album-row h3 {
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            font-size: 1.8em;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .album-row p.tagline {
+            color: var(--accent-color);
+            font-size: 1em;
+            margin-bottom: 20px;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        /* Swiper Styles */
+        .swiper {
             width: 100%;
-            height: auto;
-            min-height: 400px;
-            max-height: 1000px;
-            object-fit: contain;
-            object-position: center;
-            transition: transform var(--transition-base);
-            display: block;
-            background: var(--bg-secondary);
+            padding-bottom: 20px;
         }
-        
-        .photo-item:hover img {
+
+        .swiper-slide {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 400px;
+        }
+
+        .swiper-slide img {
+            width: auto;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .swiper-slide:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .swiper-slide:hover img {
             transform: scale(1.05);
         }
-        
-        .photo-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 50%);
-            opacity: 0;
-            transition: opacity var(--transition-base);
-            display: flex;
-            align-items: flex-end;
-            padding: 1.5rem;
-        }
-        
-        .photo-item:hover .photo-overlay {
-            opacity: 1;
-        }
-        
-        .photo-info h3 {
-            color: white;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .photo-info p {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
-        }
-        
-        /* Lightbox */
+
+        /* Lightbox Styles */
         .lightbox {
             display: none;
             position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-        
-        .lightbox.active {
-            display: flex;
-        }
-        
-        .lightbox-content {
-            position: relative;
-            max-width: 90vw;
-            max-height: 90vh;
-        }
-        
-        .lightbox img {
+            z-index: 1000;
+            left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            border-radius: var(--border-radius-md);
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
         }
-        
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
         .lightbox-close {
             position: absolute;
-            top: -40px;
-            right: 0;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            font-size: 2em;
             cursor: pointer;
-            padding: 0.5rem;
         }
-        
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
+
+        /* Back to Top Button */
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--secondary-color);
+            color: #fff;
             border: none;
-            color: white;
-            font-size: 2rem;
-            padding: 1rem;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            border-radius: var(--border-radius-md);
-            backdrop-filter: blur(10px);
-            transition: all var(--transition-base);
+            transition: background-color 0.3s;
+            z-index: 1000;
         }
-        
-        .lightbox-nav:hover {
-            background: rgba(255, 255, 255, 0.2);
+
+        #backToTop:hover {
+            background-color: var(--accent-color);
         }
-        
-        .lightbox-prev {
-            left: -60px;
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
         }
-        
-        .lightbox-next {
-            right: -60px;
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s;
         }
-        
-        @media (max-width: 768px) {
-            .gallery-title {
-                font-size: 2.5rem;
+
+        footer a:hover {
+            color: var(--secondary-color);
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-top: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .contact-btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Responsive Design Enhancements */
+        @media (max-width: 1024px) {
+            .swiper-slide {
+                height: 300px;
             }
-            
-            /* Mobile responsive handled by global photography.css */
-            
-            .lightbox-nav {
-                display: none;
+        }
+
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 2em;
+            }
+
+            .swiper-slide {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 1.6em;
+            }
+
+            .swiper-slide {
+                height: 200px;
+            }
+
+            .swiper-slide img {
+                object-fit: cover;
             }
         }
     </style>
 </head>
+      
 <body>
-    <!-- Enhanced Navigation -->
+    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-brand">
@@ -234,6 +277,7 @@
             <div class="nav-menu" id="nav-menu">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#experience" class="nav-link">Experience</a>
                 <a href="index.html#projects" class="nav-link">Projects</a>
                 <div class="nav-dropdown">
                     <a href="photography.html" class="nav-link active">Photography <i class="fas fa-chevron-down"></i></a>
@@ -247,294 +291,264 @@
                         <a href="india.html" class="dropdown-link">India</a>
                     </div>
                 </div>
+                <a href="index.html#skills" class="nav-link">Skills</a>
                 <a href="index.html#contact" class="nav-link">Contact</a>
             </div>
             
             <div class="nav-actions">
-                <button class="theme-toggle" id="theme-toggle">
-                    <i class="fas fa-moon"></i>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-sun"></i>
                 </button>
-                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle mobile menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-content">
+                <a href="index.html" class="mobile-nav-link">Home</a>
+                <a href="index.html#about" class="mobile-nav-link">About</a>
+                <a href="index.html#experience" class="mobile-nav-link">Experience</a>
+                <a href="index.html#projects" class="mobile-nav-link">Projects</a>
+                <a href="photography.html" class="mobile-nav-link">Photography</a>
+                <a href="aesthetics.html" class="mobile-nav-link active">• Aesthetics</a>
+                <a href="city-lights.html" class="mobile-nav-link">• City Lights</a>
+                <a href="water-bodies.html" class="mobile-nav-link">• Water Bodies</a>
+                <a href="animals.html" class="mobile-nav-link">• Animals</a>
+                <a href="moon-sun.html" class="mobile-nav-link">• Moon & Sun</a>
+                <a href="cars-toys.html" class="mobile-nav-link">• Cars & Toys</a>
+                <a href="india.html" class="mobile-nav-link">• India</a>
+                <a href="index.html#skills" class="mobile-nav-link">Skills</a>
+                <a href="index.html#contact" class="mobile-nav-link">Contact</a>
+            </div>
+        </div>
+        <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobile-menu">
-        <div class="mobile-menu-content">
-            <a href="index.html" class="mobile-nav-link">Home</a>
-            <a href="index.html#about" class="mobile-nav-link">About</a>
-            <a href="index.html#projects" class="mobile-nav-link">Projects</a>
-            <a href="photography.html" class="mobile-nav-link">Photography</a>
-            <a href="aesthetics.html" class="mobile-nav-link active">• Aesthetics</a>
-            <a href="city-lights.html" class="mobile-nav-link">• City Lights</a>
-            <a href="water-bodies.html" class="mobile-nav-link">• Water Bodies</a>
-            <a href="animals.html" class="mobile-nav-link">• Animals</a>
-            <a href="moon-sun.html" class="mobile-nav-link">• Moon & Sun</a>
-            <a href="cars-toys.html" class="mobile-nav-link">• Cars & Toys</a>
-            <a href="india.html" class="mobile-nav-link">• India</a>
-            <a href="index.html#contact" class="mobile-nav-link">Contact</a>
-        </div>
-    </div>
-    
-    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
-
-    <!-- Gallery Hero Section -->
-    <section class="gallery-hero">
+    <!-- Photo Albums Section -->
+    <section id="photo-gallery" data-aos="fade-up">
         <div class="container">
-            <a href="photography.html" class="back-btn">
-                <i class="fas fa-arrow-left"></i>
-                Back to Gallery
-            </a>
-            <h1 class="gallery-title">Aesthetics</h1>
-            <p class="gallery-subtitle">"Capturing the beauty in simplicity"</p>
-        </div>
-    </section>
+            <h2 class="animate__animated animate__fadeInDown" style="font-size: 2em;">Aesthetics <span style="font-size: 0.6em;">by Srihaas</span></h2>
 
-    <!-- Photo Gallery -->
-    <section class="gallery-content">
-        <div class="container">
-            <div class="photo-grid" id="photo-grid">
-                <!-- Photos will be loaded here dynamically -->
+            <!-- Aesthetics Album -->
+            <div class="album-row animate__animated animate__zoomIn" data-aos="fade-up">
+                <h3 class="floating">Aesthetics</h3>
+                <p class="tagline">"Capturing the beauty in simplicity."</p>
+                <div class="swiper mySwiper custom-slide-layout">
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0392%20(2).JPG?updatedAt=1730044171232" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0192_Original.jpg?updatedAt=1730044171221" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0072_Original.jpg?updatedAt=1730044171260" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0103_Original.jpg?updatedAt=1730044171141" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0008_Original.jpg?updatedAt=1730044171202" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0016_Original.jpg?updatedAt=1730044171248" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0013_Original.jpg?updatedAt=1730044171246" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed_Original.jpg?updatedAt=1730044171229" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0007_Original.jpg?updatedAt=1730044171204" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0006_Original.jpg?updatedAt=1730044171291" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed%20(2).jpg?updatedAt=1730044171436" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed%204.jpg?updatedAt=1730044171374" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_6670.jpg?updatedAt=1730044171245" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_6499.JPG?updatedAt=1730044171290" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_6864.JPG?updatedAt=1730044171219" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_9552.HEIC?updatedAt=1730044171428" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_9507.DNG?updatedAt=1730044171280" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_5837.JPG?updatedAt=1730044171238" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_5722.HEIC?updatedAt=1730044171227" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_3901.DNG?updatedAt=1730044171266" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_4587.DNG?updatedAt=1730044171337" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_4594.DNG?updatedAt=1730044171206" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_4047.DNG?updatedAt=1730044171289" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_4249.HEIC?updatedAt=1730044171420" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_3827.jpg?updatedAt=1730044171430" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_3902_Original.jpg?updatedAt=1730044171287" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_3734.DNG?updatedAt=1730044171268" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_3119.DNG?updatedAt=1730044171332" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_2805.DNG?updatedAt=1730044171230" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_2817.HEIC?updatedAt=1730044171336" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_2853.DNG?updatedAt=1730044171372" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_2026_Original.jpg?updatedAt=1730044171447" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_0144.HEIC?updatedAt=1730044171334" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_0025.HEIC?updatedAt=1730044171433" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_2804.HEIC?updatedAt=1730044171429" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_0840.DNG?updatedAt=1730044171335" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_1737.HEIC?updatedAt=1730044171431" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_1746.heic?updatedAt=1730044171375" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/20210929_093612_Original.jpg?updatedAt=1730044171434" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/20220623_210736.jpg?updatedAt=1730044171426" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/7d02be1a-f5a5-4bd6-a8ec-a7a466b640af.jpg?updatedAt=1730044171435" alt="Aesthetic photograph"  loading="lazy" class="lightbox-trigger" >
+                        </div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
+     <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
         <div class="lightbox-content">
-            <button class="lightbox-close" id="lightbox-close">
-                <i class="fas fa-times"></i>
-            </button>
-            <button class="lightbox-nav lightbox-prev" id="lightbox-prev">
-                <i class="fas fa-chevron-left"></i>
-            </button>
+            <span class="lightbox-close">&times;</span>
             <img id="lightbox-img" src="" alt="">
-            <button class="lightbox-nav lightbox-next" id="lightbox-next">
-                <i class="fas fa-chevron-right"></i>
-            </button>
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- JS and Animation Initialization -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <script src="js/theme.js"></script>
-    <script src="js/navigation.js"></script>
-    
+    <script type="module" src="js/main.js"></script>
     <script>
-        // Utility function to replace ImageKit transformation parameters
-        function updateImageUrl(url) {
-            return url;  // No need to replace - images already have correct transformations
-        }
-        
-        // Aesthetics photo data - Curated with proper orientations for 2-per-row layout
-        const aestheticsPhotos = [
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0392%20(2).JPG?updatedAt=1730044171232&tr=w-600,q-80",
-                title: "Stonehenge Majesty",
-                description: "Ancient stones against the endless sky",
-                orientation: "landscape"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0192_Original.jpg?updatedAt=1730044171221&tr=w-600,q-80",
-                title: "Urban Spire",
-                description: "Modern architecture reaching skyward", 
-                orientation: "portrait"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0072_Original.jpg?updatedAt=1730044171260&tr=w-600,q-80",
-                title: "Winter's Embrace",
-                description: "Snow-laden branches in peaceful silence",
-                orientation: "landscape"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0103_Original.jpg?updatedAt=1730044171141&tr=w-600,q-80",
-                title: "Golden Lamp",
-                description: "Ornate streetlight against cloudy skies",
-                orientation: "portrait"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0008_Original.jpg?updatedAt=1730044171202&tr=w-600,q-80",
-                title: "Construction Dreams",
-                description: "Building the future, one steel beam at a time",
-                orientation: "landscape"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0016_Original.jpg?updatedAt=1730044171248&tr=w-600,q-80",
-                title: "Westminster Tower",
-                description: "Iconic clock tower piercing the London sky",
-                orientation: "portrait"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0013_Original.jpg?updatedAt=1730044171246&tr=w-600,q-80",
-                title: "Ethereal Mist",
-                description: "Soft fog creating mystical atmosphere",
-                orientation: "landscape"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed_Original.jpg?updatedAt=1730044171229&tr=w-600,q-80",
-                title: "Wooden Harmony",
-                description: "Natural textures in perfect balance",
-                orientation: "square"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0007_Original.jpg?updatedAt=1730044171204&tr=w-600,q-80",
-                title: "Soft Focus",
-                description: "Dreamy visual narrative",
-                orientation: "portrait"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0006_Original.jpg?updatedAt=1730044171291&tr=w-600,q-80",
-                title: "Quiet Moments",
-                description: "Stillness in motion",
-                orientation: "landscape"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_6670.jpg?updatedAt=1730044171245&tr=w-600,q-80",
-                title: "Natural Wonder",
-                description: "Beauty in the ordinary",
-                orientation: "landscape"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_6499.JPG?updatedAt=1730044171290&tr=w-600,q-80",
-                title: "Creative Perspective",
-                description: "Unique viewpoint captured",
-                orientation: "portrait"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_6864.JPG?updatedAt=1730044171219&tr=w-600,q-80",
-                title: "Elegant Simplicity",
-                description: "Less is more philosophy",
-                orientation: "landscape"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_5837.JPG?updatedAt=1730044171238&tr=w-600,q-80",
-                title: "Peaceful Moments",
-                description: "Tranquility captured",
-                orientation: "portrait"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_5722.HEIC?updatedAt=1730044171227&tr=w-600,q-80",
-                title: "Gentle Beauty",
-                description: "Soft aesthetic appeal",
-                orientation: "square"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_3901.DNG?updatedAt=1730044171266&tr=w-600,q-80",
-                title: "Pure Aesthetic",
-                description: "Beauty in its essence",
-                orientation: "landscape"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_4587.DNG?updatedAt=1730044171337&tr=w-600,q-80",
-                title: "Artistic Vision",
-                description: "Creative composition",
-                orientation: "portrait"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_3827.jpg?updatedAt=1730044171430&tr=w-600,q-80",
-                title: "Timeless Appeal",
-                description: "Classic beauty captured",
-                orientation: "landscape"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_3902_Original.jpg?updatedAt=1730044171287&tr=w-600,q-80",
-                title: "Natural Frame",
-                description: "Perfect composition",
-                orientation: "portrait"
-            },
-            {
-                src: "https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_2026_Original.jpg?updatedAt=1730044171447&tr=w-600,q-80",
-                title: "Balanced Harmony",
-                description: "Visual equilibrium",
-                orientation: "square"
-            }
-        ];
-
-        let currentImageIndex = 0;
-
-        // Load photos into grid
-        function loadPhotos() {
-            const grid = document.getElementById('photo-grid');
-            grid.innerHTML = '';
-            
-            aestheticsPhotos.forEach((photo, index) => {
-                const photoItem = document.createElement('div');
-                photoItem.className = `photo-item ${photo.orientation || 'landscape'}`;
-                photoItem.innerHTML = `
-                    <img src="${updateImageUrl(photo.src)}" alt="${photo.title}" loading="lazy" data-index="${index}">
-                    <div class="photo-overlay">
-                        <div class="photo-info">
-                            <h3>${photo.title}</h3>
-                            <p>${photo.description}</p>
-                        </div>
-                    </div>
-                `;
-                
-                photoItem.addEventListener('click', () => openLightbox(index));
-                grid.appendChild(photoItem);
-            });
-        }
-
-        // Lightbox functionality
-        function openLightbox(index) {
-            currentImageIndex = index;
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            
-            // Use high quality for lightbox
-            lightboxImg.src = aestheticsPhotos[index].src.replace(/tr=w-600,q-80/g, 'tr=w-1200,q-90');
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        function nextImage() {
-            currentImageIndex = (currentImageIndex + 1) % aestheticsPhotos.length;
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = aestheticsPhotos[currentImageIndex].src.replace(/tr=w-600,q-80/g, 'tr=w-1200,q-90');
-        }
-
-        function prevImage() {
-            currentImageIndex = (currentImageIndex - 1 + aestheticsPhotos.length) % aestheticsPhotos.length;
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = aestheticsPhotos[currentImageIndex].src.replace(/tr=w-600,q-80/g, 'tr=w-1200,q-90');
-        }
-
-        // Event listeners
-        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-        document.getElementById('lightbox-next').addEventListener('click', nextImage);
-        document.getElementById('lightbox-prev').addEventListener('click', prevImage);
-        document.getElementById('lightbox').addEventListener('click', (e) => {
-            if (e.target.id === 'lightbox') closeLightbox();
-        });
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (document.getElementById('lightbox').classList.contains('active')) {
-                switch(e.key) {
-                    case 'Escape':
-                        closeLightbox();
-                        break;
-                    case 'ArrowRight':
-                        nextImage();
-                        break;
-                    case 'ArrowLeft':
-                        prevImage();
-                        break;
+        document.addEventListener('DOMContentLoaded', function () {
+            // Swiper Initialization
+            new Swiper('.mySwiper', {
+                slidesPerView: 3,
+                spaceBetween: 15,
+                loop: true,
+                autoplay: {
+                    delay: 9000,
+                    disableOnInteraction: false,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                preloadImages: false,
+                lazy: {
+                    loadPrevNext: true,
+                },
+                breakpoints: {
+                    1024: {
+                        slidesPerView: 3,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                    },
+                    480: {
+                        slidesPerView: 1,
+                    }
                 }
-            }
-        });
+            });
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', loadPhotos);
+            // Scroll to Top Function
+            window.scrollToTop = function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            };
+
+            // Lightbox Functionality
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
+            const lightboxClose = document.querySelector('.lightbox-close');
+
+            lightboxTriggers.forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    lightbox.style.display = 'flex';
+                    lightboxImg.src = trigger.src;
+                });
+            });
+
+            lightboxClose.addEventListener('click', () => {
+                lightbox.style.display = 'none';
+            });
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
 </html>

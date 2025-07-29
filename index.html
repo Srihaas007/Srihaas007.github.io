@@ -151,23 +151,26 @@
     <main>
         <!-- Hero Section -->
         <section id="home" class="hero-section">
+            <div class="hero-background"></div>
+            <div class="hero-overlay"></div>
             <div class="hero-container">
                 <div class="hero-content fade-in-up">
                     <div class="hero-text">
-                        <h1 class="hero-title">
-                            Hi, I'm <span class="gradient-text">Srihaas</span>
-                        </h1>
-                        <h2 class="hero-subtitle">
-                            <span class="typewriter-text">Junior Software Engineer</span>
-                            <span class="cursor">|</span>
-                        </h2>
-                        <p class="hero-description">
-                            Passionate about creating innovative digital solutions with expertise in 
-                            full-stack development, mobile applications, and machine learning. 
-                            Currently building the future at <strong>Clearer.io</strong>.
-                        </p>
-                        <div class="hero-cta">
-                            <a href="#projects" class="btn btn-primary">
+                        <div class="hero-text-background">
+                            <h1 class="hero-title">
+                                Hi, I'm <span class="gradient-text">Srihaas</span>
+                            </h1>
+                            <h2 class="hero-subtitle">
+                                <span class="typewriter-text">Junior Software Engineer</span>
+                                <span class="cursor">|</span>
+                            </h2>
+                            <p class="hero-description">
+                                Passionate about creating innovative digital solutions with expertise in 
+                                full-stack development, mobile applications, and machine learning. 
+                                Currently building the future at <strong>Clearer.io</strong>.
+                            </p>
+                            <div class="hero-cta">
+                                <a href="#projects" class="btn btn-primary">
                                 <i class="fas fa-rocket"></i>
                                 View My Work
                             </a>
@@ -175,6 +178,7 @@
                                 <i class="fas fa-paper-plane"></i>
                                 Get In Touch
                             </a>
+                            </div>
                         </div>
                     </div>
                     <div class="hero-image">
@@ -325,6 +329,7 @@
                             </div>
                         </div>
                     </div>
+                    <div class="timeline-item fade-in-left">
                         <div class="timeline-date">Dec 2022 - Sep 2023</div>
                         <div class="timeline-content">
                             <div class="timeline-company">
@@ -416,6 +421,77 @@
                 <!-- Projects Grid -->
                 <div class="projects-grid" id="projects-grid">
                     <!-- Projects will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Photography Section -->
+        <section id="featured-photography" class="featured-photography-section">
+            <div class="container">
+                <h2 class="section-title fade-in-up">Featured Photography</h2>
+                <p class="section-description fade-in-up">
+                    A curated selection of my favorite captures across different themes and moods
+                </p>
+                
+                <div class="featured-photos-grid fade-in-up">
+                    <div class="featured-photo-item" data-category="aesthetics">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0392%20(2).JPG?updatedAt=1730044171232&tr=w-800,h-400,c-at_max" 
+                             alt="Stonehenge with Rainbow - Ancient Wonder" loading="lazy">
+                        <div class="photo-overlay">
+                            <h3>Ancient Wonder</h3>
+                            <p>Aesthetics Collection</p>
+                            <a href="aesthetics.html" class="photo-link">
+                                <i class="fas fa-eye"></i>
+                                View Collection
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="featured-photo-item" data-category="city-lights">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0286.JPG?updatedAt=1730042512313&tr=w-1200,h-800,c-at_max" 
+                             alt="London Eye at Night" loading="lazy">
+                        <div class="photo-overlay">
+                            <h3>Urban Nights</h3>
+                            <p>City Lights Collection</p>
+                            <a href="city-lights.html" class="photo-link">
+                                <i class="fas fa-eye"></i>
+                                View Collection
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="featured-photo-item" data-category="water-bodies">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_9067-ANIMATION.gif?updatedAt=1730042457548&tr=w-1200,h-800,c-at_max" 
+                             alt="Coastal Serenity" loading="lazy">
+                        <div class="photo-overlay">
+                            <h3>Liquid Poetry</h3>
+                            <p>Water Bodies Collection</p>
+                            <a href="water-bodies.html" class="photo-link">
+                                <i class="fas fa-eye"></i>
+                                View Collection
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="featured-photo-item" data-category="animals">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(9).jpg?updatedAt=1730042522056&tr=w-1200,h-800,c-at_max" 
+                             alt="Wildlife Beauty" loading="lazy">
+                        <div class="photo-overlay">
+                            <h3>Wildlife Beauty</h3>
+                            <p>Animals Collection</p>
+                            <a href="animals.html" class="photo-link">
+                                <i class="fas fa-eye"></i>
+                                View Collection
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="photography-cta fade-in-up">
+                    <a href="photography.html" class="btn btn-primary">
+                        <i class="fas fa-camera"></i>
+                        Explore All Photography
+                    </a>
                 </div>
             </div>
         </section>
@@ -559,6 +635,39 @@
                     <div class="tech-icon">
                         <i class="fab fa-git-alt"></i>
                         <span>Git</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificate Section -->
+        <section id="certificate" class="certificate-section">
+            <div class="container">
+                <h2 class="section-title fade-in-up">Academic Certification</h2>
+                <p class="section-description fade-in-up">
+                    Computer Science Degree from Coventry University
+                </p>
+                
+                <div class="certificate-container fade-in-up">
+                    <div class="certificate-wrapper">
+                        <embed src="Coventry University Certificate.pdf" 
+                               type="application/pdf" 
+                               width="100%" 
+                               height="800px"
+                               class="certificate-pdf" />
+                        <div class="certificate-fallback">
+                            <div class="fallback-content">
+                                <i class="fas fa-file-pdf"></i>
+                                <h3>Certificate Preview Not Available</h3>
+                                <p>Your browser doesn't support embedded PDFs</p>
+                                <a href="Coventry University Certificate.pdf" 
+                                   class="btn btn-primary" 
+                                   download="Srihaas_Gorantla_Coventry_Certificate.pdf">
+                                    <i class="fas fa-download"></i>
+                                    Download Certificate
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
