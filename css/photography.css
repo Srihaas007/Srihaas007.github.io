@@ -59,11 +59,15 @@
 /* Photography Hero Section */
 .photography-hero {
     position: relative;
-    height: 90vh;
-    min-height: 600px;
+    height: 100vh; /* Full viewport height */
+    min-height: 100vh; /* Ensure full page height */
     display: flex;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     overflow: hidden;
+    margin-top: -70px; /* Overlap the navbar */
+    padding-top: 70px; /* Account for navbar */
 }
 
 .hero-background {
@@ -71,9 +75,10 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
+    height: 100%; /* Full height to match hero */
+    background-image: url('https://ik.imagekit.io/srihaas/background.webp?updatedAt=1737318632969');
+    background-size: cover; /* Cover the entire area */
+    background-position: center 70%; /* Move image up to show more bottom part */
     background-repeat: no-repeat;
     filter: brightness(0.7);
     z-index: -2;
@@ -97,8 +102,25 @@
 .photography-hero .hero-content {
     position: relative;
     z-index: 1;
-    text-align: center;
-    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl);
+    color: #f5f5f5; /* Off-white color */
+}
+
+.hero-left {
+    flex: 1;
+    text-align: left;
+}
+
+.hero-right {
+    flex: 1;
+    text-align: right;
+    padding-left: var(--spacing-2xl);
 }
 
 .photography-hero .hero-title {
@@ -107,6 +129,7 @@
     line-height: 1.2;
     margin-bottom: var(--spacing-lg);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #f8f8f8; /* Light gray */
 }
 
 .photography-hero .hero-subtitle {
@@ -119,11 +142,41 @@
 
 .photography-hero .hero-description {
     font-size: clamp(1rem, 2.5vw, 1.25rem);
-    margin-bottom: var(--spacing-2xl);
-    max-width: 600px;
+    margin-bottom: 0;
+    max-width: 300px;
     margin-left: auto;
-    margin-right: auto;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    color: #e8e8e8; /* Light gray for description */
+    line-height: 1.6;
+}
+
+.photography-hero .hero-quote {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-style: italic;
+    font-weight: 300;
+    color: #d0d0d0; /* Light gray for quote */
+    margin-bottom: var(--spacing-lg);
+    max-width: 300px;
+    margin-left: auto;
+    position: relative;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    line-height: 1.6;
+}
+
+.photography-hero .hero-quote:before,
+.photography-hero .hero-quote:after {
+    content: '"';
+    font-size: 1.5em;
+    color: var(--accent-secondary);
+    opacity: 0.8;
+}
+
+.photography-hero .hero-quote:before {
+    margin-right: 0.2em;
+}
+
+.photography-hero .hero-quote:after {
+    margin-left: 0.2em;
 }
 
 .hero-stats {
@@ -161,9 +214,9 @@
 
 .albums-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 3rem;
-    max-width: 1400px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 0 2rem;
 }
@@ -355,21 +408,22 @@
 .explore-btn {
     display: inline-flex;
     align-items: center;
-    gap: var(--spacing-md);
-    padding: var(--spacing-lg) var(--spacing-2xl);
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-xl);
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
     color: white;
     text-decoration: none;
-    border-radius: var(--border-radius-full);
-    font-weight: 700;
-    font-size: var(--font-size-lg);
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    font-size: var(--font-size-base);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     transition: all var(--transition-base);
-    border: 3px solid transparent;
-    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+    border: 2px solid transparent;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
     position: relative;
     overflow: hidden;
+    margin-top: var(--spacing-lg);
 }
 
 .explore-btn:before {
@@ -379,7 +433,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
     transition: left 0.5s;
 }
 
@@ -388,19 +442,19 @@
 }
 
 .explore-btn:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5);
-    background: linear-gradient(135deg, #ee5a24 0%, #ff6b6b 100%);
-    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+    background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .explore-btn i {
-    font-size: 1.3em;
+    font-size: 1.1em;
     transition: all var(--transition-base);
 }
 
 .explore-btn:hover i {
-    transform: rotate(15deg) scale(1.2);
+    transform: translateX(4px);
 }
 
 /* Album Overlay Improvements */
@@ -590,8 +644,27 @@
     transform: scale(1.2) rotate(10deg);
 }
 
-/* Mobile and responsive fixes */
+/* Mobile responsive design */
 @media (max-width: 768px) {
+    .photography-hero .hero-content {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-xl);
+    }
+    
+    .hero-left,
+    .hero-right {
+        flex: none;
+        text-align: center;
+        padding-left: 0;
+    }
+    
+    .photography-hero .hero-description,
+    .photography-hero .hero-quote {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
     .nav-dropdown .dropdown-menu {
         position: static;
         opacity: 1;
@@ -618,7 +691,7 @@
     }
 
     .photography-hero {
-        min-height: 60vh;
+        min-height: 100vh;
     }
 
     .hero-title {
@@ -699,7 +772,7 @@
     }
 
     .photography-hero {
-        min-height: 50vh;
+        min-height: 100vh;
     }
 
     .hero-title {
@@ -745,8 +818,8 @@
     }
     
     .photography-hero {
-        height: 60vh;
-        min-height: 400px;
+        height: 100vh;
+        min-height: 300px;
         padding: var(--spacing-xl) 0;
     }
     
@@ -811,7 +884,7 @@
 
 @media (max-width: 480px) {
     .photography-hero {
-        height: 50vh;
+        height: 100vh;
         min-height: 300px;
     }
     
@@ -973,7 +1046,7 @@
     
     .photo-item.portrait {
         aspect-ratio: 3/4;
-        min-height: 400px; /* Maintain portrait proportions on mobile */
+        min-height: 300px; /* Maintain portrait proportions on mobile */
     }
     
     .photo-item.square {
@@ -1428,7 +1501,7 @@
   
   /* Ensure proper heights for desktop */
   .photo-item.landscape {
-    min-height: 400px;
+    min-height: 300px;
   }
   
   .photo-item.portrait {
@@ -1436,7 +1509,7 @@
   }
   
   .photo-item.square {
-    min-height: 400px;
+    min-height: 300px;
   }
 }
 
