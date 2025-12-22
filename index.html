@@ -1,49 +1,56 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Srihaas Gorantla - Junior Software Engineer at Clearer.io specializing in fintech solutions, web applications, mobile apps, and machine learning.">
-    <meta name="keywords" content="Software Engineer, FinTech Developer, Full-Stack Developer, Mobile App Developer, Machine Learning, React, Node.js, JavaScript">
+    <meta name="description"
+        content="Srihaas Gorantla - Junior Software Engineer at Clearer.io specializing in fintech solutions, web applications, mobile apps, and machine learning.">
+    <meta name="keywords"
+        content="Software Engineer, FinTech Developer, Full-Stack Developer, Mobile App Developer, Machine Learning, React, Node.js, JavaScript">
     <meta name="author" content="Srihaas Gorantla">
-    
+
     <title>Srihaas Gorantla | Junior Software Engineer at Clearer.io</title>
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SHJK4J22QE"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-SHJK4J22QE');
     </script>
-    
+
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Fira+Code:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
     <!-- Particles.js -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
+
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/main.css">
-    
+
     <!-- Firebase Styles -->
-    <link rel="stylesheet" href="css/firebase-styles.css">
-    
+
+
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
@@ -68,6 +75,7 @@
     }
     </script>
 </head>
+
 <body>
     <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen">
@@ -93,7 +101,7 @@
                     <span class="brand-dot">.</span>
                 </a>
             </div>
-            
+
             <div class="nav-menu" id="nav-menu">
                 <a href="#home" class="nav-link active">Home</a>
                 <a href="#about" class="nav-link">About</a>
@@ -102,19 +110,19 @@
                 <div class="nav-dropdown">
                     <a href="photography.html" class="nav-link">Photography <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-menu">
-                        <a href="aesthetics.html" class="dropdown-link">Aesthetics</a>
-                        <a href="city-lights.html" class="dropdown-link">City Lights</a>
-                        <a href="water-bodies.html" class="dropdown-link">Water Bodies</a>
-                        <a href="animals.html" class="dropdown-link">Animals</a>
-                        <a href="moon-sun.html" class="dropdown-link">Moon & Sun</a>
-                        <a href="cars-toys.html" class="dropdown-link">Cars & Toys</a>
-                        <a href="india.html" class="dropdown-link">India</a>
+                        <a href="photography.html#aesthetics" class="dropdown-link">Aesthetics</a>
+                        <a href="photography.html#city-lights" class="dropdown-link">City Lights</a>
+                        <a href="photography.html#water-bodies" class="dropdown-link">Water Bodies</a>
+                        <a href="photography.html#animals" class="dropdown-link">Animals</a>
+                        <a href="photography.html#moon-sun" class="dropdown-link">Moon & Sun</a>
+                        <a href="photography.html#cars-toys" class="dropdown-link">Cars & Toys</a>
+                        <a href="photography.html#india" class="dropdown-link">India</a>
                     </div>
                 </div>
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
-            
+
             <div class="nav-actions">
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
                     <i class="fas fa-sun"></i>
@@ -124,7 +132,7 @@
                 </button>
             </div>
         </div>
-        
+
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobile-menu">
             <div class="mobile-menu-content">
@@ -133,13 +141,13 @@
                 <a href="#experience" class="mobile-nav-link">Experience</a>
                 <a href="#projects" class="mobile-nav-link">Projects</a>
                 <a href="photography.html" class="mobile-nav-link">Photography</a>
-                <a href="aesthetics.html" class="mobile-nav-link">• Aesthetics</a>
-                <a href="city-lights.html" class="mobile-nav-link">• City Lights</a>
-                <a href="water-bodies.html" class="mobile-nav-link">• Water Bodies</a>
-                <a href="animals.html" class="mobile-nav-link">• Animals</a>
-                <a href="moon-sun.html" class="mobile-nav-link">• Moon & Sun</a>
-                <a href="cars-toys.html" class="mobile-nav-link">• Cars & Toys</a>
-                <a href="india.html" class="mobile-nav-link">• India</a>
+                <a href="photography.html#aesthetics" class="mobile-nav-link">• Aesthetics</a>
+                <a href="photography.html#city-lights" class="mobile-nav-link">• City Lights</a>
+                <a href="photography.html#water-bodies" class="mobile-nav-link">• Water Bodies</a>
+                <a href="photography.html#animals" class="mobile-nav-link">• Animals</a>
+                <a href="photography.html#moon-sun" class="mobile-nav-link">• Moon & Sun</a>
+                <a href="photography.html#cars-toys" class="mobile-nav-link">• Cars & Toys</a>
+                <a href="photography.html#india" class="mobile-nav-link">• India</a>
                 <a href="#skills" class="mobile-nav-link">Skills</a>
                 <a href="#contact" class="mobile-nav-link">Contact</a>
             </div>
@@ -165,19 +173,19 @@
                                 <span class="cursor">|</span>
                             </h2>
                             <p class="hero-description">
-                                Passionate about creating innovative digital solutions with expertise in 
-                                full-stack development, mobile applications, and machine learning. 
+                                Passionate about creating innovative digital solutions with expertise in
+                                full-stack development, mobile applications, and machine learning.
                                 Currently building the future at <strong>Clearer.io</strong>.
                             </p>
                             <div class="hero-cta">
                                 <a href="#projects" class="btn btn-primary">
-                                <i class="fas fa-rocket"></i>
-                                View My Work
-                            </a>
-                            <a href="#contact" class="btn btn-outline">
-                                <i class="fas fa-paper-plane"></i>
-                                Get In Touch
-                            </a>
+                                    <i class="fas fa-rocket"></i>
+                                    View My Work
+                                </a>
+                                <a href="#contact" class="btn btn-outline">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Get In Touch
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -188,7 +196,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Scroll Indicator -->
                 <div class="scroll-indicator">
                     <div class="scroll-line"></div>
@@ -204,12 +212,13 @@
                 <div class="about-content">
                     <div class="about-text fade-in-left">
                         <p class="about-intro">
-                            I'm a passionate Junior Software Engineer currently working at Clearer.io, with over 2 years of experience 
-                            creating innovative fintech solutions, web and mobile applications. With a Computer Science 
-                            degree from Coventry University and hands-on experience at progressive 
+                            I'm a passionate Junior Software Engineer currently working at Clearer.io, with over 2 years
+                            of experience
+                            creating innovative fintech solutions, web and mobile applications. With a Computer Science
+                            degree from Coventry University and hands-on experience at progressive
                             companies, I specialize in turning complex problems into elegant solutions.
                         </p>
-                        
+
                         <div class="about-highlights">
                             <div class="highlight-item">
                                 <div class="highlight-icon">
@@ -217,31 +226,34 @@
                                 </div>
                                 <div class="highlight-content">
                                     <h4>FinTech Solutions</h4>
-                                    <p>Developing cutting-edge financial technology solutions with focus on scalability and security.</p>
+                                    <p>Developing cutting-edge financial technology solutions with focus on scalability
+                                        and security.</p>
                                 </div>
                             </div>
-                            
+
                             <div class="highlight-item">
                                 <div class="highlight-icon">
                                     <i class="fas fa-code"></i>
                                 </div>
                                 <div class="highlight-content">
                                     <h4>Full-Stack Expertise</h4>
-                                    <p>Proficient in modern web technologies, from React and Node.js to mobile development with React Native.</p>
+                                    <p>Proficient in modern web technologies, from React and Node.js to mobile
+                                        development with React Native.</p>
                                 </div>
                             </div>
-                            
+
                             <div class="highlight-item">
                                 <div class="highlight-icon">
                                     <i class="fas fa-brain"></i>
                                 </div>
                                 <div class="highlight-content">
                                     <h4>AI & Machine Learning</h4>
-                                    <p>Experience in developing ML models, computer vision projects, and AI-powered applications.</p>
+                                    <p>Experience in developing ML models, computer vision projects, and AI-powered
+                                        applications.</p>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="about-cta">
                             <a href="Srihaas Gorantla.pdf" class="btn btn-outline" download>
                                 <i class="fas fa-download"></i>
@@ -249,7 +261,7 @@
                             </a>
                         </div>
                     </div>
-                    
+
                     <div class="about-stats fade-in-right">
                         <div class="stats-grid">
                             <div class="stat-item">
@@ -278,7 +290,7 @@
         <section id="experience" class="experience-section">
             <div class="container">
                 <h2 class="section-title fade-in-up">Professional Experience</h2>
-                
+
                 <div class="timeline">
                     <div class="timeline-item fade-in-left">
                         <div class="timeline-date">Dec 2024 - Present</div>
@@ -292,7 +304,8 @@
                                 <ul>
                                     <li>Developing cutting-edge fintech solutions using modern web technologies</li>
                                     <li>Building scalable applications for financial data processing and analysis</li>
-                                    <li>Collaborating with cross-functional teams to deliver high-quality software solutions</li>
+                                    <li>Collaborating with cross-functional teams to deliver high-quality software
+                                        solutions</li>
                                     <li>Implementing best practices in code quality, testing, and security</li>
                                 </ul>
                             </div>
@@ -304,7 +317,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="timeline-item fade-in-left">
                         <div class="timeline-date">Jun 2024 - Nov 2024</div>
                         <div class="timeline-content">
@@ -318,7 +331,8 @@
                                     <li>Led full-stack development for NHS and other clients using PHP and Laravel</li>
                                     <li>Developed REST APIs improving booking efficiency by 25%</li>
                                     <li>Implemented cybersecurity protocols ensuring NHS data protection compliance</li>
-                                    <li>Optimized system performance resulting in 30% increase and 40% boost in client satisfaction</li>
+                                    <li>Optimized system performance resulting in 30% increase and 40% boost in client
+                                        satisfaction</li>
                                 </ul>
                             </div>
                             <div class="timeline-tech">
@@ -353,7 +367,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="timeline-item fade-in-left">
                         <div class="timeline-date">2023 - 2024</div>
                         <div class="timeline-content">
@@ -387,13 +401,14 @@
             <div class="container">
                 <h2 class="section-title fade-in-up">Featured Projects</h2>
                 <p class="section-description fade-in-up">
-                    Here are some of my latest and most impactful projects that showcase my technical skills and problem-solving abilities.
+                    Here are some of my latest and most impactful projects that showcase my technical skills and
+                    problem-solving abilities.
                 </p>
-                
+
                 <div class="featured-projects-grid" id="featured-projects-grid">
                     <!-- Featured projects will be loaded dynamically -->
                 </div>
-                
+
                 <div class="featured-cta fade-in-up">
                     <a href="#projects" class="btn btn-primary">
                         <i class="fas fa-arrow-down"></i>
@@ -407,7 +422,7 @@
         <section id="projects" class="projects-section">
             <div class="container">
                 <h2 class="section-title fade-in-up">All Projects</h2>
-                
+
                 <!-- Project Filters -->
                 <div class="project-filters fade-in-up">
                     <button class="filter-btn active" data-filter="all">All Projects</button>
@@ -417,7 +432,7 @@
                     <button class="filter-btn" data-filter="desktop">Desktop Apps</button>
                     <button class="filter-btn" data-filter="security">Cybersecurity</button>
                 </div>
-                
+
                 <!-- Projects Grid -->
                 <div class="projects-grid" id="projects-grid">
                     <!-- Projects will be loaded dynamically -->
@@ -432,61 +447,61 @@
                 <p class="section-description fade-in-up">
                     A curated selection of my favorite captures across different themes and moods
                 </p>
-                
+
                 <div class="featured-photos-grid fade-in-up">
                     <div class="featured-photo-item" data-category="aesthetics">
-                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0392%20(2).JPG?updatedAt=1730044171232&tr=w-800,h-400,c-at_max" 
-                             alt="Stonehenge with Rainbow - Ancient Wonder" loading="lazy">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0392%20(2).JPG?updatedAt=1730044171232&tr=w-800,h-400,c-at_max"
+                            alt="Stonehenge with Rainbow - Ancient Wonder" loading="lazy">
                         <div class="photo-overlay">
                             <h3>Ancient Wonder</h3>
                             <p>Aesthetics Collection</p>
-                            <a href="aesthetics.html" class="photo-link">
+                            <a href="photography.html#aesthetics" class="photo-link">
                                 <i class="fas fa-eye"></i>
                                 View Collection
                             </a>
                         </div>
                     </div>
-                    
+
                     <div class="featured-photo-item" data-category="city-lights">
-                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0286.JPG?updatedAt=1730042512313&tr=w-1200,h-800,c-at_max" 
-                             alt="London Eye at Night" loading="lazy">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0286.JPG?updatedAt=1730042512313&tr=w-1200,h-800,c-at_max"
+                            alt="London Eye at Night" loading="lazy">
                         <div class="photo-overlay">
                             <h3>Urban Nights</h3>
                             <p>City Lights Collection</p>
-                            <a href="city-lights.html" class="photo-link">
+                            <a href="photography.html#city-lights" class="photo-link">
                                 <i class="fas fa-eye"></i>
                                 View Collection
                             </a>
                         </div>
                     </div>
-                    
+
                     <div class="featured-photo-item" data-category="water-bodies">
-                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_9067-ANIMATION.gif?updatedAt=1730042457548&tr=w-1200,h-800,c-at_max" 
-                             alt="Coastal Serenity" loading="lazy">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_9067-ANIMATION.gif?updatedAt=1730042457548&tr=w-1200,h-800,c-at_max"
+                            alt="Coastal Serenity" loading="lazy">
                         <div class="photo-overlay">
                             <h3>Liquid Poetry</h3>
                             <p>Water Bodies Collection</p>
-                            <a href="water-bodies.html" class="photo-link">
+                            <a href="photography.html#water-bodies" class="photo-link">
                                 <i class="fas fa-eye"></i>
                                 View Collection
                             </a>
                         </div>
                     </div>
-                    
+
                     <div class="featured-photo-item" data-category="animals">
-                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(9).jpg?updatedAt=1730042522056&tr=w-1200,h-800,c-at_max" 
-                             alt="Wildlife Beauty" loading="lazy">
+                        <img src="https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/Snapseed(9).jpg?updatedAt=1730042522056&tr=w-1200,h-800,c-at_max"
+                            alt="Wildlife Beauty" loading="lazy">
                         <div class="photo-overlay">
                             <h3>Wildlife Beauty</h3>
                             <p>Animals Collection</p>
-                            <a href="animals.html" class="photo-link">
+                            <a href="photography.html#animals" class="photo-link">
                                 <i class="fas fa-eye"></i>
                                 View Collection
                             </a>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="photography-cta fade-in-up">
                     <a href="photography.html" class="btn btn-primary">
                         <i class="fas fa-camera"></i>
@@ -500,7 +515,7 @@
         <section id="skills" class="skills-section">
             <div class="container">
                 <h2 class="section-title fade-in-up">Technical Skills</h2>
-                
+
                 <div class="skills-grid">
                     <div class="skill-category fade-in-left">
                         <h3>Frontend Development</h3>
@@ -534,7 +549,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="skill-category fade-in-up">
                         <h3>Backend Development</h3>
                         <div class="skills-list">
@@ -567,7 +582,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="skill-category fade-in-right">
                         <h3>Mobile & Other</h3>
                         <div class="skills-list">
@@ -601,7 +616,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Technology Icons -->
                 <div class="tech-icons fade-in-up">
                     <div class="tech-icon">
@@ -647,22 +662,18 @@
                 <p class="section-description fade-in-up">
                     Computer Science Degree from Coventry University
                 </p>
-                
+
                 <div class="certificate-container fade-in-up">
                     <div class="certificate-wrapper">
-                        <embed src="Coventry University Certificate.pdf" 
-                               type="application/pdf" 
-                               width="100%" 
-                               height="800px"
-                               class="certificate-pdf" />
+                        <embed src="Coventry University Certificate.pdf" type="application/pdf" width="100%"
+                            height="800px" class="certificate-pdf" />
                         <div class="certificate-fallback">
                             <div class="fallback-content">
                                 <i class="fas fa-file-pdf"></i>
                                 <h3>Certificate Preview Not Available</h3>
                                 <p>Your browser doesn't support embedded PDFs</p>
-                                <a href="Coventry University Certificate.pdf" 
-                                   class="btn btn-primary" 
-                                   download="Srihaas_Gorantla_Coventry_Certificate.pdf">
+                                <a href="Coventry University Certificate.pdf" class="btn btn-primary"
+                                    download="Srihaas_Gorantla_Coventry_Certificate.pdf">
                                     <i class="fas fa-download"></i>
                                     Download Certificate
                                 </a>
@@ -680,7 +691,7 @@
                 <p class="section-description fade-in-up">
                     Ready to start your next project? Let's work together to create something amazing.
                 </p>
-                
+
                 <div class="contact-content">
                     <div class="contact-info fade-in-left">
                         <div class="contact-item">
@@ -692,7 +703,7 @@
                                 <a href="mailto:srihaasgorantla@gmail.com">srihaasgorantla@gmail.com</a>
                             </div>
                         </div>
-                        
+
                         <div class="contact-item">
                             <div class="contact-icon">
                                 <i class="fas fa-phone"></i>
@@ -702,7 +713,7 @@
                                 <a href="tel:+447788760133">+44 7788760133</a>
                             </div>
                         </div>
-                        
+
                         <div class="contact-item">
                             <div class="contact-icon">
                                 <i class="fas fa-map-marker-alt"></i>
@@ -712,42 +723,48 @@
                                 <span>Leicester, United Kingdom</span>
                             </div>
                         </div>
-                        
+
                         <div class="social-links">
-                            <a href="https://linkedin.com/in/srihaas" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <a href="https://linkedin.com/in/srihaas" target="_blank" rel="noopener noreferrer"
+                                class="social-link">
                                 <i class="fab fa-linkedin"></i>
                             </a>
-                            <a href="https://github.com/Srihaas007" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <a href="https://github.com/Srihaas007" target="_blank" rel="noopener noreferrer"
+                                class="social-link">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="https://soundcloud.com/srihaas-gorantla/tracks" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <a href="https://soundcloud.com/srihaas-gorantla/tracks" target="_blank"
+                                rel="noopener noreferrer" class="social-link">
                                 <i class="fab fa-soundcloud"></i>
                             </a>
                         </div>
                     </div>
-                    
+
                     <div class="contact-form-container fade-in-right">
                         <form class="contact-form" id="contact-form">
                             <div class="form-group">
                                 <input type="text" id="name" name="name" placeholder="Your Name" required>
                                 <label for="name">Name</label>
                             </div>
-                            
+
                             <div class="form-group">
-                                <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                                <input type="email" id="email" name="email" placeholder="your.email@example.com"
+                                    required>
                                 <label for="email">Email</label>
                             </div>
-                            
+
                             <div class="form-group">
-                                <input type="text" id="subject" name="subject" placeholder="Project Discussion" required>
+                                <input type="text" id="subject" name="subject" placeholder="Project Discussion"
+                                    required>
                                 <label for="subject">Subject</label>
                             </div>
-                            
+
                             <div class="form-group">
-                                <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+                                <textarea id="message" name="message" placeholder="Tell me about your project..."
+                                    required></textarea>
                                 <label for="message">Message</label>
                             </div>
-                            
+
                             <button type="submit" class="btn btn-primary submit-btn">
                                 <span class="btn-text">Send Message</span>
                                 <i class="fas fa-paper-plane"></i>
@@ -792,7 +809,7 @@
             once: true,
             mirror: false
         });
-        
+
         // Hide loading screen
         window.addEventListener('load', () => {
             const loadingScreen = document.getElementById('loading-screen');
@@ -804,10 +821,11 @@
             }, 1000);
         });
     </script>
-    
+
     <!-- Module Scripts -->
     <script src="js/fixedProjects.js"></script>
     <script type="module" src="js/main.js"></script>
     <script type="module" src="js/firebase-services.js"></script>
 </body>
+
 </html>
