@@ -574,6 +574,7 @@ a {
     margin-bottom: 5rem;
     opacity: 0;
     animation: fadeInUp 0.8s ease-out forwards;
+    clear: both;
 }
 
 .section-header {
@@ -583,6 +584,8 @@ a {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
     border-bottom: 2px solid var(--border);
+    position: relative;
+    z-index: 1;
 }
 
 .section-title {
@@ -637,6 +640,8 @@ a {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 2rem;
+    position: relative;
+    z-index: 0;
 }
 
 @media (min-width: 640px) {
@@ -653,10 +658,25 @@ a {
 
 .preview-grid .photo-card {
     aspect-ratio: 4/5;
+    position: relative;
+}
+
+.preview-grid .photo-card-inner {
+    height: 100%;
+}
+
+.preview-grid .photo-card-front {
+    height: 100%;
+}
+
+.preview-grid .photo-card-front img {
+    height: 100%;
+    object-fit: cover;
 }
 
 .preview-grid .photo-card-back {
     aspect-ratio: 4/5;
+    height: 100%;
 }
 
 /* Helpers */
