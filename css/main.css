@@ -2036,7 +2036,6 @@ section {
   transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
-  justify-center;
   align-items: center;
   padding: var(--spacing-lg);
 }
