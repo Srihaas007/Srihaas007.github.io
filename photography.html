@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photography | Srihaas Gorantla</title>
 
+    <!-- Cache Control -->
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable">
+    <meta http-equiv="Expires" content="31536000">
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SHJK4J22QE"></script>
     <script>
@@ -25,7 +29,7 @@
 
 <body>
 
-    <!-- Header (Ported from Header.tsx) -->
+    <!-- Header -->
     <header class="header">
         <nav class="nav-container">
             <a href="index.html" class="logo">Srihaas.</a>
@@ -35,18 +39,13 @@
                 <a href="index.html#about" class="nav-link">About</a>
                 <a href="index.html#contact" class="nav-link">Contact</a>
             </div>
-
-            <!-- Mobile Menu Toggle (Simplified for HTML version) -->
-            <div class="mobile-toggle" style="display: none;">
-                <i class="fas fa-bars"></i>
-            </div>
         </nav>
     </header>
 
-    <!-- Hero Section (Ported from Hero.tsx) -->
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-bg">
-            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0392%20(2).JPG?updatedAt=1730044171232"
+            <img src="https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_2002.DNG?updatedAt=1730042462208"
                 alt="Hero Background">
         </div>
         <div class="hero-overlay"></div>
@@ -70,32 +69,40 @@
     <!-- Main Gallery Section -->
     <section id="work" class="gallery-section">
 
-        <!-- Filter Bar (Preserved functionality, adapted style) -->
-        <div class="filter-bar">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="aesthetics">Aesthetics</button>
-            <button class="filter-btn" data-filter="city-lights">City Lights</button>
-            <button class="filter-btn" data-filter="water-bodies">Water Bodies</button>
-            <button class="filter-btn" data-filter="animals">Animals</button>
-            <button class="filter-btn" data-filter="moon-sun">Moon & Sun</button>
-            <button class="filter-btn" data-filter="cars-toys">Cars & Toys</button>
-            <button class="filter-btn" data-filter="india">India</button>
+        <!-- Navigation/Filter Bar -->
+        <div class="filter-bar" id="filter-bar" style="display: none;">
+            <button class="filter-btn back-btn" onclick="showHome()">
+                <i class="fas fa-arrow-left"></i> Collections
+            </button>
+            <span class="filter-divider">|</span>
+            <!-- Current Category Title will be injected here via JS -->
+            <span id="current-category-title" class="current-category-label"></span>
         </div>
 
-        <!-- Masonry Grid (Ported Grid Structure) -->
-        <div class="masonry-grid" id="gallery-grid">
+        <!-- Collections Home View -->
+        <div id="collections-home" class="animate-fade-in">
+            <!-- Collection Preview Sections Injected by JS -->
+        </div>
+
+        <!-- Detailed View (Masonry Grid) -->
+        <div class="masonry-grid" id="gallery-grid" style="display: none;">
             <!-- Items injected by JS -->
         </div>
 
     </section>
 
-    <!-- Lightbox (Ported from Lightbox.tsx) -->
+    <!-- Lightbox -->
     <div id="lightbox" class="lightbox">
         <button class="lightbox-close" aria-label="Close lightbox">
             <i class="fas fa-times"></i>
         </button>
         <div class="lightbox-content">
-            <img id="lightbox-img" src="" alt="Full View">
+            <div class="lightbox-image-container">
+                <img id="lightbox-img" src="" alt="Full View">
+            </div>
+            <div class="lightbox-poetry-panel">
+                <p id="lightbox-poetry" class="lightbox-poetry-text"></p>
+            </div>
         </div>
     </div>
 

@@ -6,16 +6,16 @@
 
 const PHOTO_DATA = [
     // Aesthetics
-    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7678.DNG?updatedAt=1730042476439', category: 'aesthetics', alt: 'Aesthetics Collection' },
-    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0192_Original.jpg?updatedAt=1730044171221', category: 'aesthetics', alt: 'Aesthetics Collection' },
-    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0072_Original.jpg?updatedAt=1730044171260', category: 'aesthetics', alt: 'Aesthetics Collection' },
-    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0103_Original.jpg?updatedAt=1730044171141', category: 'aesthetics', alt: 'Aesthetics Collection' },
-    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0008_Original.jpg?updatedAt=1730044171202', category: 'aesthetics', alt: 'Aesthetics Collection' },
-    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0016_Original.jpg?updatedAt=1730044171248', category: 'aesthetics', alt: 'Aesthetics Collection' },
-    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0013_Original.jpg?updatedAt=1730044171246', category: 'aesthetics', alt: 'Aesthetics Collection' },
-    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed_Original.jpg?updatedAt=1730044171229', category: 'aesthetics', alt: 'Aesthetics Collection' },
-    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0007_Original.jpg?updatedAt=1730044171204', category: 'aesthetics', alt: 'Aesthetics Collection' },
-    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0006_Original.jpg?updatedAt=1730044171291', category: 'aesthetics', alt: 'Aesthetics Collection' },
+    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7678.DNG?updatedAt=1730042476439', category: 'aesthetics', alt: 'Aesthetics Collection', poetry: 'In silence, beauty speaks\nWhispers of light and shadow\nMoments frozen in time' },
+    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0192_Original.jpg?updatedAt=1730044171221', category: 'aesthetics', alt: 'Aesthetics Collection', poetry: 'Patterns emerge from chaos\nGeometry of the everyday\nArt in the mundane' },
+    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0072_Original.jpg?updatedAt=1730044171260', category: 'aesthetics', alt: 'Aesthetics Collection', poetry: 'Textures tell their stories\nRough and smooth in harmony\nNature\'s quiet poetry' },
+    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0103_Original.jpg?updatedAt=1730044171141', category: 'aesthetics', alt: 'Aesthetics Collection', poetry: 'Colors dance in stillness\nA symphony for the eyes\nBeauty needs no sound' },
+    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0008_Original.jpg?updatedAt=1730044171202', category: 'aesthetics', alt: 'Aesthetics Collection', poetry: 'Minimalism breathes\nEmpty spaces hold meaning\nLess becomes so much more' },
+    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0016_Original.jpg?updatedAt=1730044171248', category: 'aesthetics', alt: 'Aesthetics Collection', poetry: 'Reflections multiply\nReality bends and folds\nMirrors of the soul' },
+    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0013_Original.jpg?updatedAt=1730044171246', category: 'aesthetics', alt: 'Aesthetics Collection', poetry: 'Abstract forms emerge\nFrom concrete reality\nImagination blooms' },
+    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed_Original.jpg?updatedAt=1730044171229', category: 'aesthetics', alt: 'Aesthetics Collection', poetry: 'Details overlooked\nBecome monuments of grace\nWhen we pause to see' },
+    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0007_Original.jpg?updatedAt=1730044171204', category: 'aesthetics', alt: 'Aesthetics Collection', poetry: 'Symmetry and balance\nOrder in the universe\nPerfection in frames' },
+    { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0006_Original.jpg?updatedAt=1730044171291', category: 'aesthetics', alt: 'Aesthetics Collection', poetry: 'Contrast defines form\nDarkness gives birth to light\nDuality\'s dance' },
     { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed%20(2).jpg?updatedAt=1730044171436', category: 'aesthetics', alt: 'Aesthetics Collection' },
     { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/Snapseed%204.jpg?updatedAt=1730044171374', category: 'aesthetics', alt: 'Aesthetics Collection' },
     { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/IMG_6670.jpg?updatedAt=1730044171245', category: 'aesthetics', alt: 'Aesthetics Collection' },
@@ -223,52 +223,193 @@ const PHOTO_DATA = [
     { src: 'https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_0303.HEIC?updatedAt=1730042494372', category: 'cars-toys', alt: 'Cars & Toys Collection' }
 ];
 
+// Poetry themes by category
+const POETRY_THEMES = {
+    'aesthetics': [
+        'In silence, beauty speaks\nWhispers of light and shadow\nMoments frozen in time',
+        'Patterns emerge from chaos\nGeometry of the everyday\nArt in the mundane',
+        'Textures tell their stories\nRough and smooth in harmony\nNature\'s quiet poetry',
+        'Minimalism breathes\nEmpty spaces hold meaning\nLess becomes so much more'
+    ],
+    'city-lights': [
+        'Neon rivers flow\nThrough canyons of glass and steel\nThe city never sleeps',
+        'Electric dreams glow\nIn the heart of midnight streets\nUrban constellations',
+        'Concrete jungle hums\nWith stories of a million souls\nLights guide them home',
+        'Skyscrapers pierce clouds\nReaching for tomorrow\'s dawn\nAmbition in stone'
+    ],
+    'water-bodies': [
+        'Waves whisper secrets\nTo shores that listen patiently\nEternal dialogue',
+        'Liquid mirror holds\nReflections of endless sky\nBoundaries dissolve',
+        'Currents carry dreams\nAcross horizons unknown\nWater knows no walls',
+        'Tides ebb and flow\nBreathing rhythm of the earth\nOcean\'s heartbeat'
+    ],
+    'animals': [
+        'Wild eyes meet mine\nBridging worlds without words\nKinship in silence',
+        'Freedom in motion\nUntamed spirits roam the earth\nNature\'s pure essence',
+        'Feathers, fur, and scales\nEach creature tells its story\nLife in all its forms',
+        'Instinct guides the way\nThrough forests, skies, and waters\nSurvival\'s ancient dance'
+    ],
+    'moon-sun': [
+        'Celestial dance\nDay surrenders to the night\nEternal balance',
+        'Golden rays descend\nPainting clouds in fire\nDay\'s last masterpiece',
+        'Silver moon ascends\nGuardian of dreams and stars\nNight\'s gentle embrace',
+        'Sun and moon exchange\nSecrets at the horizon\nTwilight\'s brief kiss'
+    ],
+    'cars-toys': [
+        'Miniature worlds\nWhere imagination drives\nChildhood never ends',
+        'Metal and dreams merge\nEngineered for pure delight\nJoy in every curve',
+        'Tiny universes\nHeld in the palm of wonder\nPlay knows no limits',
+        'Wheels spin stories\nOf adventures yet to come\nToys fuel tomorrow'
+    ],
+    'india': [
+        'Colors burst alive\nChaos and calm intertwine\nIndia\'s heartbeat',
+        'Ancient stones whisper\nTales of empires risen, fallen\nHistory breathes here',
+        'Spices fill the air\nWith memories of the earth\nFlavors of the soul',
+        'Temples touch the sky\nWhere prayers and time converge\nFaith carved in stone'
+    ]
+};
+
+// Add poetry to photos that don't have it
+PHOTO_DATA.forEach(photo => {
+    if (!photo.poetry) {
+        const themes = POETRY_THEMES[photo.category] || POETRY_THEMES['aesthetics'];
+        photo.poetry = themes[Math.floor(Math.random() * themes.length)];
+    }
+});
+
+const COLLECTIONS = [
+    { id: 'city-lights', title: 'City Lights', subtitle: 'Urban Nights & Neon Dreams', cover: 'https://ik.imagekit.io/u9j5vtftw/photos/City%20Lights/_DSC0317.JPG?updatedAt=1730042514108', featured: true },
+    { id: 'water-bodies', title: 'Water Bodies', subtitle: 'Oceans, Lakes & Rivers', cover: 'https://ik.imagekit.io/u9j5vtftw/photos/Water%20Bodies/IMG_2002.DNG?updatedAt=1730042462208' },
+    { id: 'india', title: 'India', subtitle: 'Heritage & Chaos', cover: 'https://ik.imagekit.io/u9j5vtftw/photos/India/IMG_7678.DNG?updatedAt=1730042476439' },
+    { id: 'aesthetics', title: 'Aesthetics', subtitle: 'Abstract & Minimal', cover: 'https://ik.imagekit.io/u9j5vtftw/photos/Aesthetics/_DSC0392%20(2).JPG?updatedAt=1730044171232' },
+    { id: 'animals', title: 'Animals', subtitle: 'Wild & Free', cover: 'https://ik.imagekit.io/u9j5vtftw/photos/Animaliaanimals/_DSC0088.JPG?updatedAt=1730042532110' },
+    { id: 'moon-sun', title: 'Moon & Sun', subtitle: 'Celestial Moments', cover: 'https://ik.imagekit.io/u9j5vtftw/photos/moon%20and%20sun/IMG_6057.JPG?updatedAt=1730042468437' },
+    { id: 'cars-toys', title: 'Cars & Toys', subtitle: 'Miniature Worlds', cover: 'https://ik.imagekit.io/u9j5vtftw/photos/Cars%20and%20toys/IMG_2780.HEIC?updatedAt=1730042507918' }
+];
+
 document.addEventListener('DOMContentLoaded', () => {
+    // View Elements
+    const collectionsHome = document.getElementById('collections-home');
     const galleryGrid = document.getElementById('gallery-grid');
-    const filterButtons = document.querySelectorAll('.filter-btn');
+    const filterBar = document.getElementById('filter-bar');
+    const currentCategoryLabel = document.getElementById('current-category-title');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxClose = document.querySelector('.lightbox-close');
 
-    // Lazy load observer
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy-blur');
-                observer.unobserve(img);
-            }
-        });
-    }, {
-        rootMargin: '50px'
-    });
-
-    function renderGallery(category = 'all') {
+    // 1. Render Home (Preview Sections)
+    function renderHome() {
+        // Clear views
         galleryGrid.innerHTML = '';
-        const filteredPhotos = category === 'all'
+        galleryGrid.style.display = 'none';
+        filterBar.style.display = 'none';
+
+        // Show Home
+        collectionsHome.innerHTML = '';
+        collectionsHome.style.display = 'block';
+        collectionsHome.classList.remove('hidden');
+        collectionsHome.classList.add('animate-fade-in');
+
+        COLLECTIONS.forEach((col, index) => {
+            // Get first 3 photos for this category
+            const previewPhotos = PHOTO_DATA.filter(p => p.category === col.id).slice(0, 3);
+
+            if (previewPhotos.length === 0) return;
+
+            const section = document.createElement('div');
+            section.className = 'preview-section';
+            section.style.animationDelay = `${index * 0.1}s`;
+
+            // Section Header
+            const headerHTML = `
+                <div class="section-header">
+                    <div>
+                        <h3 class="section-title">${col.title}</h3>
+                        <p class="section-subtitle">${col.subtitle}</p>
+                    </div>
+                    <button class="btn-view-more" onclick="loadCategory('${col.id}')">
+                        View Collection <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            `;
+
+            // Preview Grid
+            let gridHTML = '<div class="preview-grid">';
+            previewPhotos.forEach((photo) => {
+                const displayCategory = photo.category.replace('-', ' & ').replace(/\b\w/g, c => c.toUpperCase());
+                const photoIndex = PHOTO_DATA.indexOf(photo);
+                gridHTML += `
+                    <div class="photo-card" onclick="openLightboxByIndex(${photoIndex})">
+                        <div class="photo-card-inner">
+                            <div class="photo-card-front">
+                                <img src="${photo.src}" alt="${photo.alt}" loading="lazy">
+                                <div class="card-overlay"></div>
+                                <div class="card-content">
+                                    <h4 class="card-title">${photo.alt}</h4>
+                                    <p class="card-meta">${displayCategory}</p>
+                                </div>
+                            </div>
+                            <div class="photo-card-back">
+                                <p class="poetry-text">${photo.poetry || 'Beauty captured in stillness'}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            gridHTML += '</div>';
+
+            section.innerHTML = headerHTML + gridHTML;
+            collectionsHome.appendChild(section);
+        });
+    }
+
+    // 2. Render Category (Detailed Grid)
+    function renderCategory(categoryId) {
+        // Toggle Views
+        collectionsHome.style.display = 'none';
+        galleryGrid.style.display = 'block';
+        filterBar.style.display = 'flex';
+
+        // Animation
+        galleryGrid.classList.add('animate-fade-in');
+
+        // Update Header
+        const categoryData = COLLECTIONS.find(c => c.id === categoryId);
+        currentCategoryLabel.textContent = categoryData ? categoryData.title : 'Gallery';
+
+        // Render Items
+        galleryGrid.innerHTML = '';
+        const filteredPhotos = categoryId === 'all'
             ? PHOTO_DATA
-            : PHOTO_DATA.filter(photo => photo.category === category);
+            : PHOTO_DATA.filter(photo => photo.category === categoryId);
 
         filteredPhotos.forEach((photo, index) => {
             const item = document.createElement('div');
             item.className = 'masonry-item animate-fade-in-up';
-            item.style.animationDelay = `${index * 0.05}s`; // Staggered animation
+            item.style.animationDelay = `${Math.min(index * 0.05, 1.0)}s`;
 
-            // Format category name for display
             const displayCategory = photo.category.replace('-', ' & ').replace(/\b\w/g, c => c.toUpperCase());
+            const photoIndex = PHOTO_DATA.indexOf(photo);
 
             item.innerHTML = `
-                <button class="photo-card" onclick="openLightbox('${photo.src}')">
-                    <img data-src="${photo.src}" alt="${photo.alt}" class="lazy-blur">
-                    <div class="card-overlay"></div>
-                    <div class="card-content">
-                        <h4 class="card-title">${photo.alt}</h4>
-                        <p class="card-meta">${displayCategory}</p>
+                <div class="photo-card" onclick="openLightboxByIndex(${photoIndex})">
+                    <div class="photo-card-inner">
+                        <div class="photo-card-front">
+                            <img data-src="${photo.src}" alt="${photo.alt}" class="lazy-blur">
+                            <div class="card-overlay"></div>
+                            <div class="card-content">
+                                <h4 class="card-title">${photo.alt}</h4>
+                                <p class="card-meta">${displayCategory}</p>
+                            </div>
+                        </div>
+                        <div class="photo-card-back">
+                            <p class="poetry-text">${photo.poetry || 'Beauty captured in stillness'}</p>
+                        </div>
                     </div>
-                </button>
+                </div>
             `;
 
+            // Observe for Lazy Load
             const img = item.querySelector('img');
             imageObserver.observe(img);
 
@@ -276,12 +417,75 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function openLightbox(src) {
+    // Lazy load observer
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy-blur');
+                    observer.unobserve(img);
+                }
+            }
+        });
+    }, {
+        rootMargin: '50px'
+    });
+
+    // --- Routing & Navigation ---
+
+    window.loadCategory = (id) => {
+        history.pushState(null, null, `#${id}`);
+        renderCategory(id);
+        const workSection = document.getElementById('work');
+        if (workSection) workSection.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    window.showHome = () => {
+        history.pushState(null, null, ' '); // Clear hash
+        renderHome();
+        const workSection = document.getElementById('work');
+        if (workSection) workSection.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    function handleHashChange() {
+        const hash = window.location.hash.slice(1);
+        const validCategories = COLLECTIONS.map(c => c.id);
+
+        if (validCategories.includes(hash)) {
+            renderCategory(hash);
+        } else {
+            // Default to Home (No "All" option)
+            renderHome();
+        }
+    }
+
+    // Expose openLightbox globally
+    window.openLightbox = openLightbox;
+    window.openLightboxByIndex = openLightboxByIndex;
+
+    function openLightboxByIndex(index) {
+        const photo = PHOTO_DATA[index];
+        if (photo) {
+            openLightbox(photo);
+        }
+    }
+
+    function openLightbox(photoData) {
+        // Handle both object and string (legacy) inputs
+        const photo = typeof photoData === 'string' ? { src: photoData, poetry: '' } : photoData;
+
         lightbox.style.display = 'flex';
-        // Allow display:flex to apply before adding opacity class
         requestAnimationFrame(() => {
             lightbox.classList.add('active');
-            lightboxImg.src = src;
+            lightboxImg.src = photo.src;
+
+            // Update poetry panel
+            const poetryPanel = document.getElementById('lightbox-poetry');
+            if (poetryPanel && photo.poetry) {
+                poetryPanel.textContent = photo.poetry;
+            }
         });
     }
 
@@ -289,7 +493,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lightbox.classList.remove('active');
         setTimeout(() => {
             lightbox.style.display = 'none';
-        }, 300); // Wait for transition
+        }, 300);
     });
 
     lightbox.addEventListener('click', (e) => {
@@ -301,28 +505,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Filter Logic
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active class from all
-            filterButtons.forEach(b => b.classList.remove('active'));
-            // Add to clicked
-            btn.classList.add('active');
+    // Initialize
+    window.addEventListener('hashchange', handleHashChange);
 
-            const filterValue = btn.getAttribute('data-filter');
-            renderGallery(filterValue);
-
-            // Update URL hash without scrolling
-            history.replaceState(null, null, filterValue === 'all' ? ' ' : `#${filterValue}`);
-        });
-    });
-
-    // Check Hash on Load
-    const hash = window.location.hash.slice(1);
-    if (hash && ['aesthetics', 'city-lights', 'water-bodies', 'animals', 'moon-sun', 'cars-toys', 'india'].includes(hash)) {
-        const btn = document.querySelector(`[data-filter="${hash}"]`);
-        if (btn) btn.click();
-    } else {
-        renderGallery('all');
-    }
+    // Initial Load
+    handleHashChange();
 });
